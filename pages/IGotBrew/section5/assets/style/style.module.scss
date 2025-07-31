@@ -1,0 +1,123 @@
+.outside {
+  height: 100vh;
+  padding: 0;
+  background-image: url(../img/bg.png);
+  background-size: cover;
+  .wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    height: 100vh;
+  }
+  .question {
+    z-index: 1;
+    font-size: 2.2rem;
+    line-height: 32px;
+    font-weight: normal;
+    background-color: #2b4f61;
+    color: white;
+    padding: 16px 84px;
+    max-width: 400px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    p {
+      margin: 0;
+    }
+  }
+  .answers {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    .answer {
+      width: 240px;
+      height: 240px;
+      background-color: rgba(255, 255, 255, 0.6);
+      color: #1b3947;
+      padding: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      border: none;
+      z-index: 1;
+      p {
+        margin: 0;
+        font-size: 2.4rem;
+        line-height: 34px;
+        font-weight: bold;
+        text-align: left;
+      }
+    }
+    .logoWhite {
+      width: 160px;
+      height: 160px;
+    }
+    .logoWhitePhone {
+      display: none;
+    }
+    z-index: 1;
+  }
+  .bg {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    pointer-events: none;
+  }
+  .left {
+    left: 0px;
+  }
+  .right {
+    right: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .outside {
+    padding: 12px;
+    height: auto;
+  }
+  .question {
+    font-size: 2rem !important;
+    line-height: 28px !important;
+    padding: 16px 32px !important;
+    max-width: 320px !important;
+  }
+  .answers {
+    flex-direction: column;
+    .answer {
+      border-radius: 12px;
+      width: 288px !important;
+      height: 100px !important;
+      padding: 24px 16px !important;
+      &:active {
+        background-color: #eba92a;
+      }
+      p {
+        font-size: 2rem !important;
+        line-height: 28px !important;
+      }
+    }
+    .logoWhite {
+      display: none;
+    }
+    .logoWhitePhone {
+      display: block !important;
+      width: 128px;
+      height: 128px;
+    }
+  }
+}
+
+.fadeIn {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+.fadeOut {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}

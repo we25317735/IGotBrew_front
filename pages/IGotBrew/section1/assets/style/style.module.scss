@@ -1,0 +1,642 @@
+.section1 {
+  max-width: 100vw;
+  overflow: hidden;
+
+  .section1_container {
+    padding-top: 80px;
+    width: 100%;
+    height: auto;
+    margin: 0 0 10vw 0;
+
+    .left-section {
+      position: relative;
+
+      .imagegroup {
+        width: 100%;
+        height: auto;
+
+        .image {
+          position: absolute;
+          top: 4vw;
+          left: 13vw;
+          width: 20vw;
+          height: 20vw;
+          animation: rotation 4s infinite linear;
+        }
+
+        .image2 {
+          position: absolute;
+          top: 4.1vw;
+          left: 13.3vw;
+          width: 19.5vw;
+          height: 19.5vw;
+          z-index: 5;
+          object-fit: cover;
+        }
+
+        .image:nth-child(2) {
+          z-index: 10;
+        }
+      }
+
+      .section1-text {
+        padding-top: 28vw;
+        padding-left: 12vw;
+        position: relative;
+
+        .slogan img {
+          width: 34vw;
+          height: auto;
+          padding-bottom: 1.6vw;
+        }
+
+        .placard img {
+          width: 24vw;
+          height: auto;
+        }
+      }
+    }
+
+    .suprise-box {
+      position: absolute;
+      top: 36vw;
+      left: -6vw;
+      z-index: 8;
+
+      .btn {
+        --bs-btn-border-width: initial;
+        --bs-btn-border-color: initial;
+      }
+
+      .box-link img {
+        width: 12vw;
+        height: auto;
+      }
+
+      img:hover {
+        animation: swing 0.9s ease-in-out infinite;
+      }
+    }
+
+    .right-section {
+      position: relative;
+      z-index: 10;
+
+      .coffeegroup {
+        position: relative;
+        width: 100%;
+
+        .coffee-cup {
+          position: absolute;
+          left: 34vw;
+          top: 12vw;
+          transform: translateX(-50%);
+          z-index: 3;
+          img {
+            width: 42vw;
+            height: auto;
+          }
+        }
+
+        .coffee-plate {
+          position: absolute;
+          left: 33vw;
+          top: 26vw;
+          transform: translateX(-50%);
+          z-index: 2;
+          img {
+            width: 34vw;
+            height: auto;
+          }
+        }
+
+        .split {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 5;
+
+          .ball1,
+          .ball2,
+          .beans,
+          .coffeesplit {
+            position: absolute;
+            opacity: 0;
+          }
+
+          .ball1 {
+            left: -13vw;
+            top: 4vw;
+            width: 50vw;
+            height: auto;
+            z-index: 6;
+          }
+
+          .ball2 {
+            left: 5vw;
+            top: -5vw;
+            height: auto;
+            z-index: 5;
+            width: 40vw;
+          }
+
+          .beans {
+            left: -20vw;
+            top: 2vw;
+            width: 65vw;
+            height: auto;
+            z-index: 3;
+          }
+
+          .coffeesplit {
+            left: -40vw;
+            top: -3vw;
+            width: 82vw;
+            height: auto;
+            z-index: 4;
+          }
+        }
+      }
+    }
+  }
+}
+
+.modalSection1 {
+  .modal-content {
+    background-color: #b3c0c6;
+
+    .closeEnd {
+      display: grid;
+      justify-content: end;
+      padding: 2vw;
+      padding-bottom: 0;
+      .supriseClose {
+        max-width: 3vw;
+        border: none;
+        background: none;
+        svg {
+          color: #f7f2ed;
+          font-size: 3.2vw;
+        }
+      }
+    }
+    .couponSlogan {
+      width: 100%;
+      height: auto;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      .logoBean {
+        width: 14%;
+        height: auto;
+        padding-bottom: 1.2vw;
+      }
+      p {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #1c3948;
+      }
+    }
+    .couponArea {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      place-items: center;
+      padding-bottom: 24px;
+      .coupon {
+        max-width: 60%;
+        height: auto;
+      }
+      button {
+        align-self: flex-end;
+        border: none;
+        background-color: #2b4f61;
+        color: white;
+        font-size: 1.6rem;
+        padding: 8px 16px;
+        margin-right: 20%;
+        margin-top: 16px;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(20deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes plateRotate {
+  to {
+    transform: rotate(-15deg);
+  }
+}
+
+@keyframes cupRotate {
+  to {
+    transform: rotate(-21deg) translate(-6vw, -4vw);
+  }
+}
+
+@keyframes splitOpacity {
+  to {
+    opacity: 1;
+    transform: scaleY(1.5);
+  }
+}
+
+@keyframes ballOpacity {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes beansOpacity {
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-plate {
+  animation: plateRotate 1s forwards;
+}
+
+.animate-cup {
+  animation: cupRotate 1.2s forwards;
+}
+
+.animate-coffeesplit {
+  animation: splitOpacity 3s forwards;
+  animation-delay: 0.5s;
+}
+
+.animate-ball2 {
+  animation: ballOpacity 2s forwards;
+  animation-delay: 1s;
+}
+
+.animate-ball1 {
+  animation: ballOpacity 3s forwards;
+  animation-delay: 1.4s;
+}
+
+.animate-beans {
+  animation: beansOpacity 3s forwards;
+  animation-delay: 1.6s;
+}
+
+@media screen and (min-width: 375px) and (max-width: 576px) {
+  .section1 {
+    max-width: 100vw;
+    overflow: hidden;
+
+    .section1_container {
+      width: 100%;
+      height: auto;
+      margin: 0 0 60vw 0;
+      display: flex;
+      flex-direction: column;
+
+      .left-section,
+      .right-section {
+        width: 100%;
+        position: relative;
+
+        .imagegroup,
+        .coffeegroup {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .left-section {
+        .imagegroup {
+          .image {
+            position: absolute;
+            top: 6vw;
+            left: 30vw;
+            width: 30vw;
+            height: 30vw;
+            animation: rotation 4s infinite linear;
+          }
+
+          .image2 {
+            position: absolute;
+            top: 6.1vw;
+            left: 30.3vw;
+            width: 29.5vw;
+            height: 29.5vw;
+            z-index: 5;
+            object-fit: cover;
+          }
+        }
+
+        .section1-text {
+          padding-top: 44vw;
+          padding-left: 28vw;
+          position: relative;
+
+          .slogan img {
+            width: 44vw;
+            height: auto;
+            padding-bottom: 1.6vw;
+          }
+
+          .placard img {
+            width: 32vw;
+            height: auto;
+          }
+        }
+      }
+
+      .right-section {
+        margin-top: 20vw;
+        z-index: 10;
+
+        .coffeegroup {
+          position: relative;
+          width: 100%;
+
+          .coffee-cup {
+            position: absolute;
+            left: 74vw;
+            top: 10vw;
+            transform: translateX(-50%);
+            z-index: 3;
+            img {
+              width: 52vw;
+              height: auto;
+            }
+          }
+
+          .coffee-plate {
+            position: absolute;
+            left: 74vw;
+            top: 28vw;
+            transform: translateX(-50%);
+            z-index: 2;
+            img {
+              width: 44vw;
+              height: auto;
+            }
+          }
+
+          .split {
+            position: absolute;
+            top: 0;
+            left: 40vw;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+
+            .ball1,
+            .ball2,
+            .beans,
+            .coffeesplit {
+              position: absolute;
+              opacity: 0;
+            }
+
+            .ball1 {
+              left: -13vw;
+              top: 4vw;
+              width: 54vw;
+              height: auto;
+              z-index: 6;
+            }
+
+            .ball2 {
+              left: 0vw;
+              top: -12vw;
+              width: 48vw;
+              height: auto;
+              z-index: 5;
+            }
+
+            .beans {
+              left: -20vw;
+              top: 2vw;
+              width: 68vw;
+              height: auto;
+              z-index: 3;
+            }
+
+            .coffeesplit {
+              left: -48vw;
+              top: -5vw;
+              width: 92vw;
+              height: auto;
+              z-index: 4;
+            }
+          }
+        }
+      }
+
+      .suprise-box {
+        position: absolute;
+        top: 66vw;
+        left: -10vw;
+        z-index: 8;
+
+        .btn {
+          --bs-btn-border-width: initial;
+          --bs-btn-border-color: initial;
+        }
+
+        .box-link img {
+          width: 20vw;
+          height: auto;
+          animation: swing 0.9s ease-in-out infinite;
+          animation: four-swings-and-pause 10s ease-in-out infinite;
+        }
+
+        img:hover {
+          animation: swing 0.9s ease-in-out infinite;
+        }
+      }
+    }
+  }
+
+  .modalSection1 {
+    .modal-content {
+      .closeEnd {
+        padding: 2vw;
+        .supriseClose {
+          max-width: 6vw;
+          border: none;
+          background: none;
+          svg {
+            color: #f7f2ed;
+            font-size: 6vw;
+          }
+        }
+      }
+      .couponSlogan {
+        width: 100%;
+        height: auto;
+        display: grid;
+        place-items: center;
+        padding: 5vw 0 2.8vw 0;
+        .logoBean {
+          width: 18vw;
+          height: auto;
+          padding-bottom: 1.2vw;
+        }
+        p {
+          font-size: 4vw;
+          font-weight: 600;
+          color: #1c3948;
+        }
+      }
+      .couponArea {
+        width: 100%;
+        height: auto;
+        display: grid;
+        place-items: center;
+        padding-bottom: 5vw;
+        .coupon {
+          max-width: 68vw;
+          height: auto;
+        }
+        button {
+          align-self: flex-end;
+          justify-self: flex-end;
+          margin-right: 45px;
+        }
+      }
+    }
+  }
+  @keyframes swing {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    50% {
+      transform: rotate(30deg);
+    }
+
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  @keyframes four-swings-and-pause {
+    0%,
+    5%,
+    10%,
+    15%,
+    20%,
+    25%,
+    30%,
+    35%,
+    40%,
+    45%,
+    50%,
+    55%,
+    60%,
+    65%,
+    70%,
+    75%,
+    80%,
+    85%,
+    90%,
+    95%,
+    100% {
+      transform: rotate(0deg);
+    }
+    6%,
+    7%,
+    8%,
+    9%,
+    11%,
+    12%,
+    13%,
+    14%,
+    16%,
+    17%,
+    18%,
+    19%,
+    21%,
+    22%,
+    23%,
+    24% {
+      transform: rotate(40deg);
+    }
+    26%,
+    27%,
+    28%,
+    29%,
+    31%,
+    32%,
+    33%,
+    34%,
+    36%,
+    37%,
+    38%,
+    39%,
+    41%,
+    42%,
+    43%,
+    44% {
+      transform: rotate(0deg);
+    }
+    46%,
+    47%,
+    48%,
+    49%,
+    51%,
+    52%,
+    53%,
+    54%,
+    56%,
+    57%,
+    58%,
+    59%,
+    61%,
+    62%,
+    63%,
+    64% {
+      transform: rotate(40deg);
+    }
+    66%,
+    67%,
+    68%,
+    69%,
+    71%,
+    72%,
+    73%,
+    74%,
+    76%,
+    77%,
+    78%,
+    79%,
+    81%,
+    82%,
+    83%,
+    84% {
+      transform: rotate(0deg);
+    }
+  }
+}

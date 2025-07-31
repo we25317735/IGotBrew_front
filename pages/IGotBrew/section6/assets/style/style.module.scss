@@ -1,0 +1,355 @@
+/* 地圖上方文字 */
+.map-top {
+  margin-bottom: 20px;
+  margin-top: 100px;
+  padding-left: 60px;
+  h2 {
+    font-size: 4rem;
+    color: #2b4f61;
+    font-weight: 700;
+  }
+}
+
+/* 地圖的session */
+.section6 {
+  max-width: 1000px;
+  height: 1200px;
+  padding-top: 60px;
+  margin: 0 auto;
+}
+
+/* 地圖白色框 */
+.map-bottom {
+  height: 960px;
+  max-width: 1440px;
+  border-radius: 36px;
+  padding-top: 60px;
+  background-color: white;
+}
+/* 白色框地圖 */
+.map-bottom-top {
+  height: 500px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* 路線導覽 icon */
+.map-bottom-route {
+  z-index: 10;
+  right: 1vw;
+  bottom: 1.4vw;
+  width: 160px;
+  height: 60px;
+  background-color: #2b4f61;
+  border-radius: 40px;
+  display: grid;
+  place-items: center;
+  & .btn-more {
+    text-decoration: none;
+    font-size: 2rem;
+    color: white;
+    display: flex;
+  }
+  .icon {
+    font-size: 1.8rem;
+    margin-top: 0.4vw;
+    margin-left: 0.3vw;
+  }
+  &:hover {
+    background-color: #f7f2ed;
+    border: 1px solid #2b4f61;
+    .btn-more {
+      color: #2b4f61;
+      font-weight: 700;
+    }
+  }
+  &:active {
+    background-color: #f7f2ed !important;
+    border: 1px solid #2b4f61;
+    .btn-more {
+      color: #2b4f61;
+      font-weight: 700;
+    }
+  }
+}
+/* 縮放 icon */
+.map-bottom-zoom {
+  position: absolute;
+  left: 1.2vw;
+  bottom: 0.8vw;
+  z-index: 10;
+  .zoom-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 70px;
+    height: 160px;
+    background-color: #f5f0e9;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #1d3642;
+
+    .btn {
+      --bs-btn-border-radius: none;
+    }
+
+    button {
+      flex: 1;
+      height: 100%;
+      background-color: #f7f2ed;
+      border: none;
+      color: #1d3642;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      outline: none;
+
+      &:hover {
+        background-color: #2b4f61;
+        color: #f7f2ed;
+      }
+    }
+
+    .zoom-in {
+      border-bottom: 2px solid #1d3642;
+      font-size: 3rem;
+    }
+
+    .zoom-out {
+      font-size: 4.8rem;
+      text-align: center;
+      align-content: center;
+      padding-bottom: 4px;
+    }
+  }
+}
+
+.map-transform {
+  transform: scale(1);
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  height: 100%;
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
+/* 白色框ul部分 */
+.map-bottom-min {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  & .detail-title {
+    font-size: 2.4rem;
+    color: #2b4f61;
+    font-weight: 900;
+    padding-block: 5px;
+  }
+  & span {
+    color: #1b3947;
+    font-size: 2.4rem;
+    padding-left: 36px;
+    font-weight: 600;
+  }
+}
+
+.map-bottom-bottom {
+  padding-top: 0px;
+  & a img {
+    width: 260px;
+    height: 86px;
+  }
+}
+/* RWD 768 */
+@media (max-width: 768px) {
+  .map-top {
+    margin-top: 80px;
+    margin-bottom: 10px;
+    padding-left: 0;
+    & h2 {
+      font-size: 2.8rem;
+      text-align: center;
+    }
+  }
+
+  .section6 {
+    max-width: 768px;
+  }
+
+  /* 地圖白色框 */
+  .map-bottom {
+    height: 900px;
+    max-width: 768px;
+    padding-top: 60px;
+  }
+  .map-bottom-top {
+    height: 400px;
+    margin: 0 auto;
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+
+  .map-bottom-route {
+    width: 126px;
+    height: 56px;
+    & .btn-more {
+      font-size: 2rem;
+      color: white;
+      display: flex;
+    }
+    .icon {
+      font-size: 1.8rem;
+      margin-top: 0.9vw;
+      margin-left: 0.4vw;
+    }
+  }
+  .map-bottom-zoom {
+    position: absolute;
+    left: 1.6vw;
+    bottom: 0.8vw;
+    .zoom-buttons {
+      display: flex;
+      flex-direction: column;
+      width: 60px;
+      height: 120px;
+
+      .zoom-in {
+        font-size: 2.6rem;
+      }
+
+      .zoom-out {
+        font-size: 3.6rem;
+      }
+    }
+  }
+
+  .map-bottom-min {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    & .detail-title {
+      font-size: 2.6rem;
+      padding-block: 5px;
+    }
+    & span {
+      color: #2b4f61;
+      font-size: 2rem;
+      padding-left: 8px;
+      font-weight: 900;
+    }
+  }
+
+  .map-bottom-bottom {
+    padding-top: 0px;
+    & a img {
+      width: 220px;
+      height: 80px;
+    }
+  }
+}
+
+/* RWD 390 */
+@media (max-width: 390px) {
+  .map-top {
+    margin-top: 80px;
+    margin-bottom: 0px;
+    padding-left: 0;
+    & h2 {
+      font-size: 2.8rem;
+      text-align: center;
+    }
+  }
+  .section6 {
+    max-width: 390px;
+  }
+  .map-bottom {
+    height: 640px;
+    max-width: 390px;
+    padding-top: 36px;
+  }
+  .map-bottom-top {
+    height: 280px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .map-bottom-route {
+    width: 100px;
+    height: 40px;
+    & .btn-more {
+      font-size: 1.6rem;
+      color: white;
+      display: flex;
+    }
+    .icon {
+      font-size: 1.6rem;
+      margin-top: 1vw;
+      margin-left: 0.4vw;
+    }
+  }
+  .map-bottom-zoom {
+    position: absolute;
+    left: 2.6vw;
+    bottom: 0.8vw;
+    .zoom-buttons {
+      display: flex;
+      flex-direction: column;
+      width: 46px;
+      height: 110px;
+
+      .zoom-in {
+        font-size: 2.4rem;
+      }
+
+      .zoom-out {
+        font-size: 3.2rem;
+      }
+    }
+  }
+
+  .map-transform {
+    transform: scale(1.7);
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+    height: 100%;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+
+  .map-bottom-min {
+    & .detail-title {
+      font-size: 2rem;
+      padding-block: 5px;
+    }
+    & span {
+      color: #2b4f61;
+      font-size: 1.7rem;
+      padding-left: 8px;
+      font-weight: 900;
+    }
+  }
+
+  .map-bottom-bottom {
+    padding-top: 0px;
+    & a img {
+      width: 160px;
+      height: 60px;
+    }
+  }
+}

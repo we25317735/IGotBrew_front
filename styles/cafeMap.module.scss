@@ -1,0 +1,88 @@
+.bg {
+  background-image: url('http://localhost:3005/api/images/hello/bg-long.png');
+  background-size: cover;
+  overflow: hidden;
+}
+.map-input {
+  .search-control {
+    font-size: 1.8rem;
+    color: #2b4f61;
+    border-radius: 8px;
+    border: 1px solid #2b4f61;
+
+    &::placeholder {
+      color: #b3c0c6;
+    }
+  }
+  .btn-search {
+    border-top-right-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+    border: 1px solid #2b4f61;
+    line-height: 3.8rem;
+    svg {
+      font-size: 1.8rem;
+      color: #2b4f61;
+    }
+    &:hover {
+      background-color: #2b4f61;
+      svg {
+        color: #f7f2ed;
+      }
+    }
+  }
+}
+.btn-filter {
+  border-radius: 8px !important;
+  color: #f7f2ed;
+  font-size: 1.8rem;
+}
+
+.filter-modal {
+  .filter-title {
+    font-size: 2.2rem;
+    color: #153438;
+    font-weight: 600;
+  }
+  .filter-subtitle {
+    font-size: 1.8rem;
+    color: #153438;
+  }
+  .filter-select {
+    font-size: 1.6rem;
+    color: #2b4f61;
+  }
+  .btn-cancel {
+    border-radius: 8px;
+    font-size: 1.6rem;
+    background-color: #f7f2ed;
+    color: #153438;
+    border: 1px solid #153438;
+  }
+  .btn-send {
+    border-radius: 8px;
+    font-size: 1.6rem;
+    background-color: #153438;
+    border: 1px solid #153438;
+  }
+}
+.card {
+  border-radius: 8px;
+  border: 1px solid #2b4f61;
+  .card-body {
+    .card-title {
+      font-size: 1.8rem;
+      color: #2b4f61;
+      font-weight: 600;
+    }
+    .card-text {
+      font-size: 1.6rem;
+      color: #153438;
+    }
+    .card-btn {
+      font-size: 1.4rem;
+      color: #f7f2ed;
+      background-color: #153438;
+      border-radius: 8px;
+    }
+  }
+}

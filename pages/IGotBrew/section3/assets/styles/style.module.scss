@@ -1,0 +1,556 @@
+.section4c {
+  padding: 0 0 48px 0;
+  font-size: 62.5% !important;
+  /* -------------------------上方title bar-------------------------------- */
+  .courseNavbar {
+    margin: 30px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+    color: #1b3947;
+
+    a {
+      text-decoration: none;
+      color: #1b3947;
+    }
+
+    .cnleft {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 10px;
+      position: relative;
+
+      img {
+        position: absolute;
+        width: 60px;
+        height: 45px;
+        top: 5px;
+        opacity: 0.5;
+      }
+
+      .cntitle {
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 2rem;
+        word-wrap: break-word;
+      }
+
+      .cnsubtitle {
+        font-size: 1.6rem;
+        font-weight: bold;
+        line-height: 4rem;
+        word-wrap: break-word;
+      }
+    }
+  }
+
+  .buttonguide {
+    margin-bottom: 20px;
+    padding: 12px 12px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px #2b4f61 solid;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    font-size: 1.6rem;
+
+    .buttonmask {
+      position: absolute;
+      transition: 1s;
+      z-index: 1;
+      left: -200px;
+      top: 30px;
+    }
+    .button-content {
+      z-index: 2;
+      transition: 1s;
+      display: inline-flex;
+      text-wrap: nowrap;
+      align-items: center;
+
+      .button-text {
+        transition: 1s;
+        font-weight: 700;
+        margin-right: 8px;
+      }
+      svg {
+        transition: all 1s ease-in-out;
+        transform: translateX(-10px);
+      }
+    }
+
+    &:hover {
+      .buttonmask {
+        transition: 1.5s;
+        top: -80px;
+        left: -10px;
+      }
+      .button-content {
+        .button-text {
+          /* transition-delay: 2s; */
+          transition: all 1s;
+          color: white;
+        }
+        svg {
+          transition: all 1.5s;
+          transition-duration: 1.5s;
+          transform: translateX(0px);
+          color: white;
+        }
+      }
+    }
+    &.clicked {
+      transition: all 0s;
+      background-color: #2b4f61;
+      .button-mask {
+        display: none;
+      }
+
+      .button-content {
+        transition: 0s;
+        .button-text {
+          color: white;
+        }
+        svg {
+          color: white;
+        }
+      }
+    }
+  }
+
+  /* -------------------------下方卡片基礎設定------------------------------- */
+
+  .courseContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-text-stroke: 0.2px white;
+
+    .contentdesk {
+      /* width: 88%; */
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto;
+      align-items: center;
+
+      .cfirst-row,
+      .csecond-row {
+        display: flex;
+        justify-content: space-around;
+        margin: 8px 0;
+
+        a {
+          text-decoration: none;
+          color: #1b3947;
+        }
+      }
+
+      .ccard1,
+      .ccard2,
+      .ccard3 {
+        padding: 6px 12px;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+      }
+
+      .ccard1 {
+        width: 28vw;
+        height: 28vw;
+        margin: 0 12px;
+      }
+
+      .ccard2 {
+        width: 22vw;
+        height: 26vw;
+      }
+
+      .ccard3 {
+        width: 37vw;
+        height: 30vw;
+        margin: 0 8px;
+      }
+
+      .ccard-word {
+        padding-top: 8px;
+
+        .ccard-title {
+          font-size: 2.4rem;
+          font-weight: 700;
+          line-height: 42px;
+          word-wrap: break-word;
+        }
+
+        .ccard-subtitle {
+          font-size: 1.6rem;
+          border: none;
+          line-height: 16px;
+          word-wrap: break-word;
+        }
+      }
+    }
+    /* --------------------下方卡片背景及背面hover----------------------------- */
+    .ccarda {
+      position: relative;
+
+      .ccardaup {
+        transition: opacity 0.5s;
+        z-index: 2;
+        background: url(../imgs/certificate5.jpg), rgba(255, 255, 255, 0.3);
+        background-blend-mode: color-burn;
+        background-size: cover;
+        background-position: center;
+      }
+
+      &:hover {
+        .ccardaup {
+          opacity: 0;
+        }
+        .ccardadown {
+          opacity: 1;
+        }
+      }
+
+      .ccardadown {
+        transition: opacity 0.5s;
+        opacity: 0;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        background: #2b4f61;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+        border: 1px #2b4f61 solid;
+      }
+    }
+
+    .ccardb {
+      position: relative;
+
+      .ccardbup {
+        transition: opacity 0.5s;
+        z-index: 2;
+        background: url(../imgs/introcoffee1.jpg), rgba(255, 255, 255, 0.3);
+        background-blend-mode: color-burn;
+        background-size: cover;
+        background-position: center;
+        transition: opacity 0.5s;
+      }
+
+      &:hover {
+        .ccardbup {
+          opacity: 0;
+        }
+        .ccardbdown {
+          opacity: 1;
+        }
+      }
+
+      .ccardbdown {
+        transition: opacity 0.5s;
+        opacity: 0;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        background: #2b4f61;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+    }
+
+    .ccardc {
+      position: relative;
+
+      .ccardcup {
+        transition: opacity 0.5s;
+        z-index: 2;
+        background: url(../imgs/course4.jpg), rgba(255, 255, 255, 0.3);
+        background-blend-mode: color-burn;
+        background-size: cover;
+        background-position: center;
+        transition: opacity 0.5s;
+      }
+
+      &:hover {
+        .ccardcup {
+          opacity: 0;
+        }
+        .ccardcdown {
+          opacity: 1;
+        }
+      }
+
+      .ccardcdown {
+        transition: opacity 0.5s;
+        opacity: 0;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        background: #2b4f61;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+    }
+
+    .ccardd {
+      position: relative;
+
+      .ccarddup {
+        transition: opacity 0.5s;
+        z-index: 2;
+        background: url(../imgs/latteart4.jpg), rgba(255, 255, 255, 0.3);
+        background-blend-mode: color-burn;
+        background-size: cover;
+        background-position: center;
+        transition: opacity 0.5s;
+      }
+
+      &:hover {
+        .ccarddup {
+          opacity: 0;
+        }
+        .ccardddown {
+          opacity: 1;
+        }
+      }
+
+      .ccardddown {
+        transition: opacity 0.5s;
+        opacity: 0;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        background: #2b4f61;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+    }
+
+    .ccarde {
+      position: relative;
+
+      .ccardeup {
+        transition: opacity 0.5s;
+        z-index: 2;
+        background: url(../imgs/brewing1.jpg), rgba(255, 255, 255, 0.3);
+        background-blend-mode: color-burn;
+        background-size: cover;
+        background-position: center;
+        transition: opacity 0.5s;
+      }
+
+      &:hover {
+        .ccardeup {
+          opacity: 0;
+        }
+        .ccardedown {
+          opacity: 1;
+        }
+      }
+
+      .ccardedown {
+        transition: opacity 0.5s;
+        opacity: 0;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        background: #2b4f61;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+    }
+
+    .ccardf {
+      position: relative;
+
+      .ccardfup {
+        transition: opacity 0.5s;
+        z-index: 2;
+        background: url(../imgs/roast2.jpeg), rgba(255, 255, 255, 0.3);
+        background-blend-mode: color-burn;
+        background-size: cover;
+        background-position: center;
+        transition: opacity 0.5s;
+      }
+
+      &:hover {
+        .ccardfup {
+          opacity: 0;
+        }
+        .ccardfdown {
+          opacity: 1;
+        }
+      }
+
+      .ccardfdown {
+        transition: opacity 0.5s;
+        opacity: 0;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        background: #2b4f61;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+    }
+
+    .ccardadown,
+    .ccardbdown,
+    .ccardcdown,
+    .ccardddown,
+    .ccardedown,
+    .ccardfdown {
+      .ccard-word {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: auto;
+
+        .ccard-title,
+        .ccard-subtitle {
+          color: #ffffff !important;
+        }
+      }
+
+      .ccard-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+      }
+
+      img {
+        display: block;
+        width: 12vw;
+        height: 12vw;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+    }
+  }
+}
+
+/* -------------------------手機版卡片-------------------------------- */
+.contentphone {
+  display: none;
+
+  a {
+    text-decoration: none;
+    color: #1b3947;
+  }
+
+  .cfirst-row,
+  .csecond-row,
+  .cthird-row {
+    a {
+      text-decoration: none;
+      color: #1b3947;
+    }
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .ccard {
+    /* flex: 1; */
+
+    width: calc(35vw - 8px);
+    height: 160px;
+    padding: 8px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 8px 4px;
+
+    .ccard-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .ccard-subtitle {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    img {
+      width: 12vw;
+      height: 12vw;
+      margin-top: 1vh;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section4c {
+    height: auto;
+    .courseNavbar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      .cnleft {
+        img {
+          width: 40px;
+          height: 30px;
+          top: 5px;
+          opacity: 0.5;
+        }
+
+        .cntitle {
+          font-size: 2.8rem;
+          line-height: 2rem;
+          word-wrap: break-word;
+        }
+
+        .cnsubtitle {
+          font-size: 1.6rem;
+          line-height: 2rem;
+        }
+      }
+
+      .buttonguide {
+        display: none;
+      }
+    }
+
+    .contentdesk {
+      display: none;
+    }
+
+    .contentphone {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+
+      .downbutton {
+        margin-top: 20px;
+      }
+    }
+  }
+}

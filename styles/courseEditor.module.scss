@@ -1,0 +1,113 @@
+// styles.module.scss
+
+.courseFluidEdit {
+  overflow-x: hidden;
+  background: url(http://localhost:3005/api/images/course/bg.png);
+  background-size: cover;
+  position: relative;
+
+  .bgup {
+    position: relative;
+    z-index: 0;
+    object-fit: cover;
+
+    img {
+      top: -600px;
+      left: calc(44vw - 1250px);
+      width: 2500px;
+      height: 1400px;
+      position: absolute;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+  }
+  .title {
+    position: relative;
+    z-index: 2;
+
+    margin-top: 100px;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 500;
+    color: #ffffff !important;
+
+    opacity: 1;
+  }
+  .filter {
+    .switch {
+      position: relative;
+      display: inline-block;
+      margin: 20px 0 0 0px;
+      max-width: 200px;
+    }
+
+    .switch > span {
+      position: absolute;
+      top: 8px;
+      pointer-events: none;
+
+      font-size: 1.6rem;
+      width: 50%;
+      text-align: center;
+    }
+
+    .checkFilter:checked ~ .off {
+      color: #f7f2ed;
+    }
+
+    .checkFilter:checked ~ .on {
+      color: #4d6b7a;
+    }
+
+    .switch > span.on {
+      cursor: pointer;
+      left: 0;
+      color: #f7f2ed;
+    }
+
+    .switch > span.off {
+      right: 0;
+      padding-right: 4px;
+      color: #4d6b7a;
+    }
+
+    .check-toggle {
+      position: absolute;
+      z-index: -100;
+      visibility: hidden;
+    }
+
+    .checkFilter + label {
+      padding: 4px;
+      width: 200px;
+      height: 40px;
+      background-color: #c4ced3;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .checkFilter + label:before,
+    .checkFilter + label:after {
+      display: block;
+      position: absolute;
+      content: '';
+    }
+
+    .checkFilter + label:before {
+      background-color: #c4ced3;
+      border-radius: 4px;
+    }
+    .checkFilter + label:after {
+      top: 2px;
+      left: 1px;
+      bottom: 4px;
+      width: 100px;
+      background-color: #4d6b7a;
+      border-radius: 4px;
+      transition: margin 0.2s;
+    }
+
+    .checkFilter:checked + label:after {
+      margin-left: 49%;
+    }
+  }
+}

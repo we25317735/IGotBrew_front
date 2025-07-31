@@ -1,0 +1,292 @@
+.bk {
+  background-color: #f5f5f5;
+  color: #1b3947;
+}
+.backg {
+  background-image: url('http://localhost:3005/api/images/hello/bg-long.png');
+  background-size: cover;
+  padding: 0;
+  z-index: 1;
+  color: #1b3947;
+  height: 200vh;
+}
+.formRow {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+
+  .formGroup {
+    flex: 1;
+    min-width: 200px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+}
+.titlee {
+  text-decoration: none;
+  color: #1b3947;
+}
+.imageUpload {
+  display: flex;
+  align-items: center;
+
+  input[type='file'] {
+    display: none;
+  }
+
+  .customFileLabel {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+  }
+}
+.modal-body {
+  padding: 20px;
+}
+.productDetails {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+
+  p {
+    margin: 0;
+    font-size: 1.4rem;
+  }
+
+  strong {
+    font-weight: bold;
+    font-size: 1.4rem;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.viewImages {
+  h5 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .clickableImage {
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.actionButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.productManager {
+  padding: 20px;
+  overflow-x: auto; // 添加水平滾動
+
+  h1 {
+    color: #2b4f6e;
+    margin-bottom: 20px;
+    font-size: 2.4rem; // 調整標題大小
+  }
+
+  .controls {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap; // 允許換行
+    gap: 10px;
+
+    select,
+    button {
+      padding: 5px 10px;
+      border: 1px solid #2b4f6e;
+      border-radius: 5px;
+      background-color: white;
+      color: #2b4f6e;
+      font-size: 1.4rem; // 稍微縮小字體
+    }
+
+    .addButton {
+      background-color: #2b4f6e;
+      color: white;
+    }
+    .addButton:hover {
+      background-color: #eba92a;
+      color: #2b4f6e;
+    }
+  }
+
+  .productTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #2b4f6e;
+    th {
+      background-color: #6d5848;
+
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      color: white !important;
+    }
+    th,
+    td {
+      color: #2b4f6e;
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      font-size: 1.4rem;
+      white-space: nowrap;
+    }
+
+    // 新增以下樣式
+    td:nth-child(2) {
+      // 商品名稱欄位
+      min-width: 200px;
+      max-width: 300px;
+      white-space: normal; // 允許文字換行
+      word-break: break-word; // 在必要時斷詞
+    }
+
+    td:nth-child(3),
+    td:nth-child(4),
+    td:nth-child(5) {
+      // 價格、折扣後價格、庫存量欄位
+      width: 80px;
+      text-align: right; // 數字右對齊
+    }
+
+    .lowStock {
+      color: red;
+    }
+
+    button {
+      margin-right: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #2b4f6e;
+    }
+    tr:nth-child(odd) {
+      background-color: #ede7df; // 咖啡色的浅色背景
+    }
+
+    tr:nth-child(even) {
+      background-color: #fff;
+    }
+
+    tr:hover {
+      background-color: #e6d7c3; // 深一点的咖啡色用于悬停时的背景色
+    }
+  }
+
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; // 允許換行
+    gap: 5px;
+
+    button {
+      padding: 5px 10px;
+      border: 1px solid #2b4f6e;
+      border-radius: 5px;
+      background-color: white;
+      color: #2b4f6e;
+      cursor: pointer;
+      font-size: 1.4rem; // 稍微縮小字體
+
+      &:hover {
+        background-color: #2b4f6e;
+        color: white;
+      }
+
+      &.activePage {
+        background-color: #2b4f6e;
+        color: white;
+      }
+    }
+  }
+}
+
+// Modal styles
+.modal {
+  .modal-content {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+  }
+
+  .modal-header {
+    background-color: #2b4f6e;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .modal-body {
+    padding: 20px;
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      color: #2b4f6e;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button[type='submit'] {
+      background-color: #2b4f6e;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+// 媒體查詢，用於較小的屏幕
+@media (max-width: 768px) {
+  .productManager {
+    .controls {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .productTable {
+      font-size: 1.2rem; // 在小屏幕上進一步縮小字體
+
+      th,
+      td {
+        padding: 8px 5px; // 縮小padding
+      }
+    }
+  }
+}

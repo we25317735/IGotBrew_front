@@ -1,0 +1,14 @@
+.backg {
+  background-image: url('http://localhost:3005/api/images/hello/bg-long.png');
+  background-size: cover;
+  padding: 0;
+  z-index: 1;
+  color: #1b3947;
+  min-height: 100vh;
+}
+.chartb {
+  width: 400px !important;
+  h2 {
+    width: 400px !important;
+  }
+}

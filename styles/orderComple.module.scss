@@ -1,0 +1,266 @@
+.h1 {
+  font-size: 51.2px; /* 3.2rem * 16 */
+  color: #2b4f61;
+  font-weight: 900;
+}
+@media screen and (max-width: 576px) {
+  .h1 {
+    font-size: 38.4px; /* 2.4rem */
+  }
+}
+
+.h2 {
+  font-size: 38.4px; /* 2.4rem */
+  font-weight: 900;
+  color: #2b4f61;
+}
+@media screen and (max-width: 576px) {
+  .h2 {
+    font-size: 32px; /* 2rem */
+  }
+}
+
+.h3 {
+  font-size: 32px; /* 2rem */
+  color: #2b4f61;
+  font-weight: 900;
+}
+@media screen and (max-width: 576px) {
+  .h3 {
+    font-size: 25.6px; /* 1.6rem */
+  }
+}
+
+.h4 {
+  font-size: 28.8px; /* 1.8rem */
+  color: #2b4f61;
+  font-weight: 900;
+}
+@media screen and (max-width: 576px) {
+  .h4 {
+    font-size: 25.6px; /* 1.6rem */
+  }
+}
+
+.h5 {
+  font-size: 25.6px; /* 1.6rem */
+  color: #2b4f61;
+  font-weight: 900;
+}
+@media screen and (max-width: 576px) {
+  .h5 {
+    font-size: 22.4px; /* 1.4rem */
+  }
+}
+
+.h6 {
+  font-size: 22.4px; /* 1.4rem */
+  color: #2b4f61;
+  font-weight: 900;
+}
+@media screen and (max-width: 576px) {
+  .h6 {
+    font-size: 19.2px; /* 1.2rem */
+  }
+}
+
+.p {
+  font-size: 19.2px; /* 1.2rem */
+  font-weight: 900;
+  color: #2b4f61;
+}
+@media screen and (max-width: 576px) {
+  .p {
+    font-size: 19.2px;
+  }
+}
+
+.cartTitle {
+  margin-top: 100px;
+}
+@media screen and (max-width: 391px) {
+  .cartTitle {
+    margin-top: 70px;
+  }
+}
+
+.cart {
+  background-image: url(../public//images/cart/bg.png);
+}
+
+.cart-top {
+  display: flex;
+  justify-content: center;
+}
+
+.finishIcon {
+  font-size: 192px; /* 12rem */
+  color: lightgreen;
+}
+@media screen and (max-width: 391px) {
+  .finishIcon {
+    font-size: 128px; /* 8rem */
+  }
+}
+
+.cart-header .step {
+  color: #b1b5c3;
+}
+.cart-header .step span {
+  width: 40px;
+  height: 40px;
+  background-color: #b1b5c3;
+  color: white;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+}
+
+.cart-header .step-active {
+  color: #2b4f61;
+}
+.cart-header .step-active span {
+  background-color: #2b4f61;
+}
+
+.cart-body {
+  font-size: 28.8px; /* 1.8rem */
+  margin-top: 40px;
+}
+
+.cart-body h3 {
+  font-size: 57.6px; /* 3.6rem */
+  font-weight: 900;
+  justify-content: center;
+  color: #1b3947;
+}
+
+.cart-body h4 {
+  font-size: 48px; /* 3rem */
+}
+
+.hotproduct {
+  margin-left: 60px;
+}
+
+.cart-title {
+  font-size: 192px; /* 12rem */
+  color: #38cb89;
+}
+
+.back {
+  width: 7vw; /* 7 * 16px = 112px (不必轉換為固定px也可) */
+  height: 3vw; /* 3 * 16px = 48px */
+  border-radius: 80px;
+  background-color: #2b4f61;
+  border: transparent;
+  color: white;
+  margin-top: 20px;
+}
+
+.cart-footer {
+  margin-left: 150px;
+}
+.cart-footer h2 {
+  font-size: 48px; /* 3rem */
+  font-weight: 900;
+  margin-left: 20px;
+  color: #2b4f61;
+}
+
+.figures {
+  width: 250px;
+  height: 250px;
+  margin: 20px;
+}
+
+.figures h4 {
+  font-size: 28.8px; /* 1.8rem */
+  width: 14vw;
+}
+.figures h4 a {
+  text-decoration: none;
+  color: #2b4f61;
+}
+
+.figures p {
+  font-size: 25.6px; /* 1.6rem */
+}
+
+.item1 li {
+  line-height: 60px;
+  font-weight: 900;
+  color: #6c7275;
+  font-size: 32px; /* 2rem * 16 */
+}
+.item2 li {
+  line-height: 60px;
+  font-weight: 900;
+  font-size: 32px;
+  color: #2b4f61;
+}
+.figures-caption h3 {
+  font-size: 25.6px; /* 1.6rem */
+  color: #1b3947;
+  font-weight: 900;
+}
+.product-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  height: 340px;
+  padding: 20px;
+  text-align: center;
+}
+.product-img {
+  width: 200px;
+  height: 200px;
+}
+.product-title {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+  text-align: start;
+}
+
+@media (max-width: 391px) {
+  .cart {
+    font-size: 75%;
+  }
+  .cart-header .step span {
+    width: 30px;
+    height: 30px;
+  }
+
+  .cart-body {
+    font-size: 25.6px; /* 1.6rem */
+    margin-top: 0px;
+  }
+
+  .cart-body h3 {
+    font-size: 38.4px; /* 2.4rem */
+  }
+
+  .back {
+    width: 27vw;
+    height: 12vw;
+    border-radius: 80px;
+    margin-top: 15px;
+  }
+
+  .cart-footer h2 {
+    font-size: 32px; /* 2rem */
+  }
+
+  .item1 li,
+  .item2 li {
+    line-height: 40px;
+    font-size: 25.6px; /* 1.6rem */
+  }
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+}

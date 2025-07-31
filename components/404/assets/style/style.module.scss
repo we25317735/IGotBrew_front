@@ -1,0 +1,44 @@
+#Page-404 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .box-404 {
+    max-width: 500px;
+    min-height: 400px;
+
+    .img-box {
+      max-width: 300px;
+      max-height: 400px;
+
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    p {
+      padding-top: 3rem;
+      font-size: 5rem;
+
+      .wave {
+        display: inline-block;
+        animation: wave-animation 1.5s infinite;
+      }
+
+      @keyframes wave-animation {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}

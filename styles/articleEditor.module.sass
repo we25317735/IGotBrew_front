@@ -1,0 +1,268 @@
+.bg
+  background-image: url('http://localhost:3005/api/images/hello/articlebg.png')
+  background-size: cover
+.container 
+  margin: 0 auto
+  min-height: 100vh
+.title
+    font-size: 3.5rem   
+    font-weight: 700 
+    color: #2B4F61
+
+.search-input
+  max-width: 500px
+  button
+      text-decoration: none
+      font-size: 2rem
+      background-color: #2B4F61
+      color: #fff 
+      padding: 4px 10px 8px 10px
+      border-radius: 8px
+      &:hover
+        color: #2b4f61
+        background-color: #fff
+        border: 1px solid #2b4f61
+  input
+      border-radius: 0 8px 8px 0
+      font-size: 2rem
+      color: #2b4f61
+      font-weight: 700
+
+
+.publish-btn
+    text-decoration: none
+    font-size: 2rem
+    background-color: #2B4F61
+    color: #fff 
+    padding: 4px 10px 8px 10px
+    border-radius: 8px
+    &:hover
+      color: #2b4f61
+      background-color: #fff
+      border: 1px solid #2b4f61
+
+.asc-btn
+    text-decoration: none
+    font-size: 1.8rem
+    background-color: #2B4F61
+    color: #fff 
+    padding: 2px 8px 5px 8px
+    border-radius: 8px 0 0 8px
+    &:hover
+      color: #2b4f61
+      background-color: #fff
+      border: 1px solid #2b4f61
+    &:active
+      color: #2b4f61
+      background-color: #fff
+      border: 1px solid #2b4f61
+
+.desc-btn
+    text-decoration: none
+    font-size: 1.8rem
+    background-color: #2B4F61
+    color: #fff 
+    padding: 2px 8px 5px 8px
+    border-radius: 0 8px 8px 0
+    &:hover
+      color: #2b4f61
+      background-color: #fff
+      border: 1px solid #2b4f61
+    &:active
+      color: #2b4f61
+      background-color: #fff
+      border: 1px solid #2b4f61
+
+
+  
+.count 
+    justify-content: center
+    align-content: center
+    p 
+      font-size: 1.8rem
+      color: #1b3947
+      margin: 0
+      letter-spacing: 2px
+      
+    
+
+.image-wrapper
+    position: relative
+    width: 100%
+    min-height: 220px 
+    aspect-ratio: 16/9
+    overflow: hidden
+
+.card-image
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    object-fit: cover
+
+.card-body
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+.card-title
+    font-size: 2.4rem 
+    font-weight: 600   
+    color: #2B4F61
+    display: -webkit-box
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 1
+    overflow: hidden
+
+.tag-group 
+    display: flex
+    gap: 6px
+    font-size: 1.4rem
+    padding: 8px 0
+  
+    .tag1 
+      border-radius: 16px
+      text-align: center
+      align-content: center
+      background-color: #2b4f61
+      color: #fff
+      padding: 6px 8px
+        
+  
+    .tag2 
+      border-radius: 16px
+      text-align: center
+      align-content: center
+      background-color: #ffcf2b
+      color: #fff
+      padding: 6px 8px
+        
+      
+
+.card-text
+    font-size: 1.4rem
+    color: #1B3947
+
+.button-group
+  position: relative  
+  display: flex
+  justify-content: flex-end
+  margin-top: auto  
+
+.btn-more 
+    font-size: 1.8rem
+    text-align: center
+    border-radius: 8px
+    color: #2b4f61
+    border: 1px solid #030405
+    display: block
+    padding: 6px 10px
+    box-sizing: border-box
+
+    &:hover
+      color: #fff
+      background-color: #2b4f61
+
+.btn-edit
+    font-size: 1.8rem
+    text-align: center
+    border-radius: 8px
+    color: #2b4f61
+    border: 1px solid #030405
+    display: block
+    padding: 6px 10px
+    box-sizing: border-box
+
+    &:hover
+      color: #fff
+      background-color: #2b4f61
+
+.btn-delete
+    font-size: 1.8rem
+    text-align: center
+    border-radius: 8px
+    color: #cf3838
+    border: 1px solid #cf3838
+    display: block
+    padding: 6px 10px
+    box-sizing: border-box
+
+    &:hover
+      color: #fff
+      background-color: #cf3838
+
+.article-pagination 
+    .pagination 
+      padding: 100px 0
+      .page-link 
+        border: none
+        color: #1b3947
+        background-color: transparent
+        font-size: 1.6rem
+      .page-link:hover 
+        color: #fff
+        background-color: #1b3947
+        span 
+          color: #fff
+
+.pagination 
+  margin-top: 20px
+  display: flex
+  gap: 4px
+  align-items: center
+  font-size: 2rem
+  justify-content: center
+
+  .page-item 
+    list-style: none
+
+    .page-link 
+      text-decoration: none
+      padding: 8px 16px
+      font-size: inherit
+      color: #1b3947
+      background: none
+      border: none
+      cursor: pointer
+      transition: background-color 0.3s ease, color 0.3s ease
+
+      &:hover,
+      &:active 
+        background-color: #2b4f61
+        color: #fff
+      
+    
+
+    &.disabled .page-link 
+      color: #a8a8a8
+      pointer-events: none
+      background-color: transparent
+    
+
+    &.active .page-link 
+      background-color: #2b4f61
+      color: #fff
+      border: none
+      box-shadow: none
+      outline: none
+
+  @media screen and (max-width: 1200px) 
+    font-size: 1.8rem
+ 
+
+  @media screen and (max-width: 992px)
+    font-size: 1.6rem
+  
+
+  @media screen and (max-width: 768px) 
+    font-size: 1.4rem
+    flex-wrap: wrap
+    justify-content: space-between
+    gap: 2px
+
+
+  @media screen and (max-width: 576px)
+    font-size: 1.2rem
+

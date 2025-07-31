@@ -1,0 +1,460 @@
+.backg {
+  background-image: url('http://localhost:3005/api/images/hello/bg-long.png');
+  background-size: cover;
+}
+.overview-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  .off-price {
+    color: red;
+  }
+}
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 2rem;
+  a {
+    text-decoration: none;
+    padding: 8px 16px;
+    font-size: 2rem;
+    color: #1b3947;
+    &:hover {
+      background-color: #2b4f61;
+      color: #fff;
+    }
+    &:active {
+      background-color: #2b4f61;
+      color: #fff;
+    }
+  }
+  i {
+    color: #1b3947;
+  }
+  .grayer {
+    color: #a8a8a8 !important;
+  }
+
+  .selected {
+    background-color: #2b4f61;
+    color: #fff;
+  }
+}
+.front-price {
+  text-decoration: line-through;
+  text-decoration: none;
+  color: #1b3947;
+}
+.front-price.has-discount {
+  text-decoration: line-through !important;
+}
+
+.product-card:hover,
+.overview-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.my-row {
+  color: #1b3947;
+  width: 100%;
+  .my-col {
+    margin-bottom: 28px;
+    padding: 8px;
+  }
+
+  .overview-card {
+    &:hover {
+      opacity: 0.7 !important;
+    }
+
+    &:active {
+      opacity: 0.7 !important;
+    }
+
+    color: #1b3947;
+    text-decoration: none;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    img {
+      width: 100%;
+      height: auto; /* 確保圖片保持原比例 */
+    }
+
+    .overview-down {
+      display: flex;
+      flex-direction: column;
+      gap: 10px; /* 根據示意圖調整內部間距 */
+
+      .overview-title {
+        font-size: 1.6rem;
+        font-weight: bold;
+        height: 77px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        // word-break: keep-all;
+      }
+
+      .rank-star {
+        display: flex;
+        align-items: center;
+        gap: 5px; /* 調整評分和星星之間的間距 */
+        p {
+          font-size: 1.4rem;
+          color: #1b3947;
+          margin: 0;
+        }
+
+        .yellow-star {
+          font-size: 14px;
+          color: #eba92a;
+        }
+      }
+      .high-rating-label {
+        background-color: #2b4f61;
+        color: #fff;
+        font-size: 1.2rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+      .hot-selling-label {
+        background-color: rgb(193, 50, 50);
+        color: #ffffff;
+        font-size: 1.2rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+.overview-bottomm {
+  font-size: 1.4rem;
+  display: flex;
+  gap: 4px;
+}
+.searchResults {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  min-height: 100vh;
+  color: #1b3947;
+  .coffeeIcon {
+    color: #2b4f61;
+    font-size: 24px;
+  }
+  h2 {
+    font-weight: 700;
+    font-size: 2.4rem;
+    margin: 0;
+    align-items: center;
+    display: flex;
+  }
+  button {
+    font-weight: 700;
+  }
+}
+.card-group {
+  transition: transform 0.3s ease-in-out;
+  justify-content: center;
+  max-width: 1300px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px; // 调整列与列之间的间距
+}
+
+.card {
+  flex: 0 0 calc(33.333% - 20px); // 每个卡片占据三分之一的宽度，减去间距
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 20px; // 调整卡片与卡片之间的垂直间距
+
+  .card-body {
+    padding: 0px 16px 20px;
+  }
+
+  .tag-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    font-size: 1.4rem;
+    padding: 10px 0px 10px 0px;
+
+    .tag1 {
+      border-radius: 15px;
+      text-align: center;
+      align-content: center;
+      background-color: #2b4f61;
+      color: #fff;
+      padding: 6px 8px;
+    }
+
+    .tag2 {
+      border-radius: 15px;
+      text-align: center;
+      align-content: center;
+      background-color: #ffcf2b;
+      color: #fff;
+      padding: 6px 8px;
+    }
+  }
+
+  .publish-date {
+    font-size: 1.2rem;
+    padding-bottom: 6px;
+  }
+
+  .card-image {
+    width: 100%;
+    max-height: 360px;
+    background: #ccc;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+
+    .image {
+      width: 100%;
+      min-height: 360px;
+      object-fit: cover;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      object-position: center;
+    }
+  }
+
+  .card-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    padding-bottom: 1px;
+    color: #1b3947;
+  }
+
+  .title-border {
+    position: relative;
+    top: 3px;
+    width: 60px;
+    border-bottom: 3px solid #e4960e;
+  }
+
+  .card-text {
+    padding-top: 14px;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    color: #1b3947;
+    .article-content img {
+      display: none;
+    }
+  }
+
+  .btn-box {
+    padding-top: 12px;
+
+    .btn-more {
+      font-size: 1.6rem;
+      text-align: center;
+      border-radius: 15px;
+      color: #2b4f61;
+      text-decoration: none;
+      border: 1px solid #2b4f61;
+      width: 100%;
+      display: block;
+      padding: 6px;
+      box-sizing: border-box;
+    }
+  }
+}
+
+.card:hover {
+  border: 1px solid #2b4f61;
+
+  .card-image .image {
+    background-color: #fff;
+    opacity: 0.5;
+  }
+
+  .card-title {
+    color: #e4960e;
+  }
+
+  .btn-box .btn-more {
+    color: #fff;
+    background-color: #2b4f61;
+  }
+}
+
+.helloo {
+  text-decoration: none;
+  color: #1b3947;
+}
+.cmainCard {
+  transition: all 0.5s;
+  margin-bottom: 16px;
+  background-color: #fff;
+  border-radius: 6px;
+  width: 100%;
+  height: 96%;
+
+  .cmcImg {
+    display: flex;
+    justify-content: center;
+    overflow: hidden; // 隱藏溢出的部分
+    width: 100%; // 讓圖片容器寬度適應卡片寬度
+    height: 60%;
+    img {
+      border: 1px solid #cccccc;
+      margin: 8px !important;
+
+      width: 90%;
+      height: 90%;
+      object-fit: cover;
+    }
+  }
+
+  .cmcCon {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+    gap: 8px;
+
+    align-items: start;
+    padding: 1vw 2vw;
+    font-size: 1.4rem;
+    font-weight: 700;
+
+    .cmcP {
+      font-size: 1.2rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: #1b3947;
+    }
+  }
+
+  .courseLike {
+    display: flex;
+    justify-content: end;
+    padding: 0 16px 8px 8px;
+    top: -16px;
+    svg {
+      cursor: pointer;
+      transition: all 0.5s;
+      font-size: 2rem;
+      color: #999999;
+
+      &:hover {
+        color: #e00000;
+      }
+    }
+  }
+
+  &:hover {
+    background-color: #2b4f61;
+
+    .cmcCon * {
+      color: #fff !important;
+    }
+
+    transform: translateY(-4px);
+  }
+}
+.tabs {
+  display: flex;
+  width: 100%;
+}
+
+.tabs button {
+  background-color: transparent;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  flex: 1;
+  font-size: 1.6rem;
+  color: #1b3947;
+}
+
+.tabs button.active {
+  background-color: transparent;
+  border-bottom: 2px solid #2b4f61;
+  color: #eba92a;
+}
+.tabs button:hover {
+  color: #eba92a;
+}
+.resultsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 限制最大列数为4列 */
+  gap: 20px;
+  justify-content: center; /* 居中对齐网格内容 */
+}
+
+.productCard {
+  // border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 16px;
+  color: #1b3947;
+  text-decoration: none;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  .overview-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    height: 77px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // word-break: keep-all;
+  }
+}
+
+.productCard img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .overview-title {
+    font-size: 1.4rem !important;
+    height: 60px !important;
+  }
+  .my-col {
+    padding: 4px;
+  }
+  .overview-card {
+    padding: 4px;
+    gap: 6px;
+  }
+  .tabs button {
+    padding: 10px;
+  }
+}

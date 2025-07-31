@@ -1,0 +1,845 @@
+.h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #2b4f61;
+
+  @media screen and (max-width: 576px) {
+    font-size: 2.4rem;
+  }
+}
+
+.h2 {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #2b4f61;
+
+  @media screen and (max-width: 576px) {
+    font-size: 2rem;
+  }
+}
+
+.h3 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #2b4f61;
+
+  @media screen and (max-width: 576px) {
+    font-size: 1.6rem;
+  }
+}
+
+.h4 {
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: #2b4f61;
+
+  @media screen and (max-width: 576px) {
+    font-size: 1.6rem; // 原為 16px
+  }
+}
+
+.h5 {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #2b4f61;
+
+  @media screen and (max-width: 576px) {
+    font-size: 1.4rem; // 原為 14px
+  }
+}
+
+.h6 {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #2b4f61;
+
+  @media screen and (max-width: 576px) {
+    font-size: 1.2rem; // 原為 12px
+  }
+}
+
+.p {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #2b4f61;
+
+  @media screen and (max-width: 576px) {
+    font-size: 1.2rem; // 原為 12px
+  }
+}
+
+.carts {
+  background-image: url(../public//images/cart/bg.png);
+  // min-height: 1600px;
+}
+.couponarea {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.couponBottom {
+  color: #e4960e;
+}
+.cart-top {
+  display: flex;
+  justify-content: center;
+}
+.couponImg {
+  width: 15rem; // 原為 150px
+  height: 10rem; // 原為 100px
+}
+
+.cart {
+  margin-top: 10rem; // 原為 100px
+
+  @media screen and (max-width: 391px) {
+    margin-top: 7rem; // 原為 70px
+  }
+}
+
+.hotproduct {
+  margin-left: 5rem; // 原為 50px
+}
+
+.cart-header {
+  .step {
+    color: #b1b5c3;
+
+    span {
+      width: 40px; // 2.5rem 本身就是用預設 rem (16px) 計算的，等於 40px
+      height: 40px;
+      background-color: #b1b5c3;
+      color: white;
+      border-radius: 50%;
+      display: grid;
+      place-content: center;
+    }
+  }
+
+  .step-active {
+    color: #2b4f61;
+
+    span {
+      background-color: #2b4f61;
+    }
+  }
+}
+
+.trash {
+  font-size: 1.8rem; // 原為 18px
+  color: red;
+}
+
+.cart-main {
+  width: 75vw;
+  height: auto;
+  margin-inline: auto;
+  margin-top: 5rem; /* 80px / 16 */
+  flex-wrap: nowrap;
+  color: #1b3947;
+
+  .main-left {
+    .main-left-title {
+      font-size: 2rem;
+      font-weight: 900;
+      background-color: #2b4f61;
+      border-radius: 0.625rem; /* 10px / 16 */
+      color: white;
+
+      ul {
+        margin-bottom: 0;
+        li input {
+          width: 1.25rem; /* 20px / 16 */
+          height: 1.25rem;
+        }
+      }
+    }
+
+    .main-left-area {
+      margin-bottom: 3.125rem; /* 50px / 16 */
+    }
+
+    .main-left-body {
+      font-size: 0.5rem;
+      font-weight: 900;
+
+      ul {
+        ontainer .summary1 {
+          display: flex;
+          align-items: center;
+
+          input {
+            width: 1.25rem;
+            height: 1.25rem;
+          }
+        }
+
+        .summary2 {
+          & .main-body {
+            h5 {
+              font-size: 1.6rem;
+              font-weight: 900;
+              color: #1b3947;
+            }
+
+            i {
+              font-size: 2rem;
+            }
+          }
+
+          & .main-body-right {
+            font-size: 1.4rem;
+            margin-top: 0.625rem; /* 10px / 16 */
+            margin-left: 1.25rem; /* 20px / 16 */
+
+            & i {
+              font-size: 1.4rem;
+              margin-top: 0.25rem; /* 4px / 16 */
+              margin-left: 0.1875rem; /* 3px / 16 */
+            }
+          }
+        }
+
+        .summary3 {
+          font-size: 2rem;
+
+          & .set {
+            width: 5vw; /* 保持vw單位 */
+            border-radius: 0.3125rem; /* 5px / 16 */
+            height: 2.5rem; /* 40px / 16 */
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 1.6rem;
+
+            & div {
+              font-size: 2rem;
+            }
+          }
+        }
+
+        .summary4 {
+          font-size: 1.8rem;
+
+          & span {
+            font-size: 1.6rem;
+            color: #6c7275;
+            text-decoration: line-through;
+            margin-right: 0.5rem; /* 8px / 16 */
+          }
+        }
+
+        .summary5 {
+          font-size: 1.8rem;
+          color: #1b3947;
+        }
+      }
+    }
+  }
+
+  .counter-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 0.3125rem; /* 5px / 16 */
+    padding: 0.4375rem; /* 7px / 16 */
+    width: 7.5rem; /* 120px / 16 */
+    height: 2.5rem; /* 40px / 16 */
+    justify-content: space-between;
+    background-color: white;
+  }
+
+  .counter-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .counter-btn:focus {
+    outline: none;
+  }
+
+  .counter-value {
+    font-size: 2.4rem;
+    font-weight: normal;
+  }
+
+  .main-body-right {
+    & a {
+      text-decoration: none;
+      color: #1b3947;
+    }
+  }
+
+  .main-right {
+    font-size: 1rem;
+    margin-left: 3.125rem; /* 50px / 16 */
+    width: 900x; /* 這裡 900x 看起來應該是 typo? */
+    height: 15.625rem; /* 250px / 16 */
+
+    .main-right-title {
+      background-color: #d9d9d9;
+      height: 2.5rem; /* 40px / 16 */
+      border-radius: 0.625rem; /* 10px / 16 */
+      font-weight: 900;
+
+      h3 {
+        font-weight: 900;
+        font-size: 2rem;
+      }
+    }
+
+    .main-right-body {
+      font-size: 1.8rem;
+      color: #2b4f61;
+      font-weight: 900;
+
+      h3 {
+        font-weight: 900;
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+.right-bottom {
+  font-weight: 900;
+  .right-bottom-top {
+    border-top: 1px solid #6c7275;
+    h3 {
+      font-weight: 900;
+      font-size: 2rem;
+    }
+  }
+  .right-bottom-min {
+    font-weight: 900;
+    h3 {
+      font-weight: 900;
+      font-size: 2rem;
+    }
+  }
+}
+.right-bottom-bottom {
+  h2 {
+    font-weight: 900;
+    font-size: 2rem;
+    color: #2b4f61;
+    span {
+      font-size: 1.4rem;
+      margin-left: 5px;
+    }
+  }
+  p {
+    color: #e4960e;
+    font-size: 2rem;
+    font-weight: 900;
+  }
+}
+.main-right-bottom {
+  button {
+    width: 8vw;
+    height: 50px;
+    background: #2b4f61;
+    color: white;
+    border-radius: 10px;
+    margin-top: 30px;
+    border: transparent;
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
+.bt {
+  border: transparent;
+  align-items: center;
+  background: transparent;
+  i {
+    font-size: 1.8rem;
+  }
+}
+.set {
+  border: 1px solid #6c7275;
+  background-color: white;
+}
+.coupon {
+  img {
+    background-color: white;
+    border-radius: 8px;
+  }
+}
+
+.figure {
+  margin-inline: 0;
+  & h4 {
+    font-size: 1.6rem;
+    line-height: 0.9375rem; /* 15px / 16 */
+    width: 14vw;
+    a {
+      text-decoration: none;
+      color: #2b4f61;
+    }
+  }
+  & p {
+    font-size: 1.6rem;
+  }
+}
+.cart-footer {
+  margin-top: 3.125rem; /* 50px / 16 */
+}
+.cart-bottom {
+  display: flex;
+  margin-left: 8.75rem; /* 140px / 16 */
+  margin-top: 3.75rem; /* 60px / 16 */
+  h3 {
+    font-size: 3.2rem;
+    font-weight: 900;
+    margin-bottom: 1.875rem; /* 30px / 16 */
+  }
+}
+.cart-bot {
+  width: 85vw;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 0.625rem; /* 10px / 16 */
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* 2px 5px */
+  width: 15.625rem; /* 250px / 16 */
+  height: 21.25rem; /* 340px / 16 */
+  padding: 1.25rem; /* 20px / 16 */
+  text-align: center;
+}
+
+.product-img {
+  width: 12.5rem; /* 200px / 16 */
+  height: 12.5rem; /* 200px / 16 */
+}
+
+.product-title {
+  font-size: 1rem; /* 16px / 16 */
+  color: #333;
+  margin: 0.625rem 0; /* 10px / 16 */
+  text-align: start;
+}
+
+.product-price {
+  font-size: 1.25rem; /* 20px / 16 */
+  color: #333;
+  margin: 0.625rem 0; /* 10px / 16 */
+}
+
+.favorite-icon {
+  font-size: 1.25rem; /* 20px / 16 */
+  color: #999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.bot {
+  display: flex;
+  justify-content: space-between;
+}
+
+.products-img {
+  width: 6.25rem; /* 100px / 16 */
+  height: 6.25rem; /* 100px / 16 */
+}
+
+.cart-bottom-title {
+  margin-left: 150px;
+}
+.coupon {
+  height: 50px;
+  border-radius: 10px;
+
+  background-color: white;
+}
+
+@media (max-width: 391px) {
+  .cart-header {
+    .step {
+      span {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+
+  .cart-main {
+    width: 95vw;
+    margin-inline: 0;
+    display: block;
+    margin-top: 30px;
+    .main-left {
+      .main-left-title {
+        font-size: 1.4rem;
+        ul {
+          margin-bottom: 0px;
+          li input {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
+      .main-left-body {
+        font-size: 1.2rem;
+        font-weight: 900;
+        ul {
+          border-bottom: 1px solid #6c7275;
+
+          .summary1 {
+            display: flex;
+            align-items: center;
+            input {
+              width: 20px;
+              height: 20px;
+            }
+          }
+          .summary2 {
+            & .main-body {
+              h5 {
+                font-size: 1.2rem;
+              }
+              i {
+                font-size: 1.6rem;
+              }
+            }
+            & .main-body-right {
+              font-size: 1.2rem;
+              margin-top: 10px;
+              margin-left: 20px;
+              text-wrap: nowrap;
+              & i {
+                font-size: 1.4rem;
+                margin-top: 4px;
+                margin-left: 3px;
+              }
+            }
+          }
+          .summary3 {
+            font-size: 2rem;
+            & .set {
+              width: 5vw;
+              border-radius: 5px;
+              height: 40px;
+              display: flex;
+              justify-content: space-evenly;
+              align-items: center;
+              font-size: 1.6rem;
+              & div {
+                font-size: 2rem;
+              }
+            }
+          }
+          .summary4 {
+            font-size: 1.8rem;
+            & span {
+              font-size: 1.6rem;
+              color: #6c7275;
+              text-decoration: line-through;
+              margin-right: 8px;
+            }
+          }
+          .summary5 {
+            font-size: 1.8rem;
+            color: #1b3947;
+          }
+        }
+      }
+    }
+    .main-body-right {
+      & a {
+        text-decoration: none;
+        color: #1b3947;
+      }
+    }
+    .main-right {
+      font-size: 1.6rem;
+      margin: 0;
+
+      .main-right-title {
+        height: 40px;
+      }
+      .main-right-body {
+        width: 85vw;
+        font-size: 1.4rem;
+        h3 {
+          font-size: 1.6rem;
+          font-weight: 900;
+        }
+      }
+    }
+  }
+  .right-bottom {
+    .right-bottom-top {
+      line-height: 15px;
+      h3 {
+        font-size: 1.4rem;
+      }
+    }
+    .right-bottom-min {
+      line-height: 15px;
+      h3 {
+        font-size: 1.4rem;
+      }
+    }
+  }
+  .right-bottom-bottom {
+    line-height: 15px;
+    h2 {
+      font-size: 1.8rem;
+      span {
+        font-size: 1.2rem;
+        margin-left: 5px;
+      }
+    }
+
+    p {
+      color: #e4960e;
+      font-size: 1.8rem;
+      margin-right: 23px;
+    }
+    @media screen and (max-width: 391px) {
+      p {
+        margin-bottom: 0px;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  .main-right-bottom {
+    button {
+      width: 20vw;
+      height: 40px;
+      margin-top: 20px;
+    }
+  }
+  .bt {
+    border: transparent;
+    align-items: center;
+    background: transparent;
+    i {
+      font-size: 1.6rem;
+    }
+  }
+  .set {
+    border: 1px solid #6c7275;
+  }
+  .coupon {
+    height: 45px;
+    img {
+      border-radius: 7px;
+      width: 55%;
+      height: auto;
+    }
+  }
+  .main-left-body-phone {
+    h5 {
+      font-size: 1.4rem;
+    }
+    span {
+      font-size: 1.2rem;
+      text-decoration: line-through;
+    }
+  }
+
+  .counter-container {
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  .counter-btn {
+    i {
+      font-size: 1.2rem;
+    }
+  }
+
+  .counter-value {
+    h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0px;
+    }
+  }
+  .main-left-phone {
+    width: 85vw;
+    margin: 0 auto;
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+  }
+  .cart-bottom {
+    display: flex;
+    margin: 0;
+
+    h3 {
+      font-size: 2.8rem;
+      text-align: center;
+      font-weight: 900;
+      margin-bottom: 40px;
+    }
+  }
+  .cart-bot {
+    width: 90vw;
+  }
+  .product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .product-image {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .product-title {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 10px 0;
+    text-align: start;
+  }
+
+  .product-price {
+    font-size: 1.4rem;
+    color: #333;
+    margin: 10px 0;
+  }
+
+  .favorite-icon {
+    font-size: 1.2rem;
+    color: #999;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  .bot {
+    display: flex;
+    justify-content: space-between;
+  }
+  .counter-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 7px;
+    width: 80px !important;
+    height: 30px !important;
+    justify-content: space-between;
+    background-color: white;
+  }
+
+  .counter-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1.4rem !important;
+    cursor: pointer;
+  }
+
+  .counter-btn:focus {
+    outline: none;
+  }
+
+  .counter-value {
+    font-size: 1.8rem !important;
+    font-weight: normal;
+  }
+}
+.left-title-phone {
+  background-color: #2b4f61;
+  border-radius: 5px;
+  color: white;
+}
+
+/* 新版優惠券 */
+.coupons-list {
+  // display: flex;
+  // flex-direction: column;
+
+  .coupon-item {
+    max-width: 350px;
+    min-width: 320px;
+    border: 2px solid #f1f3f4;
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s;
+
+    &:hover {
+      border-color: #2b4f61;
+      // transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(43, 79, 97, 0.1);
+    }
+
+    .coupon-discount {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      min-width: 80px;
+
+      .coupon-icon {
+        width: 32px;
+        height: 32px;
+        color: #2b4f61;
+      }
+
+      .discount-text {
+        font-weight: 700;
+        color: #2b4f61;
+        font-size: 0.875rem;
+        text-align: center;
+      }
+    }
+
+    .coupon-title {
+      font-weight: 600;
+      color: #2b4f61;
+      margin: 0 0 0.5rem 0;
+      font-size: 1.5rem;
+    }
+
+    .coupon-code {
+      color: #666;
+      margin: 0.25rem 0;
+      font-size: 1rem;
+      font-family: monospace;
+      background: #f8f9fa;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .coupon-expiry {
+      color: #666;
+      margin: 0.25rem 0 0 0;
+      font-size: 0.8rem !important;
+    }
+
+    .use-coupon-btn {
+      background: #eee9e4;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background: #1e3a4a;
+      }
+    }
+  }
+}
+
+.modal-header {
+  border: none !important;
+}

@@ -1,0 +1,276 @@
+.coursemain {
+  background: url(http://localhost:3005/api/images/course/bg.png);
+  background-size: cover;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  .bgup {
+    position: relative;
+    z-index: 0;
+    object-fit: cover;
+
+    img {
+      top: -720px;
+      left: calc(44vw - 1250px);
+      width: 2500px;
+      height: 1400px;
+      position: absolute;
+      object-fit: cover;
+      opacity: 0.6;
+    }
+  }
+
+  .coursemainc {
+    position: relative;
+    z-index: 1;
+    .course-breadcrumb {
+      a {
+        text-decoration: none;
+      }
+      margin-top: 50px;
+
+      .breadcrumb-item {
+      }
+    }
+
+    .courseVideo {
+      width: 100%;
+      height: 50vh;
+      object-fit: cover;
+      overflow: hidden;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
+
+      // .fade-out {
+      //     opacity: 0;
+      // }
+    }
+
+    .coursemainIm {
+      color: #1b3947;
+
+      .courseFilter {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: end;
+
+        .courseFunc {
+          display: flex;
+          flex-direction: row;
+          .funcDetail {
+            align-self: end;
+          }
+          .courseCategory {
+            font-size: 1.4rem !important;
+            top: -14%;
+          }
+          .customSelect {
+            height: 40px;
+            font-size: 1.4rem !important;
+            color: #1b3947 !important;
+            background-color: #ffffff;
+          }
+          .coursePrice {
+            height: 40px;
+            background: #fff;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            font-size: 1.4rem;
+            margin-left: 8px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            padding: 8px 32px 0 8px;
+            gap: 8px;
+            border: 1px solid #c4c4c4;
+            border-radius: 4px;
+            .cpriceBarup {
+              padding-bottom: 4px;
+            }
+          }
+        }
+
+        .ccinfo {
+          padding: 4px 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          gap: 8px;
+          .cmcTotal {
+            align-self: center;
+            font-size: 1.4rem;
+          }
+          .courseSort {
+            font-size: 1.4rem !important;
+            top: -14%;
+          }
+          .customSelect2 {
+            height: 40px;
+            font-size: 1.4rem !important;
+            color: #1b3947 !important;
+            background-color: #ffffff;
+          }
+        }
+      }
+    }
+
+    .coursemainCards {
+      font-size: 1.8rem;
+      font-weight: 700;
+      .cmainCards {
+        a {
+          text-decoration: none;
+          color: #1b3947;
+        }
+        .cmainCard {
+          transition: all 0.5s;
+          margin-bottom: 16px;
+          background-color: #fff;
+          border-radius: 6px;
+          width: 100%;
+          height: auto;
+          min-height: 360px;
+          position: relative;
+          .cmcImg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; // 隱藏溢出的部分
+            width: 100%; // 讓圖片容器寬度適應卡片寬度
+            height: 60%;
+            aspect-ratio: 1/1;
+            img {
+              border: 1px solid #cccccc;
+              margin: 8px !important;
+
+              width: 90%;
+              height: 96%;
+              object-fit: cover;
+            }
+          }
+
+          .cmcCon {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 0;
+            gap: 8px;
+
+            align-items: start;
+            padding: 1vw 2vw;
+            font-size: 1.4rem;
+            font-weight: 700;
+
+            .cmcP {
+              font-size: 1.2rem;
+            }
+
+            a {
+              text-decoration: none;
+              color: #1b3947;
+            }
+          }
+
+          .courseLike {
+            display: flex;
+            justify-content: end;
+
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            svg {
+              cursor: pointer;
+              transition: all 0.5s;
+              font-size: 2rem;
+              color: #999999;
+
+              &:hover {
+                color: #e00000;
+              }
+            }
+          }
+
+          &:hover {
+            background-color: #2b4f61;
+
+            .cmcCon * {
+              color: #fff !important;
+            }
+
+            transform: translateY(-4px);
+          }
+        }
+      }
+    }
+    .pagination {
+      margin-bottom: 60px;
+      margin-top: 20px;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      a {
+        transition: all 0.3s;
+        text-decoration: none;
+        padding: 8px 16px;
+        font-size: 2rem;
+        color: #1b3947;
+        &:hover {
+          background-color: #2b4f61;
+          color: #fff;
+        }
+        &.active {
+          background-color: #2b4f61;
+          color: #fff;
+        }
+      }
+      i {
+        color: #1b3947;
+      }
+      .grayer {
+        color: #a8a8a8 !important;
+      }
+
+      .selected {
+        background-color: #2b4f61;
+        color: #fff;
+      }
+    }
+  }
+}
+@media screen and (max-width: 560px) {
+  .coursemain {
+    .coursemainc {
+      .coursemainIm {
+        .courseFilter {
+          font-size: 1.2rem;
+          flex-direction: column;
+          .courseFunc {
+            align-self: start;
+          }
+        }
+      }
+      .coursemainCards {
+        .cmainCards {
+          .cmainCard {
+            height: 80vw;
+            .cmcImg {
+              object-fit: cover;
+              height: 48vw;
+              img {
+                width: 90%;
+                height: 90%;
+                object-fit: cover;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+.bg {
+  background-image: url(../img/bg.png);
+  margin: 0;
+  padding: 0;
+}
+.sectionWrapper {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.gototop {
+  position: fixed;
+  bottom: 200px;
+  right: 20px;
+  background-color: rgba(55, 46, 41, 0.8);
+  color: #fff;
+  padding: 2px 12px 8px 12px;
+  border-radius: 12%;
+  font-size: 1.4rem;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  z-index: 500;
+  transition: all 0.3s;
+  &:hover {
+    background-color: #eba82ae1;
+    color: #fff;
+  }
+}
+.dropdown-item {
+  font-size: 2rem !important;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

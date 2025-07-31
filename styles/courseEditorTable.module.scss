@@ -1,0 +1,20 @@
+// styles.module.scss
+
+.calenAll {
+  margin-bottom: 300px;
+  .calenControll {
+    margin: 4px 0 24px 0;
+    display: flex;
+    justify-content: end;
+    text-wrap: nowrap;
+    .search {
+      background-color: #fff;
+    }
+  }
+  .table {
+    position: relative;
+    height: 80vh;
+    font-size: 1.6rem !important;
+    margin-bottom: 100px;
+  }
+}
