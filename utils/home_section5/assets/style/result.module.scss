@@ -1,0 +1,243 @@
+.outside {
+  min-height: 100vh;
+  color: #2b4f61;
+  font-weight: normal;
+  padding-bottom: 24px;
+  padding-top: 32px;
+  .buttonguide {
+    margin-bottom: 20px;
+    padding: 12px 12px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px #2b4f61 solid;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    font-size: 1.6rem;
+    .buttonmask {
+      position: absolute;
+      transition: 1s;
+      z-index: 1;
+      left: -200px;
+      top: 30px;
+    }
+    .button-content {
+      z-index: 2;
+      transition: 1s;
+      display: inline-flex;
+      text-wrap: nowrap;
+      align-items: center;
+
+      .button-text {
+        transition: 1s;
+        font-weight: 700;
+        margin-right: 8px;
+      }
+      svg {
+        transition: all 1s ease-in-out;
+        transform: translateX(-10px);
+      }
+    }
+
+    &:hover {
+      .buttonmask {
+        transition: 1.5s;
+        top: -80px;
+        left: -10px;
+      }
+      .button-content {
+        .button-text {
+          /* transition-delay: 2s; */
+          transition: all 1s;
+          color: white;
+        }
+        svg {
+          transition: all 1.5s;
+          transition-duration: 1.5s;
+          transform: translateX(0px);
+          color: white;
+        }
+      }
+    }
+    &.clicked {
+      transition: all 0s;
+      background-color: #2b4f61;
+      .button-mask {
+        display: none;
+      }
+
+      .button-content {
+        transition: 0s;
+        .button-text {
+          color: white;
+        }
+        svg {
+          color: white;
+        }
+      }
+    }
+  }
+  p {
+    margin: 0;
+  }
+  .mywrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    height: auto;
+  }
+  .question {
+    margin-top: 8px;
+    font-size: 2.4rem;
+    line-height: 32px;
+    width: 480px;
+    text-align: center;
+    background-color: #2b4f61;
+    color: white;
+    padding: 24px 12px;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+  .down {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    .insideWrap {
+      display: flex;
+      justify-content: start;
+      gap: 32px;
+      .mycard {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        .cardImg {
+          width: 160px;
+          height: 160px;
+          background-image: url(../img/result-back.png);
+          position: relative;
+          background-size: cover;
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 96px;
+            height: 96px;
+          }
+        }
+        .mycardRight {
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+          height: 100%;
+          width: 40%;
+          justify-content: space-around;
+          .title {
+            text-wrap: wrap;
+            max-width: 280px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 2rem;
+            line-height: 28px;
+            font-weight: bold;
+            img {
+              width: 14px;
+              height: 18px;
+            }
+            p {
+              margin: 0;
+            }
+          }
+          .body {
+            width: 240px;
+            display: flex;
+            font-size: 2rem;
+            line-height: 26px;
+          }
+          .button {
+            border-radius: 2px;
+            width: 120px;
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            border: none;
+            border-bottom: 2px solid #eba92a;
+            text-decoration: none;
+            color: #2b4f61;
+            padding: 6px 12px;
+            img {
+              width: 24px;
+              height: 24px;
+            }
+            p {
+              margin: 0;
+            }
+          }
+          .button:hover {
+            border: 2px solid #eba92a;
+            background-color: #eba92a;
+          }
+        }
+      }
+      .cardSmall {
+        width: 100%;
+        .cardImg {
+          width: 120px;
+          height: 120px;
+          img {
+            height: 64px;
+            width: 64px;
+          }
+        }
+      }
+    }
+  }
+  .onemore {
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .question {
+    font-size: 2rem !important;
+    padding: 24px !important;
+    width: auto !important;
+  }
+  .insideWrap {
+    flex-direction: column;
+    .cardImg {
+      width: 120px !important;
+      height: 120px !important;
+      img {
+        height: 64px !important;
+        width: 64px !important;
+      }
+    }
+    .mycardRight {
+      gap: 8px;
+      .title {
+        font-size: 1.8rem !important;
+        max-width: 220px !important;
+      }
+      .body {
+        font-size: 1.6rem !important;
+        width: 220px !important;
+      }
+      .button {
+        font-size: 1.6rem !important;
+      }
+      .button:active {
+        border: 2px solid #eba92a;
+        background-color: #eba92a;
+      }
+    }
+  }
+}
