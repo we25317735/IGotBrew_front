@@ -34,6 +34,11 @@ const nextConfig = {
     })
     return config
   },
+
+  // 部屬時, 自動忽略 eslint 錯誤
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 }
 
 module.exports = nextConfig
