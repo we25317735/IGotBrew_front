@@ -5,6 +5,7 @@ import styles from './assets/style/result.module.scss'
 import arrowRight from './assets/img/arrow-right.png'
 import titleBean from './assets/img/title-bean.png'
 import { results } from './quizConfig'
+
 import Link from 'next/link'
 // import ResultArticle1 from './assets/img/result-article1.png'
 // import ResultArticle2 from './assets/img/result-article2.png'
