@@ -1,14 +1,14 @@
 // quizConfig.js
 // result.js
 
-import ResultArticle1 from '../assets/img/result-article1.png'
-import ResultArticle2 from '../assets/img/result-article2.png'
-import ResultCourse1 from '../assets/img/result-course1.png'
-import ResultCourse2 from '../assets/img/result-course2.png'
-import ResultBean1 from '../assets/img/result-bean1.webp'
-import ResultBean2 from '../assets/img/result-bean2.webp'
-import ResultMachine1 from '../assets/img/result-machine1.webp'
-import ResultMachine2 from '../assets/img/result-machine2.png'
+import ResultArticle1 from './assets/img/result-article1.png'
+import ResultArticle2 from './assets/img/result-article2.png'
+import ResultCourse1 from './assets/img/result-course1.png'
+import ResultCourse2 from './assets/img/result-course2.png'
+import ResultBean1 from './assets/img/result-bean1.webp'
+import ResultBean2 from './assets/img/result-bean2.webp'
+import ResultMachine1 from './assets/img/result-machine1.webp'
+import ResultMachine2 from './assets/img/result-machine2.png'
 
 export const questions = [
   {

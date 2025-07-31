@@ -1,9 +1,9 @@
 // result.js
 import React from 'react'
 import Image from 'next/image'
-import styles from '../assets/style/result.module.scss'
-import arrowRight from '../assets/img/arrow-right.png'
-import titleBean from '../assets/img/title-bean.png'
+import styles from './assets/style/result.module.scss'
+import arrowRight from './assets/img/arrow-right.png'
+import titleBean from './assets/img/title-bean.png'
 import { results } from './quizConfig'
 
 import Link from 'next/link'
