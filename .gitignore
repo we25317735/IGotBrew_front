@@ -54,3 +54,6 @@ __tests__
 
 # 強制保留 README.txt
 !README.txt   
+
+#(問題太多先移除)
+/courseEditor
