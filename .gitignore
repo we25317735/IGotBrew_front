@@ -50,6 +50,7 @@ pages/linepay-test/index-nouse.js
 # 其他怪東西
 新增 文字文件.html
 *.txt
+__tests__
 
 # 強制保留 README.txt
 !README.txt   

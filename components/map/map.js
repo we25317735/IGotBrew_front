@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import api from '@/pages/cafeMap/cafeApi'
+import api from '@/services/cafeApi'
 
 export default function Map({ position, zoom }) {
   useEffect(() => {
