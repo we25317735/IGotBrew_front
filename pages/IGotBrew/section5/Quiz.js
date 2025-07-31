@@ -4,11 +4,7 @@ import styles from './assets/style/style.module.scss'
 import Left from './assets/img/left.png'
 import Right from './assets/img/right.png'
 import WhiteLogo from './assets/img/white-logo.png'
-<<<<<<< HEAD
-import { questions } from '@/pages/IGotBrew/section5/quizConfig'
-=======
-import { questions } from '../../../utils/home_section5/quizConfig'
->>>>>>> f472bd65a67ba278ccf83d9b6afe538e8ba9f6d4
+import { questions } from './quizConfig'
 
 const Quiz = ({ onComplete }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0)
