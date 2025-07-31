@@ -9,7 +9,6 @@
     "lint": "next lint",
     "test": "jest --watchAll=false",
     "pret": "npx prettier . --write"
-
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^43.0.0",

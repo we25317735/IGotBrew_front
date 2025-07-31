@@ -1,5 +1,5 @@
 // index.js
-import React, { useState, useRef } from 'react' 
+import React, { useState, useRef } from 'react'
 import Quiz from '@/components/home_component/Quiz'
 import Result from '@/components/home_component/result'
 

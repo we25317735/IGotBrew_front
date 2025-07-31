@@ -97,8 +97,6 @@ export default function Product({
     }
   }, [auth.isAuth])
 
-
-
   // 接收 url 值
   useEffect(() => {
     if (router.isReady) {
@@ -363,7 +361,7 @@ export default function Product({
     RouteRefresh() // 變更 url(有搜尋商品時顯示商品)
   }
 
-    // 初始載入 loading
+  // 初始載入 loading
   useEffect(() => {
     if (isInitialLoad) {
       setIsInitialLoad(false)

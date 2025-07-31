@@ -22,7 +22,7 @@ import { useAuth } from '@/hooks/use-auth'
 // .env 檔案載入(共用api部分)
 import 'dotenv/config.js'
 
-export default function ProductDetail({productRes}) {
+export default function ProductDetail({ productRes }) {
   const [product, setProduct] = useState(productRes) // 頁面基礎資訊(SSR 預設)
   const [quantity, setQuantity] = useState(1) // 購買數量加減
   const [favorites, setFavorites] = useState({}) // 使用者商品關注
@@ -58,12 +58,9 @@ export default function ProductDetail({productRes}) {
   useEffect(() => {
     if (pid) {
       ProductDetails()
-      fetchFavorites() 
+      fetchFavorites()
     }
   }, [pid])
-
-
- 
 
   // 滾輪監聽( TOP 按鈕)
   useEffect(() => {
@@ -239,7 +236,6 @@ export default function ProductDetail({productRes}) {
     }
   }
 
-  
   // 初始載入 loading
   useEffect(() => {
     if (isInitialLoad) {

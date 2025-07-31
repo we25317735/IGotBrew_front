@@ -1,4 +1,5 @@
-// pages/index.js
+import React, { useEffect, useState, useRef } from 'react'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import IGotBrew from './IGotBrew'
@@ -7,7 +8,13 @@ import Head from 'next/head'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 
+import { useRouter } from 'next/router'
+
 export default function Index() {
+  useEffect(() => {
+    router.push(`${process.env.NEXT_PUBLIC_FONT_URL}/IGotBrew`)
+  }, [])
+
   return (
     <>
       <Head>
@@ -35,7 +42,7 @@ export default function Index() {
       </Head>
 
       <main>
-        <Header />
+        {/* <Header /> */}
         {/* <IGotBrew/> */}
         {/* <Footer/> */}
       </main>
