@@ -1,7 +1,7 @@
 // index.js
 import React, { useState, useRef } from 'react'
-import Quiz from './Quiz'
-import Result from './result'
+import Quiz from './component/Quiz'
+import Result from './component/result'
 
 const CoffeeWorld = () => {
   const [showResult, setShowResult] = useState(false)

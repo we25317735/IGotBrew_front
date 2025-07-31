@@ -4,7 +4,7 @@ import styles from '@/styles/courseEditorTable.module.scss'
 import { FaPlus } from 'react-icons/fa6'
 import { FaPencilAlt, FaTrashAlt, FaSearch, FaEye } from 'react-icons/fa'
 
-import useCourseApi from '../../../services/courseApi'
+import useCourseApi from '@/services/courseApi'
 import PropTypes from 'prop-types'
 import Image from 'next/image'
 

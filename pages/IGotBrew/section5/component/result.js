@@ -1,9 +1,9 @@
 // result.js
 import React from 'react'
 import Image from 'next/image'
-import styles from './assets/style/result.module.scss'
-import arrowRight from './assets/img/arrow-right.png'
-import titleBean from './assets/img/title-bean.png'
+import styles from '../assets/style/result.module.scss'
+import arrowRight from '../assets/img/arrow-right.png'
+import titleBean from '../assets/img/title-bean.png'
 import { results } from './quizConfig'
 
 import Link from 'next/link'
@@ -15,7 +15,7 @@ import Link from 'next/link'
 // import ResultBean2 from './assets/img/result-bean2.webp'
 // import ResultMachine1 from './assets/img/result-machine1.webp'
 // import ResultMachine2 from './assets/img/result-machine2.png'
-import buttonmask from './assets/img/buttonMask.png'
+import buttonmask from '../assets/img/buttonMask.png'
 import { FaAngleRight } from 'react-icons/fa'
 const Result = ({ answers, onRestart }) => {
   const getResult = () => {

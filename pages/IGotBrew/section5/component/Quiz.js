@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
-import styles from './assets/style/style.module.scss'
-import Left from './assets/img/left.png'
-import Right from './assets/img/right.png'
-import WhiteLogo from './assets/img/white-logo.png'
+import styles from '../assets/style/style.module.scss'
+import Left from '../assets/img/left.png'
+import Right from '../assets/img/right.png'
+import WhiteLogo from '../assets/img/white-logo.png'
 import { questions } from './quizConfig'
 
 const Quiz = ({ onComplete }) => {
