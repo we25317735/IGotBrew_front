@@ -4,7 +4,7 @@ import styles from './assets/style/style.module.scss'
 import Left from './assets/img/left.png'
 import Right from './assets/img/right.png'
 import WhiteLogo from './assets/img/white-logo.png'
-import { questions } from '../../../utils/quizConfig'
+import { questions } from '@/pages/IGotBrew/section5/quizConfig'
 
 const Quiz = ({ onComplete }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0)
