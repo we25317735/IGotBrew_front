@@ -1,13 +1,14 @@
+import 'dotenv/config.js'
+
 // 這裡貼上從firebase專案設定中，網頁應用程式整合的設定值
 const firebaseConfig = {
-  apiKey: 'AIzaSyCLUNgug-18gW4RgHrEUGXyeaDB6cTEzbM',
-  authDomain: 'xxxy-97eb5.firebaseapp.com',
-  databaseURL:
-    'https://xxxy-97eb5-default-rtdb.asia-southeast1.firebasedatabase.app',
-  projectId: 'xxxy-97eb5',
-  storageBucket: 'xxxy-97eb5.appspot.com',
-  messagingSenderId: '459083229225',
-  appId: '1:459083229225:web:2939f4e1856bdeede05438',
+  apiKey: process.env.FIREBASE_APIKEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APPID,
 }
 
 export { firebaseConfig }
