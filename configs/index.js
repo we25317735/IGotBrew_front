@@ -1,5 +1,3 @@
-import 'dotenv/config.js' // .env 檔案載入(共用api部分)
-
 export const PORT = 3000
 export const DEV = true
 
