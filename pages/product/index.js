@@ -40,8 +40,7 @@ import {
   Button,
 } from '@mui/material'
 
-// .env 檔案載入(共用api部分)
-import 'dotenv/config.js'
+import 'dotenv/config.js' // .env 檔案載入(共用api部分)
 
 /* 後續新增改動 */
 import hero_img from './assets/img/bg-top.png'
