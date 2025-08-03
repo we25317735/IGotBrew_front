@@ -18,9 +18,13 @@ export default function AuthForm({ mode }) {
 
   // 使用者確認1: 確保 handleCheckAuth() 完全跑完後再執行後續
   useEffect(() => {
-    handleCheckAuth()
-    setCheck_user(false)
-  }, [auth, setAuth])
+    const checkAuth = async () => {
+      await handleCheckAuth()
+      setCheck_user(false)
+    }
+
+    checkAuth()
+  }, [setAuth])
 
   // 使用者確認2: check_user 變更後, 再確認有無使用者登入
   useEffect(() => {
