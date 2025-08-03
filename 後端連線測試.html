@@ -17,6 +17,8 @@
     <script>
       const apiUrl = 'https://igotbrew-render-back.onrender.com/product'
 
+      console.log(document.cookie)
+
       // 向後端發送請求檢查是否登入
       axios
         .get(apiUrl, {

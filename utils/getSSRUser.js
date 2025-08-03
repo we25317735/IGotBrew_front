@@ -6,6 +6,7 @@ import { getUserById, userOrder, userCoupon } from '@/services/user'
 // SSR 取得當前使用者資料(沒有則跳回首頁)
 export async function getSSRUser() {
   const accessToken = cookies().get('accessToken')
+  console.log('ssr cookie: ', accessToken)
 
   // 沒 token 就跳回首頁
   if (!accessToken?.value) return redirect('/IGotBrew')
