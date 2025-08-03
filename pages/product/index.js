@@ -132,13 +132,9 @@ export default function Product({
 
     console.log('路由: ', query)
 
-    router.push(
-      `${process.env.NEXT_PUBLIC_FONT_URL}/product${query ? `?${query}` : ''}`,
-      undefined,
-      {
-        scroll: false,
-      }
-    )
+    router.push(`/product${query ? `?${query}` : ''}`, undefined, {
+      scroll: false,
+    })
   }
 
   // 關鍵字搜尋
@@ -148,9 +144,7 @@ export default function Product({
     const res = await fetch(apiUrl)
     const data = await res.json()
     if (data.status === `success`) {
-      router.push(
-        `${process.env.NEXT_PUBLIC_FONT_URL}/product?find=${searchProduct}`
-      )
+      router.push(`/product?find=${searchProduct}`)
       setProducts(data.data.products)
       setTotalProducts(data.data.totalProducts)
       setCurrentPage(1) //頁數回到第一頁

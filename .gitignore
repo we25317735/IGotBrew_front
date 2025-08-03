@@ -48,7 +48,7 @@ localhost.pem
 pages/linepay-test/index-nouse.js
 
 # 其他怪東西
-新增 文字文件.html
+*.html
 *.txt
 __tests__
 
