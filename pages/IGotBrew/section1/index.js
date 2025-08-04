@@ -24,6 +24,9 @@ import NineCoupon from './assets/img/nineCoupon.png'
 // 使用者資訊
 import { useAuth } from '@/hooks/use-auth'
 
+import 'dotenv/config.js' // .env 檔案載入(共用api部分)
+
+
 // 桌機版
 export default function Section1() {
   // 使用者部分
@@ -63,7 +66,7 @@ export default function Section1() {
     if (auth && auth.userData.id) {
       try {
         const response = await axios.get(
-          `http://localhost:3005/api/api/IGotBrew/check-coupon/${auth.userData.id}`
+          `${process.env.NEXT_PUBLIC_BACK_API}/IGotBrew/check-coupon/${auth.userData.id}`
         )
         setIsCouponClaimed(response.data.alreadyClaimed)
       } catch (error) {
@@ -76,7 +79,7 @@ export default function Section1() {
     if (auth && auth.userData.id && !isCouponClaimed) {
       try {
         const response = await axios.post(
-          'http://localhost:3005/api/api/IGotBrew/claim-coupon',
+          `${process.env.NEXT_PUBLIC_BACK_API}/IGotBrew/claim-coupon`,
           {
             userId: auth.userData.id,
             couponId: 1,

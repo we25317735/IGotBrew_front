@@ -7,8 +7,8 @@ import { getUserById, userOrder, userCoupon } from '@/services/user'
 export async function getSSRUser() {
   const cookie = headers().get('cookie')
 
-  console.log("有沒有抓到 cookie: ", cookie);
-  
+
+
   const accessToken = cookie
     ?.split('; ')
     .find((c) => c.startsWith('accessToken='))
