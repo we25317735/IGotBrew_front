@@ -1,37 +1,27 @@
-import { cookies } from 'next/headers'
+import { cookies,headers  } from 'next/headers'
 import { parseJwt } from '@/services/user'
 import { redirect } from 'next/navigation'
 import { getUserById, userOrder, userCoupon } from '@/services/user'
 
 // SSR 取得當前使用者資料(沒有則跳回首頁)
 export async function getSSRUser() {
-  const accessToken = cookies().get('accessToken')
-  console.log('ssr cookie: ', accessToken)
+  const cookie = headers().get('cookie')
+  const accessToken = cookie
+    ?.split('; ')
+    .find((c) => c.startsWith('accessToken='))
+    ?.split('=')[1]
 
-  // 沒 token 就跳回首頁
-  if (!accessToken?.value) return redirect('/IGotBrew')
+  if (!accessToken) return redirect('/IGotBrew')
 
-  const token = accessToken.value
+  const jwtUser = parseJwt(accessToken)
+  if (!jwtUser?.id) return redirect('/IGotBrew')
 
-  let jwtUser
+  const res = await getUserById(jwtUser.id, accessToken)
+  const user = res?.data?.data?.user
 
-  try {
-    jwtUser = parseJwt(token)
-    if (!jwtUser?.id) throw new Error('Invalid token')
-  } catch {
-    return redirect('/IGotBrew')
-  }
+  if (!user) return redirect('/IGotBrew')
 
-  // 向後端拿資料
-  try {
-    const res = await getUserById(jwtUser.id, token)
-    const user = res?.data?.data?.user
-
-    if (!user) throw new Error('User not found')
-    return user
-  } catch {
-    return redirect('/IGotBrew')
-  }
+  return user
 }
 
 // SSR 取得使用者 ID
