@@ -8,6 +8,7 @@ export async function getSSRUser() {
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')?.value
 
+  console.log('所有 cookie:', [...cookieStore])  // 檢查有沒有 cookie
   console.log('ssr 有沒有取得: ', accessToken)
 
   if (!accessToken) return redirect('/IGotBrew')
