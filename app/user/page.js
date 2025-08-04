@@ -12,7 +12,6 @@ export default function MemberCenterPage({ searchParams }) {
 
   /* 
     這頁面不知道搞啥, prop 進不來, clg 印不出東西 
-  
     渲染策略: layout 判斷有無使用者後, 剩餘訊息各自 SSR 安排
   */
 
