@@ -26,7 +26,6 @@ import { useAuth } from '@/hooks/use-auth'
 
 import 'dotenv/config.js' // .env 檔案載入(共用api部分)
 
-
 // 桌機版
 export default function Section1() {
   // 使用者部分
