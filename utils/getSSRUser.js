@@ -3,9 +3,12 @@ import { parseJwt } from '@/services/user'
 import { redirect } from 'next/navigation'
 import { getUserById, userOrder, userCoupon } from '@/services/user'
 
-// SSR 取得當前使用者資料(沒有則跳回首頁)
+// 新版測試: SSR 取得當前使用者資料(沒有則跳回首頁)
 export async function getSSRUser() {
   const cookie = headers().get('cookie')
+
+  console.log("有沒有抓到 cookie: ", cookie);
+  
   const accessToken = cookie
     ?.split('; ')
     .find((c) => c.startsWith('accessToken='))
