@@ -23,6 +23,8 @@ export default function Google_btn() {
       const jwtUser = parseJwt(res.data.data.accessToken)
       const res1 = await getUserById(jwtUser.id) // 取得 id 後, 調取使用者資料
 
+      console.log('前端可讀 cookie:', document.cookie)
+
       // 查詢到該使用者資料後
       if (res1.data.status === 'success') {
         // 把該使用者帶入 content
