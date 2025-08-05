@@ -46,6 +46,8 @@ import 'dotenv/config.js' // .env 檔案載入(共用api部分)
 import hero_img from './assets/img/bg-top.png'
 import product_top from './assets/img/product-top.png'
 
+import cookie from 'cookie' 
+
 // 在組件內部
 export default function Product({
   findProduct,
@@ -1232,6 +1234,20 @@ export async function getServerSideProps(context) {
       },
     }
   }
+
+  /* 測試 cookie */
+    // 讀取 cookie header 字串
+  const cookieHeader = context.req.headers.cookie || ''
+
+  // 用 cookie 套件解析成物件
+  const cookies = cookie.parse(cookieHeader)
+
+  // 取得 accessToken（如果有）
+  const accessToken = cookies.accessToken || null
+
+  // 你可以用 accessToken 去做伺服器端驗證，這裡我先示範直接帶出來
+  console.log('SSR 拿到的 accessToken:', accessToken)
+  /* 測試 cookie */
 
   // 從 URL 取得 query 參數(給予預設值避免請求無效)
   const { find = '', type = '', page = 1, sort = '' } = context.query
