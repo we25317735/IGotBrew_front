@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styles from './assets/style/style.module.scss'
 import { FaCheck, FaExclamationTriangle } from 'react-icons/fa'
-import axios from 'axios'
 import Swal from 'sweetalert2'
+import axios from 'axios'
 import toast from 'react-hot-toast'
 
 import { registerUser, parseJwt, getUserById } from '@/services/user'

@@ -29,7 +29,6 @@ export default function Header() {
   const [isMobile, setIsMobile] = useState(false)
   const [animationClass, setAnimationClass] = useState('') // 動畫效果
   const [animationToggle, setAnimationToggle] = useState(false) // 動畫效果開關(失敗維修中...)
-  const [data, setData] = useState([])
   const [isShopMenuOpen, setIsShopMenuOpen] = useState(false)
   const [cart, setCart] = useState([]) // 購物車內容渲染
   const [isOpen, setIsOpen] = useState(false) // 購物車 hover 開關

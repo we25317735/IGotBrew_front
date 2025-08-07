@@ -31,14 +31,14 @@ export default function Orders({ data }) {
                     radius="xl"
                     className="order-status"
                     style={{
-                       backgroundColor:
+                      backgroundColor:
                         e.status === 'pending'
                           ? '#f0ad4e'
                           : e.status === 'paid'
                           ? '#2b4f61'
                           : e.status === 'fail'
                           ? '#d9534f'
-                          : '#6c757d', 
+                          : '#6c757d',
                     }}
                   >
                     {e.status === 'pending'

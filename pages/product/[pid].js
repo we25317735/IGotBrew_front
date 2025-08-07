@@ -8,6 +8,7 @@ import { IoMdAdd } from 'react-icons/io'
 import { FiMinus } from 'react-icons/fi'
 import { FaAngleRight } from 'react-icons/fa6'
 import Link from 'next/link'
+import toast from 'react-hot-toast'
 import { FaRegStar } from 'react-icons/fa'
 import { IoMdMore } from 'react-icons/io'
 import Header from '@/components/Header'
@@ -60,7 +61,7 @@ export default function ProductDetail({ productRes }) {
       ProductDetails()
       fetchFavorites()
     }
-  }, [pid])
+  }, [pid, auth])
 
   // 滾輪監聽( TOP 按鈕)
   useEffect(() => {
@@ -229,6 +230,16 @@ export default function ProductDetail({ productRes }) {
     const data = response.data
 
     if (data.status === 'success') {
+      // 吐司
+      if (data.message === '已添加收藏') {
+        toast.success('已加入關注')
+      } else {
+        toast('已取消關注', {
+          icon: '💔',
+        })
+      }
+
+      // icon 點亮 或取消
       setFavorites((prev) => ({
         ...prev,
         [productId]: !prev[productId],
