@@ -19,7 +19,7 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         yellow: 'bg-[#FFC436] text-black hover:bg-[#e6b72e]', // 新增黃色 variant
-        yellowLight: 'bg-[#EEE9E4] text-black hover:opacity-80', // 新增
+        used: 'bg-[#EEE9E4] text-black hover:opacity-80', // 新增
       },
       size: {
         default: 'h-10 px-4 py-2',

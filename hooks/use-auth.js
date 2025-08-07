@@ -32,8 +32,6 @@ export const AuthProvider = ({ children }) => {
   const handleCheckAuth = async () => {
     const res = await checkAuth() // 用 cookie 來確認使用者(http會傳送瀏覽器所有cookie, 後端那邊指名找哪個即可)
 
-    console.log('檢查登入 ', res)
-
     if (res.data.status === 'success') {
       const dbUser = res.data.data.user
       const userData = { ...initUserData }
@@ -44,7 +42,6 @@ export const AuthProvider = ({ children }) => {
         }
       }
 
-      // setUser_data(dbUser)
       setAuth({ isAuth: true, userData })
     } else {
       // console.warn(res.data)

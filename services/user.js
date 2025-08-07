@@ -88,7 +88,6 @@ export const registerUser = async (data) => {
 
 // 隨機驗證碼寄信
 export const sendEmailVerify = async (data) => {
-  console.log('伺服器收到: ', data)
   return await axiosInstance.post(`/user/email-verify`, data)
 }
 
@@ -120,6 +119,11 @@ export const userOrder = async (id) => {
   return await axiosInstance.get(`/user/${id}/order`)
 }
 
+// 使用者關注商品
+export const userFavorites = async (id) => {
+  return await axiosInstance.get(`/user/${id}/favorites`)
+}
+
 // 關注的商品(有3條岔路)
 export const userAttention = async (id, classification) => {
   return await axiosInstance.get(`/user/${id}/${classification}_like`)
@@ -128,6 +132,11 @@ export const userAttention = async (id, classification) => {
 // 使用者持有優惠券
 export const userCoupon = async (id) => {
   return await axiosInstance.get(`/user/${id}/coupon`)
+}
+
+// 領取優惠券
+export const receiveCoupon = async (data) => {
+  return await axiosInstance.post(`/user/receiveCoupon`, { data })
 }
 
 // 解析accessToken用的函式

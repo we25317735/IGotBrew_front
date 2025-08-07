@@ -5,6 +5,13 @@ import { Badge } from '@/components/ui/badge'
 
 // 直接做成 SSR 也沒差
 export default function Orders({ data }) {
+  const statusVariantMap = {
+    pending: 'pending', // 你在 badgeVariants 定義的 variant 名稱
+    paid: 'completed',
+    fail: 'fail',
+    shipping: 'shipping', // 如果你有 shipping variant
+  }
+
   return (
     <Card className="content-card">
       <CardHeader>
@@ -20,11 +27,27 @@ export default function Orders({ data }) {
                     {e.product_name} x {e.amount}
                   </span>
                   <Badge
-                    className={`order-status ${
-                      e.status === '已完成' ? 'completed' : 'shipping'
-                    }`}
+                    variant={statusVariantMap[e.status] || 'default'}
+                    radius="xl"
+                    className="order-status"
+                    style={{
+                       backgroundColor:
+                        e.status === 'pending'
+                          ? '#f0ad4e'
+                          : e.status === 'paid'
+                          ? '#2b4f61'
+                          : e.status === 'fail'
+                          ? '#d9534f'
+                          : '#6c757d', 
+                    }}
                   >
-                    {e.status}
+                    {e.status === 'pending'
+                      ? '處理中'
+                      : e.status === 'paid'
+                      ? '已完成'
+                      : e.status === 'fail'
+                      ? '交易失敗'
+                      : e.status}
                   </Badge>
                 </div>
                 <p className="order-items">訂單 # {e.id}</p>

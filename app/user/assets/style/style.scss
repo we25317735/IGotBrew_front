@@ -137,8 +137,8 @@
       margin-bottom: 0.5rem;
 
       &:hover {
-        background: #f8f9fa;
-        transform: translateX(4px);
+        background: #c8c9cb; // 亂調的
+        // transform: translateX(1px);
       }
 
       &.active {
@@ -240,9 +240,11 @@
           }
 
           .member-badge {
-            background: #2b4f61;
+            font-weight: 600;
+            // width: fit-content;
+            // border: solid 2px #2a553c;
             color: white;
-            width: fit-content;
+            // background: #2b4f61;
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.875rem;
@@ -279,6 +281,10 @@
             }
 
             .order-status {
+              padding: 0.2rem 0.7rem;
+              border-radius: 5px;
+              color: white;
+
               &.completed {
                 background: #28a745;
               }
@@ -356,6 +362,13 @@
               color: #2b4f61;
               margin: 0 0 0.5rem 0;
               font-size: 1rem;
+
+              // 新增連結 hover
+              .hover-css {
+                &:hover {
+                  color: #666 !important;
+                }
+              }
             }
 
             .favorite-price {
@@ -457,7 +470,7 @@
           }
 
           .use-coupon-btn {
-            background: #2b4f61;
+            // background: #2b4f61;
             color: white;
             border: none;
             padding: 0.5rem 1rem;
@@ -466,9 +479,9 @@
             cursor: pointer;
             transition: all 0.2s;
 
-            &:hover {
-              background: #1e3a4a;
-            }
+            // &:hover {
+            //   background: #1e3a4a;
+            // }
           }
         }
       }

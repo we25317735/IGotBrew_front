@@ -65,6 +65,8 @@ export default function Section2() {
               </div>
             </div>
           </div>
+
+          {/* 咖啡豆 + 咖啡機 + 工具 */}
           <div className={`${styles['products']}`}>
             <a href={`/product?type=bean`} className={`${styles['product']}`}>
               <div className={`${styles['image']}`}>

@@ -1,30 +1,42 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { Gift } from 'lucide-react'
+import Swal from 'sweetalert2'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { receiveCoupon } from '@/services/user'
 
-export default function Coupons({ data }) {
-  const coupons = [
-    {
-      id: 1,
-      title: '新會員專享',
-      discount: '9折優惠',
-      expiry: '2024-02-28',
-      code: 'NEW2024',
-    },
-    {
-      id: 2,
-      title: '滿千免運',
-      discount: '免運費',
-      expiry: '2024-03-15',
-      code: 'FREE2024',
-    },
-  ]
+export default function Coupons({ data, user }) {
+  const [coupons, setCoupons] = useState(data)
 
-  console.log('資料: ', data)
+  // 領取優惠券 API
+  const getCoupon = async (coupon) => {
+    let couponData = {
+      user_id: user, // 領取人
+      coupon_id: coupon.id, // 優惠券 id
+      end_time: coupon.end_time, // 優惠截止日
+    }
+
+    const res = await receiveCoupon(couponData) // 領取優惠券 API
+
+    // 優惠券取得成功
+    if (res.data.status === 'success') {
+      Swal.fire({
+        title: '成功取得優惠券!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+      })
+
+      // 模擬成功後更新優惠券狀態
+      setCoupons((prev) =>
+        prev.map(
+          (c) => (c.id === coupon.id ? { ...c, state: '可使用' } : c) // 領取後, 改變優惠券的狀態
+        )
+      )
+    }
+  }
 
   return (
     <>
@@ -35,24 +47,47 @@ export default function Coupons({ data }) {
         </CardHeader>
         <CardContent>
           <div className="coupons-list">
-            {coupons.map((coupon) => (
-              <div key={coupon.id} className="coupon-item">
-                <div className="coupon-content">
-                  <div className="coupon-discount">
-                    <Gift className="coupon-icon" />
-                    <span className="discount-text">{coupon.value}</span>
+            {coupons
+              .filter((coupon) => coupon.state === '可領取')
+              .map((coupon, index) => (
+                <div key={index} className="coupon-item">
+                  <div className="coupon-content">
+                    <div className="coupon-discount">
+                      <Gift className="coupon-icon" />
+                      <span className="discount-text">
+                        {coupon.type === 'percent'
+                          ? `${coupon.value * 10}折優惠`
+                          : `${coupon.value} 元折價`}
+                      </span>
+                    </div>
+                    <div className="coupon-details">
+                      <h3 className="coupon-title">{coupon.name}</h3>
+                      <p className="coupon-code">活動: {coupon.description}</p>
+                      <p className="coupon-expiry">
+                        有效期限: {coupon.end_time}
+                      </p>
+                    </div>
                   </div>
-                  <div className="coupon-details">
-                    <h3 className="coupon-title">{coupon.title}</h3>
-                    <p className="coupon-code">活動: {coupon.discount}</p>
-                    <p className="coupon-expiry">有效期限: {coupon.expiry}</p>
-                  </div>
+                  <Button
+                    size="sm"
+                    variant={
+                      new Date(coupon.end_time) < new Date()
+                        ? 'used'
+                        : 'default'
+                    }
+                    disabled={new Date(coupon.end_time) < new Date()}
+                    className="use-coupon-btn"
+                    onClick={() => {
+                      if (new Date(coupon.end_time) < new Date()) return // 過期不執行
+                      getCoupon(coupon) // 領取優惠券 API
+                    }}
+                  >
+                    {new Date(coupon.end_time) < new Date()
+                      ? '已過期'
+                      : '可領取'}
+                  </Button>
                 </div>
-                <Button size="sm" className="use-coupon-btn">
-                  領取
-                </Button>
-              </div>
-            ))}
+              ))}
           </div>
         </CardContent>
       </Card>
@@ -64,28 +99,43 @@ export default function Coupons({ data }) {
         </CardHeader>
         <CardContent>
           <div className="coupons-list">
-            {data.map((coupon) => (
-              <div key={coupon.id} className="coupon-item">
-                <div className="coupon-content">
-                  <div className="coupon-discount">
-                    <Gift className="coupon-icon" />
-                    <span className="discount-text">
-                      {coupon.type === 'percent'
-                        ? `${coupon.value * 10}折優惠`
-                        : `${coupon.value} 元折價`}
-                    </span>
+            {coupons
+              .filter((coupon) => coupon.state === '可使用')
+              .map((coupon, index) => (
+                <div key={index} className="coupon-item">
+                  <div className="coupon-content">
+                    <div className="coupon-discount">
+                      <Gift className="coupon-icon" />
+                      <span className="discount-text">
+                        {coupon.type === 'percent'
+                          ? `${coupon.value * 10}折優惠`
+                          : `${coupon.value} 元折價`}
+                      </span>
+                    </div>
+                    <div className="coupon-details">
+                      <h3 className="coupon-title">{coupon.name}</h3>
+                      <p className="coupon-code">活動: {coupon.description}</p>
+                      <p className="coupon-expiry">
+                        有效期限: {coupon.end_time}
+                      </p>
+                    </div>
                   </div>
-                  <div className="coupon-details">
-                    <h3 className="coupon-title">{coupon.name}</h3>
-                    <p className="coupon-code">活動: {coupon.description}</p>
-                    <p className="coupon-expiry">有效期限: {coupon.end_time}</p>
-                  </div>
+
+                  <Button
+                    size="sm"
+                    variant={
+                      new Date(coupon.end_time) < new Date()
+                        ? 'used'
+                        : 'default'
+                    }
+                    className="use-coupon-btn"
+                  >
+                    {new Date(coupon.end_time) < new Date()
+                      ? '已過期'
+                      : '可使用'}
+                  </Button>
                 </div>
-                <Button size="sm" className="use-coupon-btn">
-                  可使用
-                </Button>
-              </div>
-            ))}
+              ))}
           </div>
         </CardContent>
       </Card>

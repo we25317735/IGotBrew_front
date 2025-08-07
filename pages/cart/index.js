@@ -8,15 +8,8 @@ import { AuthContext } from '@/context/AuthContext'
 import { useRouter } from 'next/router'
 import Swal from 'sweetalert2'
 import { Button } from '@mui/material'
-import IconButton from '@mui/material/IconButton'
-import SearchIcon from '@mui/icons-material/Search'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import RadioGroup from '@mui/material/RadioGroup'
 import Loading from '@/components/Loading'
-import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import couponImg from '@/public/images/cart/couponimg.png'
-import couponImg2 from '@/public/images/cart/couponImgyellow.png'
 import Image from 'next/image'
 import { RiCoupon2Line } from 'react-icons/ri'
 import { useAuth } from '@/hooks/use-auth'
@@ -32,15 +25,9 @@ import 'dotenv/config.js'
 
 export default function Cart() {
   const {
-    cart,
-    cartItems,
-    totalItems,
+    cartItems, // 購物車內容
+    totalItems, // 總數量
     totalPrice, // 總金額
-    addItem,
-    removeItem,
-    updateItemQty,
-    clearCart,
-    isInCart,
     setCartCheckout, // 儲存結帳時狀態
   } = useCart()
   const [couponData, setCouponData] = useState([]) // 使用者優惠券
