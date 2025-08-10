@@ -17,6 +17,7 @@ import { useRouter } from 'next/router'
 import { useCart } from '@/hooks/use-cart'
 import 'react-credit-cards-2/dist/es/styles-compiled.css'
 import Swal from 'sweetalert2'
+import toast from 'react-hot-toast'
 import linepayicon from '@/public/images/cart/LINE-Pay(h)_W85_n.png'
 import { countries, townships, postcodes } from '@/utils/tw-township'
 import { useShip711StoreOpener } from '@/hooks/use-ship-711-store'
@@ -52,7 +53,7 @@ export default function Order() {
   const [hasCourses, setHasCourses] = useState('') // 購買的課程
 
   const { auth, setAuth, handleCheckAuth } = useAuth() // 使用者部分
-  const { cartCheckout } = useCart()
+  const { clearCart, cartCheckout } = useCart()
   const router = useRouter()
 
   // 7-11 超商取貨 API
@@ -83,13 +84,10 @@ export default function Order() {
     // 實際傳送 API 時不需分類
     setFormData((prev) => ({
       ...prev,
-      cartItems: cartCheckout.cart,
+      cartItems: cartCheckout.cart, // 購物車內容
+      amount: cartCheckout.allPrice, // 總價格(借用完成畫面的命名)
     }))
   }, [cartCheckout])
-
-  useEffect(() => {
-    // router.push('/IGotBrew') // 如果沒有按下按鈕，重定向到首頁
-  }, [router])
 
   // 7-11 超商取貨訊息取得
   useEffect(() => {
@@ -134,13 +132,13 @@ export default function Order() {
     foundation: '', // 發票捐贈處
 
     /* 最後: 使用者和購物車內容 */
-    user_id: '',
-    total_amount: '',
-    coupon_id: '',
-    cartItems: [],
+    user_id: auth.userData.id,
+    cartItems: [], // 購物車內容
+    amount: '', // 總價格
+    status: 'pending', // 帳單狀態(預設未付款)
   })
 
-  // 畫面需要 roload 時跳出
+  // 畫面需要 roload 時跳出(好像不重要)
   useEffect(() => {
     const handleBeforeUnload = (e) => {
       e.preventDefault()
@@ -222,6 +220,12 @@ export default function Order() {
 
   // 運送方式: 同會員地址 radio (宅配)
   const userAddress = () => {
+    // 檢查會員地址是否完整
+    if (!auth.userData.city || !auth.userData.area) {
+      toast.error('會員地址不完整, 請先更新會員資料')
+      return
+    }
+
     if (!isCheckedAdd && deliveryMethod === '宅配到府') {
       setIsCheckedAdd(true) // checked 打勾
 
@@ -310,7 +314,7 @@ export default function Order() {
     // 因為 setFormData 是非同步，這裡 formData 還是舊的，所以用 newFormData 代替
     // console.log('結帳: ', newFormData)
     let data = sanitizeObject(newFormData) // 消毒
-    // console.log('消毒後: ', data)
+    console.log('消毒後: ', data)
 
     sendOrder(data) // 已經不用渲染了, 直接拿 data 傳 API 即可
   }
@@ -319,15 +323,14 @@ export default function Order() {
   const sendOrder = async (data) => {
     const postUrl = `${process.env.NEXT_PUBLIC_BACK_API}/cart/create` //建立訂單
 
-    // console.log('傳 api: ', data)
-
     const res = await axios.post(postUrl, data) // 訂單儲存 SQL
 
     // 儲存成功後回傳
     if (res.data.status) {
       const transaction = res.data.transaction_id
+      clearCart() // 完成後, 清空購物車
 
-      console.log('訂單建立成功')
+      console.log('訂單建立成功: ', res.data.data)
       router.push(`/cart/orderComple?transaction_id=${transaction}`)
     }
   }
@@ -753,8 +756,8 @@ export default function Order() {
                             <TextField
                               id="outlined-basic"
                               label="郵遞區號"
-                              name="phone"
-                              type="phone"
+                              name="post"
+                              type="text"
                               onChange={doInputChange}
                               variant="outlined"
                               // value={postcode}
@@ -810,10 +813,10 @@ export default function Order() {
                           <TextField
                             id="outlined-basic"
                             label="地址"
-                            name="name"
+                            name="address"
                             required
                             variant="outlined"
-                            // onChange={(e) => setAddress(e.target.value)}
+                            onChange={doInputChange}
                             value={formData.address}
                             placeholder="請輸入地址"
                             InputProps={{
@@ -909,7 +912,6 @@ export default function Order() {
                                   type="text"
                                   name="store_id"
                                   className="ms-md-2"
-                                  // onChange={doChange}
                                   value={store711.storeid}
                                   disabled
                                 />
@@ -919,7 +921,6 @@ export default function Order() {
                                   type="text"
                                   name="store_name"
                                   className="mt-md-3 ms-md-2"
-                                  // onChange={doChange}
                                   value={store711.storename}
                                   disabled
                                 />
@@ -982,7 +983,6 @@ export default function Order() {
                             variant="outlined"
                             value={formData.cardnum}
                             onChange={doInputChange}
-                            // onFocus={}
                             pattern="[\d| ]{16,22}"
                             placeholder="請輸入卡號"
                             InputProps={{
@@ -1036,7 +1036,6 @@ export default function Order() {
                             value={formData.cardname}
                             variant="outlined"
                             onChange={doInputChange}
-                            // onFocus={}
                             placeholder="請輸入持卡人姓名"
                             InputProps={{
                               sx: {
@@ -1091,7 +1090,6 @@ export default function Order() {
                               variant="outlined"
                               fullWidth
                               onChange={doInputChange}
-                              // onFocus={}
                               placeholder="請輸入有效日期"
                               pattern="\d\d/\d\d"
                               InputProps={{
@@ -1145,7 +1143,6 @@ export default function Order() {
                               variant="outlined"
                               fullWidth
                               onChange={doInputChange}
-                              // onFocus={}
                               placeholder="請輸入安全碼"
                               pattern="\d{3,4}"
                               InputProps={{

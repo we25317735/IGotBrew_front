@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import styles from '@/styles/cart.module.scss'
-
+import { loadingON, loadingOff } from '@/utils/gadgets'
 import { useCart } from '@/hooks/use-cart'
 import { Modal } from 'react-bootstrap'
 import { AuthContext } from '@/context/AuthContext'
@@ -101,7 +101,7 @@ export default function Cart() {
   }
 
   // 下訂單按鈕
-  const doCheckout = () => {
+  const doCheckout = async () => {
     if (cartItems.length === 0) {
       Swal.fire({
         icon: 'error',
@@ -125,7 +125,7 @@ export default function Cart() {
       return
     }
 
-    // setIsAllowed(true)
+    loadingON('正在前往結帳畫面', '請稍後...') // 開啟 loading
 
     // 把購物訊息傳給 context, 給後續確認訂單使用
     let data = {
@@ -136,7 +136,8 @@ export default function Cart() {
     }
     setCartCheckout(data)
 
-    router.push('/cart/order')
+    await router.push('/cart/order')
+    loadingOff() // 關閉 loading
   }
 
   // 選擇使用的優惠券（只能選擇一張）

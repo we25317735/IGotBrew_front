@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import styles from '@/styles/productDetail.module.scss'
 import Image from 'next/image'
+import { loadingON, loadingOff } from '@/utils/gadgets'
 import { FaMinus, FaHeart, FaStar, FaStarHalfAlt } from 'react-icons/fa'
 import { IoMdAdd } from 'react-icons/io'
 import { FiMinus } from 'react-icons/fi'
@@ -38,14 +39,7 @@ export default function ProductDetail({ productRes }) {
   const [isInitialLoad, setIsInitialLoad] = useState(true) // 初始載入設定
 
   const router = useRouter()
-  const {
-    setCartCheckout, // 儲存結帳時狀態
-    addItem,
-    removeItem,
-    updateItemQty,
-    clearCart,
-    isInCart,
-  } = useCart() // 購物車 hook
+  const { addItem, cartItems, clearCart, onlyOneItem } = useCart() // 購物車 hook
 
   const { auth, setAuth, handleCheckAuth } = useAuth() // 使用者部分
   const { pid } = router.query
@@ -161,6 +155,7 @@ export default function ProductDetail({ productRes }) {
 
   // 加入購物車
   const handleAddToCart = () => {
+    // 購物車物件
     const cartItem = {
       user: auth.userData.id,
       classification: 'product',
@@ -184,8 +179,24 @@ export default function ProductDetail({ productRes }) {
     })
   }
 
-  const addToCart = () => {
-    handleAddToCart({ ...product, quantity })
+  // 直接結帳按鈕(單一商品購買的做法)
+  const ForwardCheckout = async () => {
+    loadingON('正在導向購物車', '請稍後...')
+
+    // 購物車物件
+    const cartItem = {
+      user: auth.userData.id,
+      classification: 'product',
+      id: product.id,
+      name: product.name,
+      img: product.img,
+      price: Math.floor(product.price * product.discount), // 必要, 用來計算總金額
+      quantity: quantity, // 必要, 用來計算總數量
+    }
+
+    onlyOneItem(cartItem) // 唯一購買
+    await router.push('/cart') // 跳轉到購物車
+    loadingOff() // 關閉 loading
   }
 
   // 使用者關注商品(渲染)
@@ -375,13 +386,14 @@ export default function ProductDetail({ productRes }) {
                 {/* 結帳 + 加入購物車 */}
                 <div className={`${styles['product-down-right']}`}>
                   <button
+                    onClick={() => ForwardCheckout()}
                     className={`${styles.straight} ${styles['down-button']}`}
                   >
                     <p className={`m-0`}>直接結帳</p>
                   </button>
                   <button
+                    onClick={() => handleAddToCart()}
                     className={`${styles['add-cart']} ${styles['down-button']}`}
-                    onClick={addToCart}
                   >
                     <p className={`m-0`}>加入購物車</p>
                   </button>

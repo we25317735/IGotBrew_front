@@ -5,8 +5,6 @@ import Phone_menu from './components/Phone_menu/index' // 使用 SCSS 模組
 import { FaShoppingCart, FaBars, FaSearch } from 'react-icons/fa'
 import { FaXmark } from 'react-icons/fa6'
 import Link from 'next/link'
-// import { AuthContext } from '@/context/AuthContext'
-import { useAuth } from '@/hooks/use-auth'
 import { useRouter } from 'next/router'
 import { useCart } from '@/hooks/use-cart'
 import { FaUserCircle } from 'react-icons/fa'
@@ -18,53 +16,32 @@ import { logout, lineLogout } from '@/services/user'
 import useFirebase from '@/hooks/use-firebase' // google 登出
 import Loading from '../Loading' // loading 畫面
 import SiteWide_search from './components/SiteWide_search' // loading 畫面
+import LoadLink from '@/components/LoadLink' // 取代 next 的 Link 標籤
 
-// 會員資料(這邊會調取空的 initUserData 用於重置狀態)
-import { initUserData } from '@/hooks/use-auth'
-import toast, { Toaster } from 'react-hot-toast' // 吐司
+// 會員資料( initUserData 用於重置狀態)
+import { useAuth, initUserData } from '@/hooks/use-auth'
+import toast from 'react-hot-toast' // 吐司
+
 import 'dotenv/config.js' // .env 檔案載入(共用api部分)
 
 export default function Header() {
-  const { cartItems, totalQty, cart_Add } = useCart()
   const [isMobile, setIsMobile] = useState(false)
   const [animationClass, setAnimationClass] = useState('') // 動畫效果
   const [animationToggle, setAnimationToggle] = useState(false) // 動畫效果開關(失敗維修中...)
-  const [isShopMenuOpen, setIsShopMenuOpen] = useState(false)
+  const [isShopList, setIsShopList] = useState(false) // 線上商店 開關
   const [cart, setCart] = useState([]) // 購物車內容渲染
   const [isOpen, setIsOpen] = useState(false) // 購物車 hover 開關
-
   const [loading, setLoading] = useState(false) // 點擊直到切換的過渡
 
   const { auth, setAuth, handleCheckAuth } = useAuth() // 使用者部分
   const { logoutFirebase } = useFirebase() // google 登出
-
+  const { cartItems, totalItems } = useCart() // 購物車 hook
   const router = useRouter() // 初始化router
 
   // 初次渲染後檢查會員是否已登入
   useEffect(() => {
     handleCheckAuth() // 呼叫驗證狀態檢查函數
   }, [setAuth])
-
-  // 購物車更新
-  useEffect(() => {
-    let cart_array = [] // 預先製作陣列
-
-    // 先處理商品
-    const productItems = cartItems.filter(
-      (item) => item.classification === 'product'
-    )
-
-    // 再處理課程
-    const courseItems = cartItems.filter(
-      (item) => item.classification === 'course'
-    )
-
-    // 合併排序後的陣列(先渲染完商品後, 在顯示課程)
-    cart_array = [...productItems, ...courseItems]
-
-    // 更新購物車內容
-    setCart(cart_array)
-  }, [cartItems])
 
   // 動畫效果
   const List_switch = (e) => {
@@ -84,35 +61,22 @@ export default function Header() {
     }
   }
 
-  useEffect(() => {
-    const handleResize = () => {
-      // setIsMobile(window.innerWidth < 768)
-    }
-
-    handleResize()
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-
-  // 登出測試
+  // 使用者登出
   const Logout_btn = async () => {
-    logoutFirebase() // 1. 執行 Firebase 系列的登出
+    logoutFirebase() // 有 Firebase 時執行 Firebase 系列的登出
 
-    const res = await logout()
+    const res = await logout() // 登出 API (清除 cookie)
 
     if (res.data.status === 'success') {
       toast.success('已成功登出')
 
-      // 4. 重置會員認證狀態
+      // 使用者 context 重制
       setAuth({
         isAuth: false,
         userData: initUserData,
       })
 
-      // 5. 跳轉至登入頁面
+      // 跳轉至登入頁面
       router.push('/login')
     } else {
       toast.error('Google 登出失敗')
@@ -132,34 +96,42 @@ export default function Header() {
           <div className={styles['wrap-left']}>
             <div
               className={`${styles['shop-menu']} ${
-                isShopMenuOpen ? styles['open'] : ''
+                isShopList ? styles['open'] : ''
               }`}
             >
               <Button
                 title="商品頁面"
-                onClick={() => setIsShopMenuOpen(!isShopMenuOpen)}
+                onClick={() => setIsShopList(!isShopList)}
                 className={styles.shopButton}
               >
                 線上商店
               </Button>
               <div className={styles['dropdown-content']}>
-                <Link href="/product">咖啡選購</Link>
-                <Link href="/course">咖啡人的必修課</Link>
+                <LoadLink
+                  href="/product"
+                  title="前往商品頁面中"
+                  msg="請稍後..."
+                >
+                  咖啡選購
+                </LoadLink>
+                <LoadLink href="/course" title="前往課程頁面中" msg="請稍後...">
+                  咖啡人的必修課
+                </LoadLink>
               </div>
             </div>
-            <Link href="/article" title="咖啡專欄">
+            <LoadLink href="/article" title="正在進入咖啡專欄">
               咖啡專欄
-            </Link>
-            <Link href="/cafeMap" title="咖啡地圖">
+            </LoadLink>
+            <LoadLink href="/cafeMap" title="正在進入咖啡地圖">
               咖啡地圖
-            </Link>
+            </LoadLink>
           </div>
 
           {/* header 中間 */}
           <div className={`${styles['wrap-middle']} d-none d-md-block`}>
-            <Link href="/IGotBrew">
+            <LoadLink href="/IGotBrew" title="跳轉中..." msg="請稍候...">
               <p className={styles.IGOTBREW}>Ｉ ＧＯＴ ＢＲＥＷ</p>
-            </Link>
+            </LoadLink>
           </div>
 
           {/* header 右側 */}
@@ -183,7 +155,7 @@ export default function Header() {
                   onMouseEnter={() => setIsOpen(true)}
                   onMouseLeave={() => setIsOpen(false)}
                 />
-                {totalQty > 0 && (
+                {totalItems > 0 && (
                   <span
                     className={styles['cart-count']}
                     style={{
@@ -196,10 +168,11 @@ export default function Header() {
                       right: '-7px',
                     }}
                   >
-                    {totalQty}
+                    {cartItems.length}
                   </span>
                 )}
 
+                {/* 購物車列表 */}
                 {isOpen && (
                   <div
                     className={styles['dropdown1-content']}
@@ -209,11 +182,11 @@ export default function Header() {
                     <div className={`ps-3 py-3 ${styles.cartTitle}`}>
                       最近加入的商品
                     </div>
-                    {totalQty <= 0 ? (
+                    {totalItems <= 0 ? (
                       <div className="text-center py-3 fs-3">購物車為空</div>
                     ) : (
                       <>
-                        {cart.map((e) => (
+                        {cartItems.map((e) => (
                           <div
                             key={e.id}
                             className={`d-flex gap-3 ${styles['dropdown-item']}`}
@@ -237,7 +210,7 @@ export default function Header() {
                                 </div>
                               </Link>
                               <div className={`ms-2 mt-2 ${styles.cartQty}`}>
-                                X{e.qty}
+                                X {e.quantity}
                               </div>
                             </div>
                             <div>${e.price}</div>
@@ -301,14 +274,14 @@ export default function Header() {
               >
                 {auth ? (
                   <li>
-                    <Link href="/user" legacyBehavior>
-                      <a
-                        className="dropdown-item"
-                        style={{ fontSize: '1.2rem' }}
-                      >
-                        會員中心
-                      </a>
-                    </Link>
+                    <LoadLink
+                      href="/user"
+                      title="正在進入會員中心"
+                      className="dropdown-item"
+                      style={{ fontSize: '1.2rem' }}
+                    >
+                      會員中心
+                    </LoadLink>
                   </li>
                 ) : null}
 

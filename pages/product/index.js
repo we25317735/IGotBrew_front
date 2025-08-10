@@ -130,8 +130,6 @@ export default function Product({
     if (currentPage && currentPage !== 1)
       query += `${query ? '&' : ''}page=${currentPage}`
 
-    console.log('路由: ', query)
-
     router.push(`/product${query ? `?${query}` : ''}`, undefined, {
       scroll: false,
     })

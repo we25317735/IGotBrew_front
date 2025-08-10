@@ -83,7 +83,7 @@ const generateCartState = (state, items) => {
     items: subtotalPrice(items),
     totalItems: totalItems(items),
     cartTotal: totalPrice(items),
-    isEmpty,
+    isEmpty, // 購物車是否為空
   }
 }
 
@@ -96,8 +96,8 @@ const CartContext = createContext(null)
 
 export const CartProvider = ({ children, initialCartItems = [] }) => {
   const { auth } = useAuth()
-  const [cartItems, setCartItems] = useState(initItems) // 最初的購物車物件
-  const [cartState, setCartState] = useState(init(initialCartItems)) // 購物車權狀態(包含 cartItems)
+  const [cartItems, setCartItems] = useState(initItems) // 最初的購物車陣列
+  const [cartState, setCartState] = useState(init(initialCartItems)) // 購物車全狀態(包含 cartItems)
   const [cartCheckout, setCartCheckout] = useState() // 存放結帳時的狀態(確認訂單組件適用)
   const userCartKey = auth.userData.name ? `${auth.userData.name}_cart` : null
 
@@ -119,6 +119,7 @@ export const CartProvider = ({ children, initialCartItems = [] }) => {
 
   // 監聽最新的購物車狀態( CRUD ), 並更新 localStorage
   useEffect(() => {
+    // 如果購物車有東西,新增 localStorage 並加入
     if (cartItems.length > 0 && userCartKey) {
       try {
         if (typeof window !== 'undefined') {
@@ -146,11 +147,17 @@ export const CartProvider = ({ children, initialCartItems = [] }) => {
   }
 
   const clearCart = (e) => {
-    console.log('userCartKey:', userCartKey)
-    setCartItems([]) // 清空購物車
+    // setCartItems([]) // 清空購物車
+
+    // 直接清除 localStorage
     if (userCartKey) {
       localStorage.removeItem(userCartKey) // 同時從 localStorage 中移除數據
     }
+  }
+
+  // 刪除購物車所有內容, 只留一個(單樣商品結帳)
+  const onlyOneItem = (item) => {
+    setCartItems([item])
   }
 
   const isInCart = (id) => {
@@ -162,7 +169,7 @@ export const CartProvider = ({ children, initialCartItems = [] }) => {
       value={{
         cart: cartState,
         cartItems: cartState.items,
-        totalItems: cartState.totalItems, // 總件數
+        totalItems: cartState.totalItems, // 總件數(全部數量)
         totalPrice: cartState.cartTotal, // 總金額
         cartCheckout, // 結帳時狀態
         setCartCheckout, // 儲存結帳時狀態
@@ -171,6 +178,7 @@ export const CartProvider = ({ children, initialCartItems = [] }) => {
         updateItemQty,
         clearCart,
         isInCart,
+        onlyOneItem, // 只保留傳進來的項目(直接結帳)
       }}
     >
       {children}
