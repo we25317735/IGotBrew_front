@@ -32,35 +32,36 @@ const accessToken = cookies().get('accessToken')
 
 // 新版測試: SSR 取得當前使用者資料(沒有則跳回首頁)
 export async function getSSRUser() {
-  const accessToken = cookies().get('accessToken')
-
-  // 沒 token 就跳回首頁
-  // if (!accessToken?.value) return redirect('/IGotBrew')
-
-  console.log("取得 cookie: ",accessToken);
-
-  const token = accessToken.value
-
-  let jwtUser
-
   try {
-    jwtUser = parseJwt(token)
-    if (!jwtUser?.id) throw new Error('Invalid token')
-  } catch {
-    // return redirect('/IGotBrew')
-  }
+    const accessToken = cookies().get('accessToken')
+    console.log('取得 cookie: ', accessToken)
 
-  // 向後端拿資料
-  try {
-    const res = await getUserById(jwtUser.id, token)
+    if (!accessToken?.value) {
+      console.warn('沒有 accessToken cookie')
+      return null
+    }
+
+    const jwtUser = parseJwt(accessToken.value)
+    if (!jwtUser?.id) {
+      console.warn('JWT token 無效')
+      return null
+    }
+
+    const res = await getUserById(jwtUser.id, accessToken.value)
     const user = res?.data?.data?.user
 
-    if (!user) throw new Error('User not found')
+    if (!user) {
+      console.warn('找不到使用者')
+      return null
+    }
+
     return user
-  } catch {
-    return redirect('/IGotBrew')
+  } catch (err) {
+    console.error('getSSRUser 發生錯誤:', err)
+    return null
   }
 }
+
 
 // SSR 取得使用者 ID
 export async function getSSRUserId() {
