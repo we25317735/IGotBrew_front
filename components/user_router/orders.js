@@ -4,12 +4,16 @@ import { Badge } from '@/components/ui/badge'
 
 // 直接做成 SSR 也沒差
 export default function Orders({ data }) {
+
+  // 根據訂單狀態顯示訊息
   const statusVariantMap = {
     pending: 'pending', // 你在 badgeVariants 定義的 variant 名稱
     paid: 'completed',
     fail: 'fail',
     shipping: 'shipping', // 如果你有 shipping variant
   }
+
+  console.log("訂單:　", data);
 
   return (
     <Card className="content-card">
@@ -19,7 +23,7 @@ export default function Orders({ data }) {
       <CardContent>
         <div className="orders-list">
           {data.map((e) => (
-            <div key={e.id} className="order-item">
+            <div key={e.transaction_id} className="order-item">
               <div className="order-info">
                 <div className="order-header">
                   <span className="order-id">
@@ -55,7 +59,7 @@ export default function Orders({ data }) {
                     <Calendar className="w-4 h-4" />
                     {e.created_at}
                   </span>
-                  <span className="order-total">${e.amount}</span>
+                  <span className="order-total me-2">${e.amount}</span>
                 </div>
               </div>
             </div>
