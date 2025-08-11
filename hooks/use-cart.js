@@ -25,6 +25,14 @@ const initState = {
 //   ...
 // ]
 
+// 結帳初始訊息(上線部屬時要給預設值)
+const initCheckout = {
+   cart: [], // 給預設值: 結帳時購物車狀態
+    chooseCoupon: "", // 給預設值: 結帳時選擇的優惠券
+    totalPrice: 0, // 給預設值: 商品合計金額
+    allPrice: 0, // 給預設值: 最終價格}) // 存放結帳時的狀態(確認訂單組件適用)
+}
+
 // 尋找指定 id 的項目
 const findOneById = (items, id) => {
   return items.find((item) => String(item.id) === String(id)) || {}
@@ -98,7 +106,7 @@ export const CartProvider = ({ children, initialCartItems = [] }) => {
   const { auth } = useAuth()
   const [cartItems, setCartItems] = useState(initItems) // 最初的購物車陣列
   const [cartState, setCartState] = useState(init(initialCartItems)) // 購物車全狀態(包含 cartItems)
-  const [cartCheckout, setCartCheckout] = useState({}) // 存放結帳時的狀態(確認訂單組件適用)
+  const [cartCheckout, setCartCheckout] = useState(initCheckout) // 結帳時用的 context
   const userCartKey = auth.userData.name ? `${auth.userData.name}_cart` : null
 
   // 當 auth.userData.name 存在時，從 localStorage 中讀取購物車數據
