@@ -53,7 +53,18 @@ export default function Orders({ data }) {
                       : e.status}
                   </Badge>
                 </div>
-                <p className="order-items">訂單 # {e.id}</p>
+                <p className="order-items" >訂單  
+                  <span  style={{
+                      color:
+                        e.status === 'pending'
+                          ? '#f0ac4e85'
+                          : e.status === 'paid'
+                          ? '#2b4f6185'
+                          : e.status === 'fail'
+                          ? '#d9534f85'
+                          : '#6c757d85',
+                    }}
+                  ># {e.id}</span></p>
                 <div className="order-footer">
                   <span className="order-date">
                     <Calendar className="w-4 h-4" />

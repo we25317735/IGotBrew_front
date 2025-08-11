@@ -130,7 +130,7 @@ export default function Cart() {
     // 把購物訊息傳給 context, 給後續確認訂單使用
     let data = {
       cart: cartItems, // 結帳時購物車狀態
-      chooseCoupon: exerciseCoupon, // 結帳時選擇的優惠券
+      chooseCoupon: exerciseCoupon || "", // 結帳時選擇的優惠券
       totalPrice: totalPrice, // 商品合計金額
       allPrice: allPrice, // 最終價格
     }
