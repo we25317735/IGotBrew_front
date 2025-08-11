@@ -6,7 +6,26 @@ import {
   userOrder,
   userCoupon,
   userFavorites,
+  checkAuth
 } from '@/services/user'
+
+
+
+
+// 測試區域
+export async function test_srever() {
+const accessToken = cookies().get('accessToken')
+  const res = await checkAuth()
+  console.log("測試: ",res.data,accessToken);
+ 
+  if (res.data.status === 'success') {
+    const dbUser = res.data.data.user
+
+   console.log("取得使用者: ",dbUser);
+  }
+}
+
+// 測試區域
 
 // 新版測試: SSR 取得當前使用者資料(沒有則跳回首頁)
 export async function getSSRUser() {
