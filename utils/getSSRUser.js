@@ -15,8 +15,11 @@ import {
 // 測試區域
 export async function test_srever() {
 const accessToken = cookies().get('accessToken')
+  const raw = headers.get
+    ? headers.get('cookie') // Fetch API Headers 物件
+    : headers['cookie'];    // Express/Node http.IncomingMessage
   const res = await checkAuth()
-  console.log("測試: ",res.data,accessToken);
+  console.log("測試: ",res.data,accessToken,raw);
  
   if (res.data.status === 'success') {
     const dbUser = res.data.data.user
@@ -32,7 +35,9 @@ export async function getSSRUser() {
   const accessToken = cookies().get('accessToken')
 
   // 沒 token 就跳回首頁
-  if (!accessToken?.value) return redirect('/IGotBrew')
+  // if (!accessToken?.value) return redirect('/IGotBrew')
+
+  console.log("取得 cookie: ",accessToken);
 
   const token = accessToken.value
 
@@ -42,7 +47,7 @@ export async function getSSRUser() {
     jwtUser = parseJwt(token)
     if (!jwtUser?.id) throw new Error('Invalid token')
   } catch {
-    return redirect('/IGotBrew')
+    // return redirect('/IGotBrew')
   }
 
   // 向後端拿資料
