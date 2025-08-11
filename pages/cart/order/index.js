@@ -135,7 +135,7 @@ export default function Order() {
     user_id: auth.userData.id,
     cartItems: [], // 購物車內容
     amount: '', // 總價格
-    coupon_id: cartCheckout.chooseCoupon.id || "", // 本次交易使用的優惠券
+    coupon_id: cartCheckout.chooseCoupon.id || '', // 本次交易使用的優惠券
     status: 'pending', // 帳單狀態(預設未付款)
   })
 

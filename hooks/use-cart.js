@@ -25,15 +25,6 @@ const initState = {
 //   ...
 // ]
 
-
-
-setCartCheckout({
-  cart: [],
-  chooseCoupon: null,
-  totalPrice: 0,
-  allPrice: 0,
-})
-
 // 尋找指定 id 的項目
 const findOneById = (items, id) => {
   return items.find((item) => String(item.id) === String(id)) || {}
