@@ -12,7 +12,7 @@ import { useRouter } from 'next/router'
 
 export default function Index() {
   useEffect(() => {
-    router.push(`${process.env.NEXT_PUBLIC_FONT_URL}/IGotBrew`)
+    router.push(`/IGotBrew`)
   }, [])
 
   return (
