@@ -2,15 +2,11 @@ import React from 'react'
 import { User, Settings, Coffee, Star } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { getSSRUser, test_srever } from '@/utils/getSSRUser'
+import { getSSRUser } from '@/utils/getSSRUser'
 
 // (使用者有無登入訊息)
 export default async function Header() {
   const user = await getSSRUser() // 取得使用者資料( SSR 渲染)
-  const data = await test_srever() // 取得使用者資料( SSR 渲染)
-
-  console.log("取得資料: ", data);
-
 
   return (
     <div className="member-header">

@@ -6,62 +6,37 @@ import {
   userOrder,
   userCoupon,
   userFavorites,
-  checkAuth
 } from '@/services/user'
-
-
-
-
-// 測試區域
-export async function test_srever() {
-const accessToken = cookies().get('accessToken')
-  const raw = headers.get
-    ? headers.get('cookie') // Fetch API Headers 物件
-    : headers['cookie'];    // Express/Node http.IncomingMessage
-  const res = await checkAuth()
-  console.log("測試: ",res.data,accessToken,raw);
- 
-  if (res.data.status === 'success') {
-    const dbUser = res.data.data.user
-
-   console.log("取得使用者: ",dbUser);
-  }
-}
-
-// 測試區域
 
 // 新版測試: SSR 取得當前使用者資料(沒有則跳回首頁)
 export async function getSSRUser() {
+  const accessToken = cookies().get('accessToken')
+
+  // 沒 token 就跳回首頁
+  if (!accessToken?.value) return redirect('/IGotBrew')
+
+  const token = accessToken.value
+
+  let jwtUser
+
   try {
-    const accessToken = cookies().get('accessToken')
-    console.log('取得 cookie: ', accessToken)
+    jwtUser = parseJwt(token)
+    if (!jwtUser?.id) throw new Error('Invalid token')
+  } catch {
+    return redirect('/IGotBrew')
+  }
 
-    if (!accessToken?.value) {
-      console.warn('沒有 accessToken cookie')
-      return null
-    }
-
-    const jwtUser = parseJwt(accessToken.value)
-    if (!jwtUser?.id) {
-      console.warn('JWT token 無效')
-      return null
-    }
-
-    const res = await getUserById(jwtUser.id, accessToken.value)
+  // 向後端拿資料
+  try {
+    const res = await getUserById(jwtUser.id, token)
     const user = res?.data?.data?.user
 
-    if (!user) {
-      console.warn('找不到使用者')
-      return null
-    }
-
+    if (!user) throw new Error('User not found')
     return user
-  } catch (err) {
-    console.error('getSSRUser 發生錯誤:', err)
-    return null
+  } catch {
+    return redirect('/IGotBrew')
   }
 }
-
 
 // SSR 取得使用者 ID
 export async function getSSRUserId() {

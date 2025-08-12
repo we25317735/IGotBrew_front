@@ -1,4 +1,4 @@
-import axiosInstance, { fetcher } from './axios-instance' 
+import axiosInstance, { fetcher } from './axios-instance'
 
 // 調取會員狀態(畫面每次 reload 都會執行一次, handleCheckAuth 會執行的那個)
 export const checkAuth = async () => {

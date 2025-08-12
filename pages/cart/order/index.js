@@ -139,9 +139,9 @@ export default function Order() {
     status: 'pending', // 帳單狀態(預設未付款)
   })
 
-  useEffect(()=>{
-    console.log("測試: ",formData);
-  },[formData])
+  useEffect(() => {
+    console.log('測試: ', formData)
+  }, [formData])
 
   // 畫面需要 roload 時跳出(好像不重要)
   useEffect(() => {
