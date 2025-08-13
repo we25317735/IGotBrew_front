@@ -3,7 +3,13 @@ import styles from './assets/style/style.module.scss'
 import Swal from 'sweetalert2'
 import toast from 'react-hot-toast'
 import axios from 'axios'
-import { login, parseJwt, getUserById, emailFindUser,forgetPassword } from '@/services/user'
+import {
+  login,
+  parseJwt,
+  getUserById,
+  emailFindUser,
+  forgetPassword,
+} from '@/services/user'
 import { useAuth } from '@/hooks/use-auth'
 import { useRouter } from 'next/router'
 import { loadingON, loadingOff } from '@/utils/gadgets'
@@ -81,7 +87,7 @@ export default function Login_module() {
   const forget_password = async () => {
     const user = loginData.account // 先取得使用者
 
-    console.log("hjkl; ",loginData.account,user);
+    console.log('hjkl; ', loginData.account, user)
 
     if (!user) {
       toast.error(`請輸入帳號`)
@@ -94,8 +100,6 @@ export default function Login_module() {
 
     loadingOff() // 關閉 loading
 
-
-
     // 如果確認有該使用者
     if (res.data.status === 'success') {
       send_email(user) // 準備寄信
@@ -105,10 +109,10 @@ export default function Login_module() {
   }
 
   // 寄信 API (變數命名 account)
-  const  send_email = async (account) => {
-     loadingON('寄電子郵件中')
+  const send_email = async (account) => {
+    loadingON('寄電子郵件中')
     const res = await forgetPassword(account)
-      loadingOff() // 關閉 loading
+    loadingOff() // 關閉 loading
 
     // 如果確認有該使用者
     if (res.data.status === 'success') {

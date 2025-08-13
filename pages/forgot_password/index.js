@@ -11,36 +11,35 @@ export default function ForgotPassword() {
   const [passwordErr, setPasswordErr] = useState('') // 錯誤或成功訊息
   const [passwordCheck, setPasswordCheck] = useState(false) // 是否通過檢查
   const [isInitialLoad, setIsInitialLoad] = useState(true) // 初始載入設定
-  const [token, setToken] = useState('') 
+  const [token, setToken] = useState('')
   const router = useRouter()
 
   // 先把 url 的 token 變數搞到手
-  useEffect(()=>{
-    if (!router.isReady) return   
+  useEffect(() => {
+    if (!router.isReady) return
 
-    if(router.query.token){
+    if (router.query.token) {
       setToken(router.query.token) // 抓到的 token 先放 state, 後續改密碼要用
       Certification(router.query.token) // 搞到後開始認證
     }
-  },[router.isReady, router.query])
+  }, [router.isReady, router.query])
 
   // 先對載入的 token 進行認證
   const Certification = async (token) => {
-  
     // 連接同一支 API, 先驗證 url 進來的 token
-    const res = await  axiosInstance.get('/auth/check', {
-      headers: { Authorization: `Bearer ${token}` }
+    const res = await axiosInstance.get('/auth/check', {
+      headers: { Authorization: `Bearer ${token}` },
     })
 
     // token 驗證結果回傳
-    if(res.data.status === "success"){
-      toast.success("驗證成功, 進入修改頁")
-    }else if(res.data.status === "error"){
+    if (res.data.status === 'success') {
+      toast.success('驗證成功, 進入修改頁')
+    } else if (res.data.status === 'error') {
       // 這邊應該放 404 頁面
-      toast.error("發生錯誤, 請稍後在式 !!!") 
-    }else if(res.data.status === "expired"){
+      toast.error('發生錯誤, 請稍後在式 !!!')
+    } else if (res.data.status === 'expired') {
       // 這邊應該放 404 頁面
-      toast.error("存取令牌已過期，請重新在式 !!!") 
+      toast.error('存取令牌已過期，請重新在式 !!!')
     }
   }
 
@@ -79,39 +78,42 @@ export default function ForgotPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    loadingON("密碼修改認證中")
+    loadingON('密碼修改認證中')
 
-    // 修改密碼的 API,  
-    const res = await  axiosInstance.post('/auth/reset_password', {password},{
-      headers: { Authorization: `Bearer ${token}` }
-    })
+    // 修改密碼的 API,
+    const res = await axiosInstance.post(
+      '/auth/reset_password',
+      { password },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
 
     loadingOff()
 
-    if(res.data.status === "success"){
-      toast.success("修改成功，需重新登入")
-      router.push("/login") // 跳回登入頁
-    }else{
-      toast.error("存取令牌已過期，請重新在式 !!!") 
+    if (res.data.status === 'success') {
+      toast.success('修改成功，需重新登入')
+      router.push('/login') // 跳回登入頁
+    } else {
+      toast.error('存取令牌已過期，請重新在式 !!!')
     }
-
   }
 
-    // 初始載入 loading
-    useEffect(() => {
-      if (isInitialLoad) {
-        setIsInitialLoad(false)
-      }
-    }, [isInitialLoad])
-  
-    // isInitialLoad 後續變更
+  // 初始載入 loading
+  useEffect(() => {
     if (isInitialLoad) {
-      return (
-        <div>
-          <Loading />
-        </div>
-      )
+      setIsInitialLoad(false)
     }
+  }, [isInitialLoad])
+
+  // isInitialLoad 後續變更
+  if (isInitialLoad) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    )
+  }
 
   return (
     <div className={styles.warp}>
@@ -137,7 +139,11 @@ export default function ForgotPassword() {
 
             {/* 錯誤或成功提示 */}
             {passwordErr && (
-              <p className={`fs-6 ${passwordCheck ? 'text-success' : 'text-danger'}`}>
+              <p
+                className={`fs-6 ${
+                  passwordCheck ? 'text-success' : 'text-danger'
+                }`}
+              >
                 {passwordErr}
               </p>
             )}

@@ -98,16 +98,18 @@ export const emailFindUser = async (data) => {
 
 // 忘記密碼寄信
 export const forgetPassword = async (email) => {
-  return await axiosInstance.post('/auth/forget_password', 
-    {email}
-  )
+  return await axiosInstance.post('/auth/forget_password', { email })
 }
 
 // 忘記密碼 修改
 export const resetPassword = async (token) => {
-  return axiosInstance.post('/auth/reset_password', {}, {
-    headers: { Authorization: `Bearer ${token}` }
-  })
+  return axiosInstance.post(
+    '/auth/reset_password',
+    {},
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  )
 }
 
 /**

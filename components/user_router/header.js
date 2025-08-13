@@ -13,9 +13,8 @@ export default async function Header() {
       <div className="user-info">
         <Avatar className="user-avatar border border-1 rounded-circle">
           <div className="w-100 h-100">
-              <img src={user.img} className="w-100" alt="使用者頭像" />
+            <img src={user.img} className="w-100" alt="使用者頭像" />
           </div>
-          
         </Avatar>
         <div className="user-details">
           <h1 className="user-name">{user.name}</h1>

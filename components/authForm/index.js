@@ -102,7 +102,7 @@ export default function AuthForm({ mode }) {
             className={`${styles['left-section']} col-12 col-md-7 d-flex flex-column justify-content-between`}
           >
             {/* LOGO */}
-            <div className={`${styles['logo-container']} `} >
+            <div className={`${styles['logo-container']} `}>
               <div className={styles['logo-placeholder']}>
                 <div className={styles['logo-icon']}>
                   <span>L</span>
