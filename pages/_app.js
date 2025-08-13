@@ -5,6 +5,7 @@ import '@/styles/globals.scss'
 
 import { useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
+import Notice_modal from '@/components/notice_modal'
 
 // 目前用不到的
 // import '@/styles/loader.scss'
@@ -37,6 +38,9 @@ export default function MyApp({ Component, pageProps }) {
     <>
       {/* 吐司 */}
       <Toaster />
+
+      {/* 公告 */}
+      {/* <Notice_modal />  */}
 
       <AuthProvider>
         <AuthProvider_1>

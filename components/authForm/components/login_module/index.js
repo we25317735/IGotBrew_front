@@ -3,9 +3,10 @@ import styles from './assets/style/style.module.scss'
 import Swal from 'sweetalert2'
 import toast from 'react-hot-toast'
 import axios from 'axios'
-import { login, parseJwt, getUserById } from '@/services/user'
+import { login, parseJwt, getUserById, emailFindUser,forgetPassword } from '@/services/user'
 import { useAuth } from '@/hooks/use-auth'
 import { useRouter } from 'next/router'
+import { loadingON, loadingOff } from '@/utils/gadgets'
 
 // 第三方登入組件
 import Google_btn from '../google_btn'
@@ -17,7 +18,7 @@ export default function Login_module() {
     account: '', // 帳號部分
     password: '', // 密碼部分
   })
-  const [loginError, setloginError] = useState('') // 登入錯誤訊息
+
   const [passwordError, setPasswordError] = useState('') // 還有幾次機會(密碼錯誤部分)
   const { auth, setAuth } = useAuth()
   const router = useRouter()
@@ -67,13 +68,54 @@ export default function Login_module() {
     } else if (res.data.status === 'fail') {
       setPasswordError(res.data.count) // 還有幾次機會
       toast.error(res.data.msg)
-      console.log('vewvv ', passwordError)
 
       // 登入失敗次數過多
       if (passwordError === undefined) {
         toast.error(res.data.msg)
         router.push('/IGotBrew')
       }
+    }
+  }
+
+  // 忘記密碼
+  const forget_password = async () => {
+    const user = loginData.account // 先取得使用者
+
+    console.log("hjkl; ",loginData.account,user);
+
+    if (!user) {
+      toast.error(`請輸入帳號`)
+      return
+    }
+
+    loadingON('正在搜尋')
+
+    const res = await emailFindUser(user) // 用 email 搜尋使用者(目前也只有 email)
+
+    loadingOff() // 關閉 loading
+
+
+
+    // 如果確認有該使用者
+    if (res.data.status === 'success') {
+      send_email(user) // 準備寄信
+    } else {
+      toast.error('查無該帳號')
+    }
+  }
+
+  // 寄信 API (變數命名 account)
+  const  send_email = async (account) => {
+     loadingON('寄電子郵件中')
+    const res = await forgetPassword(account)
+      loadingOff() // 關閉 loading
+
+    // 如果確認有該使用者
+    if (res.data.status === 'success') {
+      toast.success(`郵件已發送`)
+      toast.success(`請查看電子信箱: ${account}`)
+    } else {
+      toast.error('傳送失敗, 請稍後在式')
     }
   }
 
@@ -133,6 +175,10 @@ export default function Login_module() {
           href="#"
           className={`${styles['text-decoration-none']} text-decoration-none`}
           style={{ color: '#4e73df', fontSize: '0.85em' }}
+          onClick={(e) => {
+            e.preventDefault()
+            forget_password()
+          }}
         >
           忘記密碼？
         </a>

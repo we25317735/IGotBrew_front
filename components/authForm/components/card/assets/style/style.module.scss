@@ -1,7 +1,7 @@
 #login-container {
-  // max-width: 450px;
-  width: 500px;
-  margin: 0 auto;
+  max-width: 450px;
+  // width: 500px;
+  // margin: 0 auto;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 0.15em 1.75em 0 rgba(58, 59, 69, 0.15);
@@ -64,6 +64,10 @@
       border-bottom: 3px solid 4e73df;
       background: transparent;
     }
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 500px;
   }
 }
 

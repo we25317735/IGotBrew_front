@@ -2,6 +2,7 @@ import axiosInstance, { fetcher } from './axios-instance'
 
 // 調取會員狀態(畫面每次 reload 都會執行一次, handleCheckAuth 會執行的那個)
 export const checkAuth = async () => {
+  // console.log("有沒有跑 token 認證");
   return await axiosInstance.get('/auth/check')
 }
 
@@ -90,14 +91,22 @@ export const sendEmailVerify = async (data) => {
   return await axiosInstance.post(`/user/email-verify`, data)
 }
 
-/**
- * 忘記密碼/OTP 重設密碼
- */
-export const resetPassword = async (email = '', password = '', token = '') => {
-  return await axiosInstance.post('/reset-password/reset', {
-    email,
-    token,
-    password,
+// 信箱搜尋使用者(忘記密碼)
+export const emailFindUser = async (data) => {
+  return await axiosInstance.get(`/user/email/${data}`)
+}
+
+// 忘記密碼寄信
+export const forgetPassword = async (email) => {
+  return await axiosInstance.post('/auth/forget_password', 
+    {email}
+  )
+}
+
+// 忘記密碼 修改
+export const resetPassword = async (token) => {
+  return axiosInstance.post('/auth/reset_password', {}, {
+    headers: { Authorization: `Bearer ${token}` }
   })
 }
 

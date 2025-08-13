@@ -11,7 +11,8 @@ import Loading from '@/components/Loading'
 
 // 登入介面渲染 + 第三方登入 callBack 回傳(url query 部分)
 export default function AuthForm({ mode }) {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+  // const [isLoading, setIsLoading] = useState(true)
   const [check_user, setCheck_user] = useState(true) // 檢查有無用戶(確認 handleCheckAuth 有執行完)
   const { auth, setAuth, handleCheckAuth } = useAuth() // 使用者部分
   const router = useRouter()
@@ -40,7 +41,7 @@ export default function AuthForm({ mode }) {
 
   // 第三方登入 callBack 回傳
   useEffect(() => {
-    setIsLoading(true) // 有接收到 query 時, 一律以 loading 畫面執行
+    // setIsLoading(true) // 有接收到 query 時, 一律以 loading 畫面執行
     if (router.isReady) {
       if (!router.query.code) return // 沒有 code 表示非登入狀態(code 是 line 其中一個狀態)
 
@@ -101,7 +102,7 @@ export default function AuthForm({ mode }) {
             className={`${styles['left-section']} col-12 col-md-7 d-flex flex-column justify-content-between`}
           >
             {/* LOGO */}
-            <div className={`${styles['logo-container']}`}>
+            <div className={`${styles['logo-container']} `} >
               <div className={styles['logo-placeholder']}>
                 <div className={styles['logo-icon']}>
                   <span>L</span>
@@ -116,13 +117,13 @@ export default function AuthForm({ mode }) {
             </div>
 
             {/* 歡迎文字 */}
-            <div className={styles['welcome-text']}>
+            <div className={`${styles['welcome-text']}} `}>
               <h1>歡迎回來</h1>
-              <p>登入您的帳戶，探索我們的咖啡網站，順便感受專案的血與淚。</p>
+              <p>登入您的帳戶，探索我們的咖啡網站，感受專案的血與淚。</p>
             </div>
 
             {/* 商品卡片 */}
-            <div className={`${styles['featured-products']} `}>
+            <div className={`${styles['featured-products']}`}>
               {['A', 'B', 'C'].map((item, index) => (
                 <div key={index} className={styles['product-card']}>
                   <div className={styles['product-image']}>
@@ -169,7 +170,7 @@ export default function AuthForm({ mode }) {
 
           {/* 右側登入卡片 */}
           <div className={`${styles['right-section']} col-12 col-md-5`}>
-            <div className={`${styles['card-box']}`}>
+            <div className={`${styles['card-box']}  mb-5 mb-md-0`}>
               <Card mode={mode} />
             </div>
           </div>

@@ -12,6 +12,8 @@ import styles from './assets/style/style.module.scss'
 import Loading from '@/components/Loading'
 import { FaAngleUp } from 'react-icons/fa'
 
+import NoticeModal from '@/components/notice_modal' // 新增 import
+
 export default function IGotBrew() {
   const [showButton, setShowButton] = useState(false)
   const sectionsRef = useRef([])
@@ -131,6 +133,9 @@ export default function IGotBrew() {
 
   return (
     <>
+      {/* 注意事項，放在最上層 */}
+      <NoticeModal />
+
       <div className={`container-fluid ${styles['bg']}`}>
         <Header />
         <Section1 />

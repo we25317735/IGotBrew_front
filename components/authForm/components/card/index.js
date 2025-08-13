@@ -18,9 +18,9 @@ export default function Card({ mode }) {
   return (
     <div
       id={`${styles['login-container']}`}
-      // style={{ backgroundImage: bg_img }}
+      className='mx-auto'
     >
-      <div className={`${styles['login-header']}`}>
+      <div className={`${styles['login-header']} `}>
         <h1>歡迎回來</h1>
         <p>登入您的帳戶以享受完整的購物體驗</p>
       </div>

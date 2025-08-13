@@ -1,0 +1,94 @@
+.warp {
+  max-width: 1920px;
+  margin: 0 auto;
+  background-color: #eee9e4;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  @media (max-width: 768px) {
+    padding: 0 10px;
+  }
+
+  .modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(43, 79, 97, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+
+    .modalContent {
+      background-color: #eee9e4;
+      color: #2b4f61;
+      max-width: 600px;
+      width: 90%;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+      h2 {
+        margin-bottom: 1rem;
+        font-weight: 700;
+        font-size: 1.8rem;
+      }
+
+      .noticeText {
+        max-height: 250px;
+        overflow-y: auto;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+        font-size: 1rem;
+        border: 1px solid #2b4f61;
+        padding: 1rem;
+        border-radius: 4px;
+        background-color: #f7f6f5;
+      }
+
+      .formCheck {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+
+        input[type='checkbox'] {
+          margin-right: 0.5rem;
+          width: 18px;
+          height: 18px;
+          accent-color: #2b4f61;
+          cursor: pointer;
+        }
+
+        label {
+          font-size: 1rem;
+          user-select: none;
+          cursor: pointer;
+        }
+      }
+
+      button.confirmBtn {
+        background-color: #2b4f61;
+        border: none;
+        color: white;
+        padding: 0.6rem 1.5rem;
+        font-size: 1.1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        opacity: 0.5;
+
+        &:enabled {
+          opacity: 1;
+        }
+
+        &:hover:enabled {
+          background-color: #244356;
+        }
+      }
+    }
+  }
+}
