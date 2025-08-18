@@ -37,6 +37,11 @@ export default function OrderDetail() {
     getData()
   }, [transaction_id])
 
+
+  useEffect(()=>{
+console.log("jkl; ",orderData);
+  },[orderData])
+
   // 初始載入 loading
   useEffect(() => {
     if (isInitialLoad) {
@@ -76,7 +81,6 @@ export default function OrderDetail() {
                 <li>訂單日期：</li>
                 <li>總金額：</li>
                 <li>付款方式：</li>
-                {orderData.pay_type !== 2 && <li>卡號末四碼：</li>}
               </ul>
 
               <ul className={`list-unstyled text-start ${styles['item2']}`}>
@@ -84,9 +88,6 @@ export default function OrderDetail() {
                 <li>{orderData.created_at}</li>
                 <li>${orderData.amount}</li>
                 <li>{orderData.pay_type === 1 ? '信用卡' : 'Line Pay'}</li>
-                {orderData.pay_type !== 2 && orderData.cardnum && (
-                  <li>lastFourDigits</li>
-                )}
               </ul>
             </div>
             <div className="mb-5 d-flex justify-content-center gap-md-5 gap-3 ">
