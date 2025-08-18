@@ -382,8 +382,6 @@ export default function Register_module() {
               >
                 發送驗證碼
               </button>
-
-         
             </div>
           </div>
         </div>

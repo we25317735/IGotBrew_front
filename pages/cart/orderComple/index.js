@@ -37,11 +37,6 @@ export default function OrderDetail() {
     getData()
   }, [transaction_id])
 
-
-  useEffect(()=>{
-console.log("jkl; ",orderData);
-  },[orderData])
-
   // 初始載入 loading
   useEffect(() => {
     if (isInitialLoad) {
@@ -65,7 +60,7 @@ console.log("jkl; ",orderData);
         <div
           className={`row mx-3 justify-content-center mb-5 ${styles.cartTitle}`}
         >
-          <Cart_header active={2} />
+          <Cart_header active={3} />
         </div>
         <div className={`${styles['cart-body']} `}>
           <div className="mb-5 mt-md-0 mt-5 text-center ">
