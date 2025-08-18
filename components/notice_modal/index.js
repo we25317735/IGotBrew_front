@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import styles from './assets/style.module.scss'
 
 export default function NoticeModal() {
-  const [showModal, setShowModal] = useState(true) // 掛勾 sessionStorage, 測試時 true
+  const [showModal, setShowModal] = useState(false) // 掛勾 sessionStorage, 測試時 true
   const [checked, setChecked] = useState(false)
   const [canCheck, setCanCheck] = useState(false) // 是否可勾選 checkbox
 

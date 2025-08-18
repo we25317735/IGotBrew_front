@@ -11,8 +11,7 @@ import Loading from '@/components/Loading'
 
 // 登入介面渲染 + 第三方登入 callBack 回傳(url query 部分)
 export default function AuthForm({ mode }) {
-  const [isLoading, setIsLoading] = useState(false)
-  // const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const [check_user, setCheck_user] = useState(true) // 檢查有無用戶(確認 handleCheckAuth 有執行完)
   const { auth, setAuth, handleCheckAuth } = useAuth() // 使用者部分
   const router = useRouter()

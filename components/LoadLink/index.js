@@ -34,17 +34,3 @@ export default function LoadLink({
   )
 }
 
-/*
-
-    // 標籤範例
-
-    <LoadLink
-        href="/product"
-        title="正在前往商品頁面"
-        msg="請稍候..."
-        className="my-link"
-    >
-    前往商品
-    </LoadLink>
- 
-*/

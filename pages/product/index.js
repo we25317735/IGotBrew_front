@@ -635,65 +635,7 @@ export default function Product({
                   </Select>
                 </FormControl>
               )}
-              {/* 價格範圍選擇 */}
-              {/* <div
-                style={{
-                  width: `240px`,
-                  mt: 2,
-                  display: `flex`,
-                  alignItems: `center`,
-                  gap: `8px`,
-                  margin: 0,
-                  borderRadius: `3px`,
-                  padding: `4px 12px 0px`,
-                }}
-              >
-                <p className={`${styles[`price-t`]}`}>價格</p>
-                <Box
-                  sx={{
-                    display: `flex`,
-                    alignItems: `center`,
-                  }}
-                >
-                  <Slider
-                    value={priceRange}
-                    onChange={handlePriceChange} //
-                    onChangeCommitted={handlePriceChangeCommitted} // 變化時及時更新
-                    valueLabelDisplay="on"
-                    min={0} // 預設最小數字
-                    max={89900} // 預設最大數字
-                    sx={{
-                      m: 1,
-                      minWidth: 140,
-                      color: `#2b4f61`,
-                      display: `flex`,
-                      alignSelf: `end`,
-                      '& .MuiSlider-thumb': {
-                        backgroundColor: `#2b4f61`,
-                        margin: 0,
-                        width: `16px`,
-                        height: `16px`,
-                      },
-                      '& .MuiSlider-track': {
-                        backgroundColor: `#2b4f61`,
-                        margin: 0,
-                      },
-                      '& .MuiSlider-rail': {
-                        backgroundColor: `#2b4f61`,
-                        margin: 0,
-                      },
-                      '& .MuiSlider-valueLabel': {
-                        backgroundColor: `transparent`,
-                        color: `#2b4f61`,
-                        fontSize: `1.4rem`, // 调整数字的字体大小
-                        top: 0, // 调整数字的垂直位置
-                        margin: 0,
-                      },
-                    }}
-                  />
-                </Box>
-              </div> */}
-
+              
               {/* 新增搜尋項目 */}
               <FormControl fullWidth>
                 <TextField

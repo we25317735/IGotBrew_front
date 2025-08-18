@@ -214,3 +214,7 @@
     }
   }
 }
+
+.my-swal-container {
+  z-index: 9999 !important; /* 把彈窗永遠放最上層 */
+}

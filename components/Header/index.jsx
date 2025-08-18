@@ -114,17 +114,18 @@ export default function Header() {
                 >
                   咖啡選購
                 </LoadLink>
-                <LoadLink href="/course" title="前往課程頁面中" msg="請稍後...">
+                {/* 後續維修 */}
+                {/* <LoadLink href="/course" title="前往課程頁面中" msg="請稍後...">
                   咖啡人的必修課
-                </LoadLink>
+                </LoadLink> */}
               </div>
             </div>
-            <LoadLink href="/article" title="正在進入咖啡專欄">
+            {/* <LoadLink href="/article" title="正在進入咖啡專欄">
               咖啡專欄
             </LoadLink>
             <LoadLink href="/cafeMap" title="正在進入咖啡地圖">
               咖啡地圖
-            </LoadLink>
+            </LoadLink> */}
           </div>
 
           {/* header 中間 */}
