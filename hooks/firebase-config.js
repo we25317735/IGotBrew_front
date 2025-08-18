@@ -1,4 +1,5 @@
 // 這裡貼上從firebase專案設定中，網頁應用程式整合的設定值
+// 專案名稱: myWebTest 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_APIKEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,

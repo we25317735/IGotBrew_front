@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from 'react'
 import styles from './assets/style.module.scss'
 
 export default function NoticeModal() {
-  const [showModal, setShowModal] = useState(false) // 掛勾 sessionStorage, 測試時 true
-  const [checked, setChecked] = useState(false)
+  const [showModal, setShowModal] = useState(true) // 掛勾 sessionStorage, 測試時 true
+  const [checked, setChecked] = useState(false) // 確認按鈕
   const [canCheck, setCanCheck] = useState(false) // 是否可勾選 checkbox
 
   const noticeRef = useRef(null) // 監聽滾動的容器
