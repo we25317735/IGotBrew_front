@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import styles from './assets/style.module.scss'
 
 export default function NoticeModal() {
-  const [showModal, setShowModal] = useState(true) // 測試時 true
+  const [showModal, setShowModal] = useState(true) // 掛勾 sessionStorage, 測試時 true
   const [checked, setChecked] = useState(false)
   const [canCheck, setCanCheck] = useState(false) // 是否可勾選 checkbox
 
@@ -62,7 +62,7 @@ export default function NoticeModal() {
                 API 等功能
               </p>
               <p>
-                2. 目前維護內容為 "商品頁" 及 "購物車" 及登入相關功能,
+                2. 目前維護內容為 "商品頁" , "購物車" 及註冊登入相關事宜,
                 後續將持續維護課程及文章部分！
               </p>
               <p>
@@ -70,9 +70,7 @@ export default function NoticeModal() {
                 網站目前登入購物功能都能"正常"使用，但還在開發中，難免會有些小狀況，請多包涵啦～
               </p>
               <p>
-                4. 目前會員中心以撰寫成型, 但由於 cookie
-                以及跨網域問題將不對外開放, 期限將延至個人有錢購買新網域那天(SSR
-                調取問題較多)
+                4. 會員中心目前已撰寫成型，但因 Cookie 與跨網域問題，暫時無法對外開放。開放時程將延至個人購買獨立網域後（致歉：租用型子網域存在 Cookie 存取限制，加上本人目前經濟狀況有限，尚無法購買域名）
               </p>
               <p className="text-danger">
                 ※ 這網站純粹是前端作品展示，沒有實際購買服務，請盡情測試,
@@ -80,7 +78,7 @@ export default function NoticeModal() {
               </p>
               <p className="text-danger">
                 ※
-                不建議在這裡輸入任何信用卡或敏感資料，我個人沒興趣但資料庫會存起來的，安全第一！測試時旁邊有一鍵輸入可供使用
+                不建議在這裡輸入任何信用卡或敏感資料，咱個人沒興趣但資料庫會存起來的，安全第一！測試時旁邊有一鍵輸入可供使用
               </p>
               <p className="text-danger">
                 ※ 由於是學校作品,

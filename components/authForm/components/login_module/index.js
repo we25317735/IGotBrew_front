@@ -87,7 +87,7 @@ export default function Login_module() {
   const forget_password = async () => {
     const user = loginData.account // 先取得使用者
 
-    console.log('hjkl; ', loginData.account, user)
+    // console.log('hjkl; ', loginData.account, user)
 
     if (!user) {
       toast.error(`請輸入帳號`)

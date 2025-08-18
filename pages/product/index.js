@@ -836,6 +836,7 @@ export default function Product({
                   <Image
                     src={`${process.env.NEXT_PUBLIC_BACK_IMG}/images/hello/${product.img}`}
                     alt=""
+                    loading="lazy" // 指定懶加載
                     width={100}
                     height={100}
                     onError={(e) => {
