@@ -393,7 +393,7 @@ export default function Order() {
                       <FormControlLabel
                         control={
                           <Checkbox
-                            checked={isChecked}
+                            checked={isChecked} 
                             onChange={doCheckboxChange}
                             sx={{
                               '& .MuiSvgIcon-root': { fontSize: 28 },
@@ -915,6 +915,7 @@ export default function Order() {
                                 門市號碼 :
                                 <input
                                   type="text"
+                                  placeholder='門市號碼'
                                   name="store_id"
                                   className="ms-md-2"
                                   value={store711.storeid}
@@ -924,6 +925,7 @@ export default function Order() {
                                 門市名稱 :
                                 <input
                                   type="text"
+                                  placeholder='門市名稱'
                                   name="store_name"
                                   className="mt-md-3 ms-md-2"
                                   value={store711.storename}

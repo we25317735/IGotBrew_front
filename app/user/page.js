@@ -3,7 +3,6 @@ import History from './information/page'
 import Liked from './information/page'
 import Coupons from './information/page'
 
-import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import Loading from '@/components/Loading'
 
