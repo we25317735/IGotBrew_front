@@ -1,3 +1,4 @@
+'use client'
 // loader.js
 import dynamic from 'next/dynamic'
 import catAnimation from '@/assets/loader-cat.json'
