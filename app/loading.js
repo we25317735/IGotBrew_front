@@ -1,7 +1,13 @@
 'use client'
 import React from 'react'
-import Lottie from 'lottie-react'
+import dynamic from 'next/dynamic'
 import coffeeloading from '../assets/coffee loading.json'
+
+// ⚡ client-only 載入，避免 SSR 報錯
+const Lottie = dynamic(() => import('lottie-react'), {
+  ssr: false,
+  loading: () => <div className="fallback">Loading...</div>, // fallback (可改 spinner)
+})
 
 export default function Loading() {
   return (
@@ -37,6 +43,21 @@ export default function Loading() {
           display: flex;
           justify-content: center;
           align-items: center;
+        }
+
+        .fallback {
+          font-size: 2rem;
+          color: rgba(0, 0, 0, 0.5);
+          animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.4;
+          }
         }
 
         h1 {

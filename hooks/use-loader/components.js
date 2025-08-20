@@ -34,17 +34,17 @@ export function CatLoader({ show = false }) {
 }
 
 // lottie-react
-export function NikeLoader({ show = false }) {
-  return (
-    <div className={`nike-loader-bg ${show ? '' : 'nike-loader--hide'}`}>
-      <Lottie
-        className={`nike-loader ${show ? '' : 'nike-loader--hide'}`}
-        animationData={nikeAnimation}
-      />
-    </div>
-  )
-}
+// export function NikeLoader({ show = false }) {
+//   return (
+//     <div className={`nike-loader-bg ${show ? '' : 'nike-loader--hide'}`}>
+//       <Lottie
+//         className={`nike-loader ${show ? '' : 'nike-loader--hide'}`}
+//         animationData={nikeAnimation}
+//       />
+//     </div>
+//   )
+// }
 
-export function NoLoader({ show = false }) {
-  return <></>
-}
+// export function NoLoader({ show = false }) {
+//   return <></>
+// }
