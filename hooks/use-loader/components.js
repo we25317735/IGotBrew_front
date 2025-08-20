@@ -1,7 +1,10 @@
-// https://github.com/Gamote/lottie-react
-import Lottie from 'lottie-react'
+// loader.js
+import dynamic from 'next/dynamic'
 import catAnimation from '@/assets/loader-cat.json'
 import nikeAnimation from '@/assets/loader-nike.json'
+
+// 禁用 SSR 的 Lottie
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 
 // 展示用載入元件
 export function DefaultLoader({ show = false }) {
@@ -21,7 +24,7 @@ export function LoaderText({ text = 'loading', show = false }) {
   )
 }
 
-// lottie-react
+// Cat Lottie loader
 export function CatLoader({ show = false }) {
   return (
     <div className={`cat-loader-bg ${show ? '' : 'cat-loader--hide'}`}>
@@ -33,18 +36,19 @@ export function CatLoader({ show = false }) {
   )
 }
 
-// lottie-react
-// export function NikeLoader({ show = false }) {
-//   return (
-//     <div className={`nike-loader-bg ${show ? '' : 'nike-loader--hide'}`}>
-//       <Lottie
-//         className={`nike-loader ${show ? '' : 'nike-loader--hide'}`}
-//         animationData={nikeAnimation}
-//       />
-//     </div>
-//   )
-// }
+// Nike Lottie loader
+export function NikeLoader({ show = false }) {
+  return (
+    <div className={`nike-loader-bg ${show ? '' : 'nike-loader--hide'}`}>
+      <Lottie
+        className={`nike-loader ${show ? '' : 'nike-loader--hide'}`}
+        animationData={nikeAnimation}
+      />
+    </div>
+  )
+}
 
-// export function NoLoader({ show = false }) {
-//   return <></>
-// }
+// 空 loader
+export function NoLoader({ show = false }) {
+  return <></>
+}
