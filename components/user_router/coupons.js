@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Gift } from 'lucide-react'
 import Swal from 'sweetalert2'
 
@@ -10,6 +10,13 @@ import { receiveCoupon } from '@/services/user'
 
 export default function Coupons({ data, user }) {
   const [coupons, setCoupons] = useState(data)
+
+  // 同步來自父組件的 prop (初始會渲染一堆空值)
+  useEffect(() => {
+    if (data) {
+      setCoupons(data)
+    }
+  }, [data])
 
   // 領取優惠券 API
   const getCoupon = async (coupon) => {

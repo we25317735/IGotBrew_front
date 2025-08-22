@@ -255,7 +255,7 @@ export default function Header() {
                 aria-expanded="false"
               >
                 {/* 使用者頭像 */}
-                {auth?.userData?.img ? (
+                {auth.isAuth ? (
                   <Image
                     src={auth.userData.img}
                     className="rounded-circle"

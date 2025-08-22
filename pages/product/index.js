@@ -80,10 +80,6 @@ export default function Product({
 
   const { auth, setAuth, handleCheckAuth } = useAuth() // 使用者部分
 
-  // 本地和伺服器 api 切換(後續改成 .env)
-  // const NEXT_PUBLIC_BACK_API = `https://igotbrew-render-back.onrender.com/api`
-  // const NEXT_PUBLIC_BACK_IMG = `https://igotbrew-render-back.onrender.com`
-
   // 初次渲染後檢查會員是否已登入
   useEffect(() => {
     handleCheckAuth() // 呼叫驗證狀態檢查函數

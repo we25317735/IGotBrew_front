@@ -32,11 +32,9 @@ export default function RootLayout({ children }) {
         {/* Context Providers（巢狀順序與 pages/_app.js 相同） */}
         <AuthProvider>
           <AuthProvider_1>
-         
             <Provider store={store}>
               <CartProvider>{children}</CartProvider>
             </Provider>
-         
           </AuthProvider_1>
         </AuthProvider>
       </body>

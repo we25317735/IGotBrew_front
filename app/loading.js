@@ -52,7 +52,8 @@ export default function Loading() {
         }
 
         @keyframes blink {
-          0%, 100% {
+          0%,
+          100% {
             opacity: 1;
           }
           50% {

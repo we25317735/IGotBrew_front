@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import toast from 'react-hot-toast'
@@ -10,6 +10,13 @@ export default function Information({ user }) {
   const [data, setData] = useState(user) // 頁面資料
   const [editedData, setEditedData] = useState(false) // 資料有無修改
   const [reductionData, setReductionData] = useState(false) // 還原資料按鈕
+
+  // 同步來自父組件的 prop (初始會渲染一堆空值)
+  useEffect(() => {
+    if (user) {
+      setData(user)
+    }
+  }, [user])
 
   // 更新欄位
   const stateChang = (e) => {

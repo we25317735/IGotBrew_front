@@ -139,7 +139,7 @@ export const userAttention = async (id, classification) => {
   return await axiosInstance.get(`/user/${id}/${classification}_like`)
 }
 
-// 使用者持有優惠券
+// 使用者持有優惠券(有回傳 user_id)
 export const userCoupon = async (id) => {
   return await axiosInstance.get(`/user/${id}/coupon`)
 }

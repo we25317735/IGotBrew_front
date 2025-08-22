@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import '@/styles/user.scss'
 import { useCart } from '@/hooks/use-cart'
@@ -9,16 +9,23 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 
-export default function Favorites({ data, user }) {
-  const [product, setProduct] = useState(data)
+export default function Favorites({ user, product }) {
+  const [products, setProducts] = useState(product) // 關注商品
   const { addItem } = useCart() // 購物車 hook
 
+  // 同步來自父組件的 prop (初始會渲染一堆空值)
+  useEffect(() => {
+    if (product) {
+      setProducts(product)
+    }
+  }, [product])
+
   // 加入購物車
-  const handleAddToCart = (e) => {
+  const handleAddToCart = (e, ification) => {
     // 購物車通用物件
     const cartItem = {
       user: user,
-      classification: 'product',
+      classification: ification,
       id: e.id,
       name: e.name,
       img: e.img,
@@ -38,7 +45,7 @@ export default function Favorites({ data, user }) {
       </CardHeader>
       <CardContent>
         <div className="favorites-grid">
-          {data.map((e) => (
+          {products.map((e) => (
             <div key={e.id} className="favorite-item">
               <img
                 src={`${process.env.NEXT_PUBLIC_BACK_IMG}/images/hello/${e.img}`}
@@ -57,7 +64,7 @@ export default function Favorites({ data, user }) {
                 <p className="favorite-price">$ {e.price}</p>
               </div>
               <Button
-                onClick={() => handleAddToCart(e)}
+                onClick={() => handleAddToCart(e, 'product')}
                 size="sm"
                 className="add-to-cart-btn"
               >

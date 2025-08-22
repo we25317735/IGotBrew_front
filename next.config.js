@@ -7,6 +7,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'picsum.photos' },
       { protocol: 'https', hostname: 'loremflickr.com' },
       { protocol: 'http', hostname: 'localhost' },
+      { protocol: 'https', hostname: 'lh3.googleusercontent.com' }, //  google 的圖片
     ],
     unoptimized: true, // 開發用，正式環境建議移除
   },
