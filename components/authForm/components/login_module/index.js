@@ -123,6 +123,14 @@ export default function Login_module() {
     }
   }
 
+  // 觀光客 林俊成
+  const tourism = () => {
+    setLoginData({
+      account: 'Xdu78910', // 帳號部分
+      password: 'pass345334', // 密碼部分
+    })
+  }
+
   return (
     <div id={`${styles['login-form']}`}>
       <div className="mb-3">
@@ -174,6 +182,13 @@ export default function Login_module() {
           >
             記住我
           </label>
+            <button
+              type="button"
+              className="btn  "
+              onClick={()=>tourism()}
+            >
+              點擊取得帳號
+            </button>
         </div>
         <a
           href="#"
@@ -188,6 +203,7 @@ export default function Login_module() {
         </a>
       </div>
       <div className="d-grid gap-2">
+        
         <button
           type="button"
           className="btn btn-primary fs-3"
