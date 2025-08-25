@@ -23,8 +23,6 @@ export default function Orders({ data }) {
     }
   }, [data])
 
-  console.log('edewefew ', data)
-
   return (
     <Card className="content-card">
       <CardHeader>

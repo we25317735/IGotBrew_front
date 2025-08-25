@@ -40,7 +40,7 @@ export default function MyApp({ Component, pageProps }) {
       <Toaster />
 
       {/* 公告 */}
-      {/* <Notice_modal />  */}
+      <Notice_modal />
 
       <AuthProvider>
         <AuthProvider_1>

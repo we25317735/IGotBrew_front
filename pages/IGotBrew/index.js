@@ -134,7 +134,7 @@ export default function IGotBrew() {
   return (
     <>
       {/* 注意事項，放在最上層 */}
-      <NoticeModal />
+      {/* <NoticeModal /> */}
 
       <div className={`container-fluid ${styles['bg']}`}>
         <Header />
