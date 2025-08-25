@@ -182,13 +182,9 @@ export default function Login_module() {
           >
             記住我
           </label>
-            <button
-              type="button"
-              className="btn  "
-              onClick={()=>tourism()}
-            >
-              點擊取得帳號
-            </button>
+          <button type="button" className="btn  " onClick={() => tourism()}>
+            點擊取得帳號
+          </button>
         </div>
         <a
           href="#"
@@ -203,7 +199,6 @@ export default function Login_module() {
         </a>
       </div>
       <div className="d-grid gap-2">
-        
         <button
           type="button"
           className="btn btn-primary fs-3"

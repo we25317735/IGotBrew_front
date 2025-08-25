@@ -2,14 +2,29 @@ import { useEffect, useState, useRef } from 'react'
 import styles from './assets/style.module.scss'
 
 export default function NoticeModal() {
-  const [showModal, setShowModal] = useState(true) // 掛勾 sessionStorage, 測試時 true
+  const [showModal, setShowModal] = useState(false) // 掛勾 localStorage, 測試時 true
   const [checked, setChecked] = useState(false) // 確認按鈕
   const [canCheck, setCanCheck] = useState(false) // 是否可勾選 checkbox
-
   const noticeRef = useRef(null) // 監聽滾動的容器
 
+  // 組件載入時檢查時間有沒有過
   useEffect(() => {
-    if (!sessionStorage.getItem('readNotice')) {
+    const lastRead = localStorage.getItem('announcement')
+    // const ONE_DAY = 24 * 60 * 60 * 1000 // 24 小時毫秒數
+    const ONE_DAY = 5 * 60 * 1000 // 5 分鐘毫秒數
+
+    if (lastRead) {
+      const lastTime = parseInt(lastRead, 10)
+      if (Date.now() - lastTime > ONE_DAY) {
+        // console.log("超過 24 小時，需要顯示 modal")
+        setShowModal(true)
+      } else {
+        // console.log("還沒超過 24 小時，不顯示 modal")
+        setShowModal(false)
+      }
+    } else {
+      // 沒有紀錄，第一次進來也要顯示
+      // console.log("沒有紀錄，第一次顯示 modal")
       setShowModal(true)
     }
   }, [])
@@ -19,7 +34,6 @@ export default function NoticeModal() {
     if (!noticeDiv) return
 
     function onScroll() {
-      // 判斷是否滾動到底：scrollTop + clientHeight >= scrollHeight - 1（允許誤差）
       if (
         noticeDiv.scrollTop + noticeDiv.clientHeight >=
         noticeDiv.scrollHeight - 1
@@ -28,15 +42,21 @@ export default function NoticeModal() {
       }
     }
 
-    noticeDiv.addEventListener('scroll', onScroll)
+    // 確保 scrollHeight 正確
+    if (noticeDiv.scrollHeight > noticeDiv.clientHeight) {
+      noticeDiv.addEventListener('scroll', onScroll)
+    } else {
+      // 內容太短，直接允許勾選
+      setCanCheck(true)
+    }
 
     return () => {
       noticeDiv.removeEventListener('scroll', onScroll)
     }
-  }, [])
+  }, [showModal]) // 加 showModal 為依賴，確保 modal 出現時才綁定事件
 
   const handleConfirm = () => {
-    sessionStorage.setItem('readNotice', 'true')
+    localStorage.setItem('announcement', Date.now().toString())
     setShowModal(false)
   }
 
