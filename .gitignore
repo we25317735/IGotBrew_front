@@ -1,13 +1,13 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # 還沒維修的東西
-/pages/article
-/pages/articleEditor
-/pages/course
-/pages/courseEditor
-/pages/courseEditor
-/pages/productEditor
-/pages/search
+/pages/article.js
+/pages/articleEditor.js
+/pages/course.js
+/pages/courseEditor.js
+/pages/courseEditor.js
+/pages/productEditor.js
+/pages/search.js
 
 
 
