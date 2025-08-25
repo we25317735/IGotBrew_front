@@ -1,5 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# 還沒維修的東西
+/pages/article
+/pages/articleEditor
+/pages/course
+/pages/courseEditor
+/pages/courseEditor
+/pages/productEditor
+/pages/search
+
+
+
 # dependencies
 /node_modules
 /.pnp
