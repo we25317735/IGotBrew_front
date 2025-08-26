@@ -315,13 +315,14 @@ export default function Header() {
                       登出
                     </button>
                   ) : (
-                    <Link
+                
+                    <LoadLink
                       className="dropdown-item"
-                      href="/login"
+                      href="/login"                     
                       style={{ fontSize: '1.4rem' }}
                     >
                       登入
-                    </Link>
+                    </LoadLink>
                   )}
                 </li>
               </ul>
