@@ -1,16 +1,23 @@
-function Error({ statusCode }) {
-  return (
-    <p>
-      {statusCode
-        ? `An error ${statusCode} occurred on server`
-        : 'An error occurred on client'}
-    </p>
-  )
-}
+import * as Sentry from '@sentry/nextjs';
+import NextErrorComponent from 'next/error';
 
-Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404
-  return { statusCode }
-}
+const MyError = ({ statusCode, hasGetInitialPropsRun, err }) => {
+  if (!hasGetInitialPropsRun && err) {
+    Sentry.captureException(err); // 捕捉錯誤送到 Sentry
+  }
+  return <NextErrorComponent statusCode={statusCode} />;
+};
 
-export default Error
+MyError.getInitialProps = async (contextData) => {
+  const errorInitialProps = await NextErrorComponent.getInitialProps(contextData);
+
+  errorInitialProps.hasGetInitialPropsRun = true;
+
+  if (contextData.err) {
+    Sentry.captureException(contextData.err); // 捕捉 SSR 錯誤
+  }
+
+  return errorInitialProps;
+};
+
+export default MyError;
