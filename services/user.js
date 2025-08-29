@@ -1,4 +1,11 @@
-import axiosInstance, { fetcher } from './axios-instance'
+import axiosInstance from './axios-instance'
+
+import { requestWithRetry } from '@/utils/API_Retry' // 你的小工具
+
+// 測試用 API(錯誤連線測試)
+export const TestAPI = async () => {
+  return await requestWithRetry(() => axiosInstance.get('/user/test-delay'))
+}
 
 // 調取會員狀態(畫面每次 reload 都會執行一次, handleCheckAuth 會執行的那個)
 export const checkAuth = async () => {

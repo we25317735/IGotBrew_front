@@ -1,23 +1,25 @@
-import * as Sentry from '@sentry/nextjs';
-import NextErrorComponent from 'next/error';
+import * as Sentry from '@sentry/nextjs'
+import NextErrorComponent from 'next/error'
 
 const MyError = ({ statusCode, hasGetInitialPropsRun, err }) => {
   if (!hasGetInitialPropsRun && err) {
-    Sentry.captureException(err); // 捕捉錯誤送到 Sentry
+    Sentry.captureException(err) // 捕捉錯誤送到 Sentry
   }
-  return <NextErrorComponent statusCode={statusCode} />;
-};
+  return <NextErrorComponent statusCode={statusCode} />
+}
 
 MyError.getInitialProps = async (contextData) => {
-  const errorInitialProps = await NextErrorComponent.getInitialProps(contextData);
+  const errorInitialProps = await NextErrorComponent.getInitialProps(
+    contextData
+  )
 
-  errorInitialProps.hasGetInitialPropsRun = true;
+  errorInitialProps.hasGetInitialPropsRun = true
 
   if (contextData.err) {
-    Sentry.captureException(contextData.err); // 捕捉 SSR 錯誤
+    Sentry.captureException(contextData.err) // 捕捉 SSR 錯誤
   }
 
-  return errorInitialProps;
-};
+  return errorInitialProps
+}
 
-export default MyError;
+export default MyError

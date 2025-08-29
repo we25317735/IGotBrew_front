@@ -1,8 +1,7 @@
 'use client'
 import React, { useEffect, useState, useRef } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import Skeleton from '@mui/material/Skeleton';
-
+import Skeleton from '@mui/material/Skeleton'
 
 export default function MemberCenterPage() {
   return (

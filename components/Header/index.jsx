@@ -315,10 +315,9 @@ export default function Header() {
                       登出
                     </button>
                   ) : (
-                
                     <LoadLink
                       className="dropdown-item"
-                      href="/login"                     
+                      href="/login"
                       style={{ fontSize: '1.4rem' }}
                     >
                       登入
