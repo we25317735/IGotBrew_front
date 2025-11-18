@@ -124,7 +124,7 @@ export default function Header_redesign() {
     <header>
       <input
         type="checkbox"
-        className={`${styles[`filterInput`]}`}
+        className={`${styles[`filterInput`]} opacity-0`}
         id="searchSwitch"
       />
       {!isMobile && (
@@ -145,15 +145,15 @@ export default function Header_redesign() {
               </Button>
               <div className={styles['dropdown-content']}>
                 <Link href="/product">咖啡選購</Link>
-                <Link href="/course">咖啡人的必修課</Link>
+                {/* <Link href="/course">咖啡人的必修課</Link> */}
               </div>
             </div>
-            <Link href="/article" title="咖啡專欄">
+            {/* <Link href="/article" title="咖啡專欄">
               咖啡專欄
             </Link>
             <Link href="/cafeMap" title="咖啡地圖">
               咖啡地圖
-            </Link>
+            </Link> */}
           </div>
 
           {/* header 中間 */}

@@ -92,7 +92,7 @@ export default function NoticeModal() {
               </p>
               <p className="text-danger">
                 ※
-                不建議在這裡輸入任何信用卡或敏感資料，咱個人沒興趣但資料庫會存起來的，安全第一！測試時旁邊有一鍵輸入可供使用
+                不建議在這裡輸入任何信用卡或敏感資料，個人沒興趣但資料庫會存起來的，安全第一！測試時旁邊有一鍵輸入可供使用
               </p>
               <p className="text-danger">
                 ※ 由於是學校作品,

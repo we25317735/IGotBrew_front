@@ -1,0 +1,166 @@
+:root {
+  /* ----- EWD 斷點 ----- */
+  --breakpoints-md: 768px;
+  --breakpoints-sm: 576px;
+
+  /* ----- 色彩策略 ----- */
+
+  // 品牌色 / 主色系
+  --color-primary: #2b4f61; // 主要品牌色
+  --color-primary-text: #ffffff; // 主要文字色（按鈕/元件文字）
+
+  // 輔助 / 強調色
+  --color-accent: #eba92a; // 強調色
+  --color-accent-dark: #e4960e; // 強調色深色版本
+  --color-accent-text: #1b3947; // 強調色文字
+
+  // 背景色
+  --color-bg: #f7f2ed; // 主背景
+  --color-bg-alt: #eee9e4; // 次背景
+  --color-card: #ffffff; // 卡片背景
+  --color-card-text: #1b3947; // 卡片文字
+
+  // 文字色
+  --color-text: #1b3947; // 主文字
+  --color-text-light: #6c7275; // 次要文字
+
+  // 狀態色
+  --color-success: #28a745;
+  --color-success-text: #ffffff;
+  --color-warning: #ffc107;
+  --color-warning-text: #1b3947;
+  --color-destructive: #ed7161;
+  --color-destructive-text: #ffffff;
+
+  // 邊框 / 焦點色
+  --color-border: #d1d3e2;
+  --color-input: #ced4da;
+  --color-ring: #eba92a;
+
+  // 灰階
+  --color-gray-light: #f1f3f4; // 浅灰
+  --color-gray-medium: #6c7275; // 中灰
+  --color-gray-dark: #372f29; // 深灰
+
+  /* ----- 文字 ----- */
+  --font-family-base: 'Noto Sans TC';
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--color-text); // 預設顏色
+  font-family: var(--font-family-base); // 全站字體
+}
+
+/* ----- 文字大小策略 ----- */
+
+.fz-1 {
+  font-size: 2.5rem;
+  line-height: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.fz-2 {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+}
+
+.fz-3 {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.fz-4 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.fz-5 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.fz-6 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+// 響應式縮放 (大平版 md)
+@media (max-width: var(--breakpoints-md)) {
+  .fz-1 {
+    font-size: 2.25rem; // 縮小 10%
+    line-height: 2.7rem;
+    letter-spacing: 0.015em; // 微調字距
+  }
+  .fz-2 {
+    font-size: 1.8rem;
+    line-height: 2.25rem;
+    letter-spacing: 0.012em;
+  }
+  .fz-3 {
+    font-size: 1.575rem;
+    line-height: 2rem;
+    letter-spacing: 0.008em;
+  }
+  .fz-4 {
+    font-size: 1.35rem;
+    line-height: 1.8rem;
+  }
+  .fz-5 {
+    font-size: 1.125rem;
+    line-height: 1.6rem;
+  }
+  .fz-6 {
+    font-size: 0.9rem;
+    line-height: 1.35rem;
+  }
+}
+
+// 響應式縮放 (手機版 sm)
+@media (max-width: var(--breakpoints-sm)) {
+  .fz-1 {
+    font-size: 2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.01em;
+  }
+  .fz-2 {
+    font-size: 1.6rem;
+    line-height: 2rem;
+    letter-spacing: 0.008em;
+  }
+  .fz-3 {
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    letter-spacing: 0.005em;
+  }
+  .fz-4 {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+  }
+  .fz-5 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  .fz-6 {
+    font-size: 0.875rem;
+    line-height: 1.3rem;
+  }
+}
+
+/* ----- 文字大小策略 結束 ----- */

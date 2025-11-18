@@ -1,7 +1,5 @@
 'use client'
-
 import React, { useEffect, useState, useRef } from 'react'
-import Head from 'next/head'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -24,6 +22,7 @@ import {
 import Header from '@/components/Header_redesign'
 import Footer from '@/components/Footer'
 import Loading from '@/components/Loading'
+
 
 // 取出當前使用者
 import { useAuth } from '@/hooks/use-auth'
