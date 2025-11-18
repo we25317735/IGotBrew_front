@@ -1,6 +1,8 @@
+'use client'
+
 import React, { useEffect, useState, useRef } from 'react'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '@/styles/product.module.scss'
@@ -19,7 +21,7 @@ import {
   TbHexagonNumber2Filled,
   TbHexagonNumber3Filled,
 } from 'react-icons/tb'
-import Header from '@/components/Header'
+import Header from '@/components/Header_redesign'
 import Footer from '@/components/Footer'
 import Loading from '@/components/Loading'
 
@@ -43,11 +45,11 @@ import {
 import 'dotenv/config.js' // .env 檔案載入(共用api部分)
 
 /* 後續新增改動 */
-import hero_img from './assets/img/bg-top.png'
-import product_top from './assets/img/product-top.png'
+// import hero_img from './assets/img/bg-top.png'
+// import product_top from './assets/img/product-top.png'
 
-// 在組件內部
-export default function Product({
+// 商品頁 主要頁面
+export default function ProductClient({
   findProduct,
   hotProducts,
   topRatedProducts,
@@ -73,17 +75,16 @@ export default function Product({
   const [limitedTime, setLimitedTime] = useState(null) // 限時購買部分
   const [favorites, setFavorites] = useState({}) // 使用者商品關注
   const [isInitialLoad, setIsInitialLoad] = useState(true) // 初始載入設定
-  const isFirstRender = useRef(true) // SSR 與 CSR 渲染隔絕
-  const router = useRouter()
 
-  // console.log('ssr 確認: ', findProduct.length)
+  const router = useRouter()
+  const searchParams = useSearchParams()
 
   const { auth, setAuth, handleCheckAuth } = useAuth() // 使用者部分
 
   // 初次渲染後檢查會員是否已登入
   useEffect(() => {
     handleCheckAuth() // 呼叫驗證狀態檢查函數
-  }, [setAuth, router])
+  }, [setAuth])
 
   // 顯示關注的部分(在使用者完全載入後才執行)
   useEffect(() => {
@@ -94,58 +95,52 @@ export default function Product({
 
   // 接收 url 值
   useEffect(() => {
-    if (router.isReady) {
-      const { find } = router.query
-      if (find) {
-        setSearchProduct(find)
-      }
+    const findQuery = searchParams.get('find')
+    if (findQuery) {
+      setSearchProduct(findQuery)
     }
-  }, [router.isReady, router.query])
+  }, [searchParams])
 
   // 引響商品列表部分(關於列表的重新處理)
   useEffect(() => {
     getCategories() // 商品細項過濾
 
-    // SSR 渲染時, 阻止 CSR 再度渲染
-    if (isFirstRender.current) {
-      isFirstRender.current = false
-      return
+    if (!isInitialLoad) {
+      getProduct()
     }
-
-    getProduct()
   }, [type, categoryId, currentPage, sortBy])
 
   // CSR URL 重新渲染
   const RouteRefresh = () => {
-    let query = ''
-
-    if (searchProduct) query += `find=${searchProduct}`
-    if (type) query += `${query ? '&' : ''}type=${type}`
-    if (sortBy && sortBy !== 'default')
-      query += `${query ? '&' : ''}sort=${sortBy}`
+    const params = new URLSearchParams(searchParams)
+    if (searchProduct) params.set('find', searchProduct)
+    else params.delete('find')
+    if (type) params.set('type', type)
+    else params.delete('type')
+    if (sortBy && sortBy !== 'default') params.set('sort', sortBy)
+    else params.delete('sort')
     if (currentPage && currentPage !== 1)
-      query += `${query ? '&' : ''}page=${currentPage}`
+      params.set('page', String(currentPage))
+    else params.delete('page')
 
-    router.push(`/product${query ? `?${query}` : ''}`, undefined, {
-      scroll: false,
-    })
+    router.push(`/product?${params.toString()}`, { scroll: false })
   }
 
   // 關鍵字搜尋
-  const getfindProduct = async () => {
-    let apiUrl = `${process.env.NEXT_PUBLIC_BACK_API}/product?find=${searchProduct}`
+  //   const getfindProduct = async () => {
+  //     let apiUrl = `${process.env.NEXT_PUBLIC_BACK_API}/product?find=${searchProduct}`
 
-    const res = await fetch(apiUrl)
-    const data = await res.json()
-    if (data.status === `success`) {
-      router.push(`/product?find=${searchProduct}`)
-      setProducts(data.data.products)
-      setTotalProducts(data.data.totalProducts)
-      setCurrentPage(1) //頁數回到第一頁
-    } else {
-      console.error(`Failed to fetch products:`, data.message)
-    }
-  }
+  //     const res = await fetch(apiUrl)
+  //     const data = await res.json()
+  //     if (data.status === `success`) {
+  //       router.push(`/product?find=${searchProduct}`)
+  //       setProducts(data.data.products)
+  //       setTotalProducts(data.data.totalProducts)
+  //       setCurrentPage(1) //頁數回到第一頁
+  //     } else {
+  //       console.error(`Failed to fetch products:`, data.message)
+  //     }
+  //   }
 
   // 重新取得商品列表( 商品列表 CSR 渲染 API )
   const getProduct = async () => {
@@ -202,13 +197,10 @@ export default function Product({
         `${process.env.NEXT_PUBLIC_BACK_API}/product/favorites/${auth.userData.id}`
       )
       const data = await response.json()
-      //{"status":"success","favorites":[{"product_id":14},{"product_id":5}]}
       if (data.status === `success`) {
         const favMap = {}
         data.favorites.forEach((fav) => {
           favMap[fav.product_id] = true
-          //{14: true, 5: true}
-          //favMap的物件包住map下來的每個商品id，為true值
         })
         setFavorites(favMap)
       }
@@ -253,6 +245,10 @@ export default function Product({
 
   // 回傳商品細項 API
   const getCategories = async () => {
+    if (!type) {
+      setCategories([])
+      return
+    }
     let apiUrl = `${process.env.NEXT_PUBLIC_BACK_API}/product/categories?type=${type}`
 
     try {
@@ -262,9 +258,11 @@ export default function Product({
         setCategories(data.data.categories)
       } else {
         console.error(`Failed to fetch categories:`, data.message)
+        setCategories([])
       }
     } catch (error) {
       console.error(`Error fetching categories:`, error)
+      setCategories([])
     }
   }
 
@@ -278,7 +276,6 @@ export default function Product({
         const data = await response.json()
         if (data.status === `success`) {
           setLimitedTime(new Date(data.data.limitedTime))
-          //轉換為本地時間，原本json會是new Date("2024-08-30T04:00:00.000Z")變成2024年8月30日12:00:00
         }
       } catch (error) {
         console.error(`Error fetching limited time:`, error)
@@ -333,8 +330,7 @@ export default function Product({
 
   // 換頁部分, 當前頁籤 active
   const handlePageChange = (page) => {
-    // 超出範圍的不執行
-    if (page <= totalPages && page !== 0) {
+    if (page > 0 && page <= totalPages) {
       setCurrentPage(page)
     }
 
@@ -344,16 +340,12 @@ export default function Product({
         productTop.scrollIntoView({ behavior: `smooth` })
       }
     }
-
-    RouteRefresh() // 變更 url(有搜尋商品時顯示商品)
   }
 
   // 初始載入 loading
   useEffect(() => {
-    if (isInitialLoad) {
-      setIsInitialLoad(false)
-    }
-  }, [isInitialLoad])
+    setIsInitialLoad(false)
+  }, [])
 
   if (isInitialLoad) {
     return (
@@ -365,26 +357,6 @@ export default function Product({
 
   return (
     <>
-      {/* next 的 head 標籤 */}
-      <Head>
-        <title>商品列表 | IGotBrew</title>
-        <meta
-          name="description"
-          content="探索我們的咖啡商品，包括咖啡豆、咖啡機與更多好物。"
-        />
-        <meta name="keywords" content="咖啡, 咖啡豆, 商品, IGotBrew" />
-        <meta property="og:title" content="商品列表 | IGotBrew" />
-        <meta
-          property="og:description"
-          content="探索我們的咖啡商品，包括咖啡豆、咖啡機與更多好物。"
-        />
-        <meta
-          property="og:image"
-          content="https://yourdomain.com/images/og-image.jpg"
-        />
-        <meta property="og:url" content="https://yourdomain.com/product" />
-      </Head>
-
       <div className={`container-fluid ${styles.backg} mt-3`}>
         <Header />
         <div className={`container ${styles[`one`]} mt-5`}>
@@ -408,7 +380,12 @@ export default function Product({
               <p className={`m-0`}>商品總覽</p>
             </Link>
 
-            <Image src={product_top} alt="" width={100} height={100} />
+            <Image
+              src={`${process.env.NEXT_PUBLIC_FONT_URL}/images/product/product-top.png`}
+              alt=""
+              width={100}
+              height={100}
+            />
           </div>
           <div className={`${styles[`announce`]}`}>
             <FaBullhorn className={`${styles[`load`]}`} />
@@ -417,7 +394,12 @@ export default function Product({
         </div>
 
         <div className={`container-fluid ${styles[`two`]}`}>
-          <Image src={hero_img} alt="" width={100} height={100} />
+          <Image
+            src={`${process.env.NEXT_PUBLIC_FONT_URL}/images/product/bg-top.png`}
+            alt=""
+            width={100}
+            height={100}
+          />
           <div className="container">
             {/* 限時特賣 */}
             <div className={`${styles[`countdown-container`]}`}>
@@ -542,6 +524,7 @@ export default function Product({
                   onChange={(e) => {
                     setType(e.target.value)
                     setCategoryId(``) // 重置細項類別
+                    setCurrentPage(1) // Reset to first page
                   }}
                   label="種類"
                 >
@@ -606,6 +589,7 @@ export default function Product({
                     value={categoryId}
                     onChange={(e) => {
                       setCategoryId(e.target.value)
+                      setCurrentPage(1) // Reset to first page
                     }}
                     sx={{ fontSize: `1.4rem`, color: `#1b3947` }}
                     label="細項類別"
@@ -621,9 +605,6 @@ export default function Product({
                         key={category.id}
                         value={category.id}
                         sx={{ fontSize: `1.3rem`, color: `#1b3947` }}
-                        onClick={(e) => {
-                          console.log('測試:', e.target.value)
-                        }}
                       >
                         {category.name}
                       </MenuItem>
@@ -638,6 +619,7 @@ export default function Product({
                   label="提示文字"
                   variant="outlined"
                   placeholder="請輸入商品..."
+                  value={searchProduct}
                   onChange={(e) => setSearchProduct(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
@@ -800,7 +782,6 @@ export default function Product({
                                 : parseFloat(
                                     product.average_score || 0
                                   ).toFixed(1)}
-                              {/* 如果不是數字則轉為浮點數數字，如果是空值或undefined則轉為 0  */}
                             </p>
                           </>
                         )}
@@ -812,7 +793,6 @@ export default function Product({
                                 : parseFloat(
                                     product.average_score || 0
                                   ).toFixed(1)}
-                              {/* 如果不是數字則轉為浮點數數字，如果是空值或undefined則轉為 0  */}
                             </p>
                           )}
                         {product.average_score <= 1.0 && (
@@ -903,43 +883,43 @@ export default function Product({
           {/* 換頁部分 */}
           <div className={`${styles[`pagination`]}`}>
             <a
+              href="#"
               onClick={(e) => {
                 e.preventDefault()
                 handlePageChange(1)
               }}
               className={currentPage === 1 ? styles.disabled : ``}
-              href="#"
             >
               <FaAnglesLeft />
             </a>
             <a
+              href="#"
               onClick={(e) => {
                 e.preventDefault()
                 handlePageChange(currentPage - 1)
               }}
               className={currentPage === 1 ? styles.disabled : ``}
-              href="#"
             >
               <FaAngleLeft />
             </a>
             {renderPagination()}
             <a
+              href="#"
               onClick={(e) => {
                 e.preventDefault()
                 handlePageChange(currentPage + 1)
               }}
-              className={currentPage === 1 ? styles.disabled : ``}
-              href="#"
+              className={currentPage === totalPages ? styles.disabled : ``}
             >
               <FaAngleRight />
             </a>
             <a
+              href="#"
               onClick={(e) => {
                 e.preventDefault()
                 handlePageChange(totalPages)
               }}
               className={currentPage === totalPages ? styles.disabled : ``}
-              href="#"
             >
               <FaAnglesRight />
             </a>
@@ -1050,7 +1030,7 @@ export default function Product({
                   setSortBy(`total_sold_desc`) // 切換排序為"熱門榜"
                   setType(``)
                   setCategoryId(``)
-                  setCurrentPage(`1`)
+                  setCurrentPage(1)
                 }}
               >
                 <p>查看更多</p>
@@ -1137,7 +1117,7 @@ export default function Product({
                   setSortBy(`rating_desc`) // 切換排序為"好評榜"
                   setType(``)
                   setCategoryId(``)
-                  setCurrentPage(`1`)
+                  setCurrentPage(1)
                 }}
               >
                 <p>查看更多</p>
@@ -1150,63 +1130,4 @@ export default function Product({
       </div>
     </>
   )
-}
-
-/* SSR 部分 */
-export async function getServerSideProps(context) {
-  const Mock = process.env.MOCK_DATA // 本地測試開關(關閉 SSR)
-
-  // 畫面測試假資料
-  if (Mock === 'true') {
-    return {
-      props: {
-        findProduct: [],
-        hotProducts: [],
-        topRatedProducts: [],
-        specialProducts: [],
-        findTotalPages: 1,
-        findNewPages: 1,
-        query_type: '',
-      },
-    }
-  }
-
-  // 從 URL 取得 query 參數(給予預設值避免請求無效)
-  const { find = '', type = '', page = 1, sort = '' } = context.query
-
-  // console.log(`SSR 查詢參數:`, { find, type, page, sort })
-
-  const [finds, hotRes, topRatedRes, specialProducts] = await Promise.all([
-    fetch(
-      `${process.env.NEXT_PUBLIC_BACK_API}/product?find=${find}&type=${type}&sort=${sort}&page=${page}`
-    ), // 初始搜尋 ssr
-    fetch(`${process.env.NEXT_PUBLIC_BACK_API}/product/hot-products`), // 熱門推薦 API
-    fetch(`${process.env.NEXT_PUBLIC_BACK_API}/product/top-rated`), // 好評如潮 API
-    fetch(`${process.env.NEXT_PUBLIC_BACK_API}/product/special`), // 限時特賣 API
-  ])
-
-  const [findsData, hotData, topRatedData, specialsProduct] = await Promise.all(
-    [finds.json(), hotRes.json(), topRatedRes.json(), specialProducts.json()]
-  )
-
-  // 處理 API 回傳
-  const extractProducts = (e) => {
-    return e.status === 'success' ? e.data.products : []
-  }
-
-  return {
-    props: {
-      findProduct: extractProducts(findsData),
-      hotProducts: extractProducts(hotData),
-      topRatedProducts: extractProducts(topRatedData),
-      specialProducts: extractProducts(specialsProduct),
-
-      findTotalPages: findsData.data.totalPages, // 搜尋結果總頁數
-      findNewPages: findsData.data.currentPage, // 搜尋結果當前頁數
-
-      query_type: type,
-      find: find, // 關鍵字搜尋
-      sort: sort, // 排序方式
-    },
-  }
 }

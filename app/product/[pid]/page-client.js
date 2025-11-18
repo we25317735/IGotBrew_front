@@ -1,5 +1,6 @@
+"use client"
 import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import styles from '@/styles/productDetail.module.scss'
 import Image from 'next/image'
@@ -12,7 +13,7 @@ import Link from 'next/link'
 import toast from 'react-hot-toast'
 import { FaRegStar } from 'react-icons/fa'
 import { IoMdMore } from 'react-icons/io'
-import Header from '@/components/Header'
+import Header from '@/components/Header_redesign'
 import Footer from '@/components/Footer'
 
 import Swal from 'sweetalert2'
@@ -24,7 +25,7 @@ import { useAuth } from '@/hooks/use-auth'
 // .env 檔案載入(共用api部分)
 import 'dotenv/config.js'
 
-export default function ProductDetail({ productRes }) {
+export default function ProductDetail({ productRes, pid }) {
   const [product, setProduct] = useState(productRes) // 頁面基礎資訊(SSR 預設)
   const [quantity, setQuantity] = useState(1) // 購買數量加減
   const [favorites, setFavorites] = useState({}) // 使用者商品關注
@@ -42,7 +43,6 @@ export default function ProductDetail({ productRes }) {
   const { addItem, cartItems, clearCart, onlyOneItem } = useCart() // 購物車 hook
 
   const { auth, setAuth, handleCheckAuth } = useAuth() // 使用者部分
-  const { pid } = router.query
 
   // 初次渲染後檢查會員是否已登入
   useEffect(() => {
@@ -865,20 +865,4 @@ export default function ProductDetail({ productRes }) {
   )
 }
 
-/* SSR 部分 */
-export async function getServerSideProps(context) {
-  // 從 URL 取得 query 參數(給予預設值避免請求無效)
-  const { pid } = context.params
 
-  const [product_res, otherRes1, otherRes2] = await Promise.all([
-    axios.get(`${process.env.NEXT_PUBLIC_BACK_API}/product/${pid}`),
-  ])
-
-  // 解構 data (axios 解構出來就是物件)
-
-  return {
-    props: {
-      productRes: product_res.data.data, // 主要畫面
-    },
-  }
-}

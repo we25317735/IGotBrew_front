@@ -6,7 +6,7 @@ export async function requestWithRetry(
   fallbackData = null
 ) {
   /*
-        fn: 需要重試的函式，應該返回一個 Promise (例如 axios 請求)
+        fn: 帶入請求的函式，應該返回一個 Promise (例如 axios 請求)
         retries: 最大重試次數   
         baseDelay: 基本延遲時間 (毫秒)
         fallbackData: 最終失敗後的預設回傳資料 (前端降級, 但畫面現在沒寫)
@@ -25,9 +25,9 @@ export async function requestWithRetry(
       }
 
       // 請求失敗後: 指數退避 + 隨機抖動 然後重新請求
-      const delay = baseDelay * 2 ** i + Math.random() * 300 // 隨機抖動 (Jitter): 請求失敗後, 打亂請求時間在式一次
+      const delay = baseDelay * 2 ** i + Math.random() * 300 // 隨機抖動 (Jitter): 請求失敗後, 打亂請求時間在試一次
       console.log(`重新請求 #${i + 1} in ${delay.toFixed(0)}ms`, error.message)
-      await new Promise((resolve) => setTimeout(resolve, delay)) // setTimeout 等待完畢後再重式
+      await new Promise((resolve) => setTimeout(resolve, delay)) // setTimeout 等待完畢後再次重試
     }
   }
 }

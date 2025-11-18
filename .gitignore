@@ -11,6 +11,8 @@
 /pages/cafeMap
 
 
+# 保留轉化 app 路由的部分
+/pages/product-
 
 # dependencies
 /node_modules
