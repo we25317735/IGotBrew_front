@@ -134,7 +134,7 @@ export default function IGotBrew() {
   return (
     <>
       {/* 注意事項，放在最上層 */}
-      {/* <NoticeModal /> */}
+      <NoticeModal />
 
       <div className={`container-fluid ${styles['bg']}`}>
         <Header />
@@ -161,10 +161,14 @@ export default function IGotBrew() {
 
         {/* GO TO TOP 按鈕 */}
         {showButton && (
-          <button onClick={scrollToTop} className={`${styles.gototop} btn`}>
-            <FaAngleUp />
-            <br /> Top
-          </button>
+          <div className='d-flex direction-column'>
+            <button onClick={scrollToTop} className={`${styles.gototop} btn`}>
+              <FaAngleUp />
+              <br /> Top
+            </button>
+
+         
+          </div>
         )}
       </div>
     </>

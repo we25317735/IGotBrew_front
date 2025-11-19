@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
@@ -13,7 +13,7 @@ import Link from 'next/link'
 import toast from 'react-hot-toast'
 import { FaRegStar } from 'react-icons/fa'
 import { IoMdMore } from 'react-icons/io'
-import Header from '@/components/Header_redesign'
+import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 import Swal from 'sweetalert2'
@@ -864,5 +864,3 @@ export default function ProductDetail({ productRes, pid }) {
     </>
   )
 }
-
-

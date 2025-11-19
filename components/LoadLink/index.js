@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { loadingON, loadingOff } from '@/utils/gadgets'
 
 // 取代 next Link 標籤的東西

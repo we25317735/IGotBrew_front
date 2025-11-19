@@ -5,7 +5,7 @@ import Phone_menu from './components/Phone_menu/index' // 使用 SCSS 模組
 import { FaShoppingCart, FaBars, FaSearch } from 'react-icons/fa'
 import { FaXmark } from 'react-icons/fa6'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useCart } from '@/hooks/use-cart'
 import { FaUserCircle } from 'react-icons/fa'
 import Image from 'next/image'
@@ -89,6 +89,12 @@ export default function Header() {
         type="checkbox"
         className={`${styles[`filterInput`]}`}
         id="searchSwitch"
+        style={{
+          position: 'absolute',
+          opacity: 0,
+          width: 0,
+          height: 0,
+        }}
       />
       {!isMobile && (
         <div className={`${styles['XX']} ${styles.desktop}`}>
@@ -289,14 +295,14 @@ export default function Header() {
                 {auth && auth.userData.permissions == 1 && (
                   <>
                     <li>
-                      <Link href="/anal" legacyBehavior>
-                        <a
-                          className="dropdown-item"
-                          style={{ fontSize: '1.2rem' }}
-                        >
-                          後台管理
-                        </a>
-                      </Link>
+                      <LoadLink
+                        href="/anal"
+                        title="正在進入後台管理"
+                        className="dropdown-item"
+                        style={{ fontSize: '1.2rem' }}
+                      >
+                        會員中心
+                      </LoadLink>
                     </li>
                   </>
                 )}
@@ -353,7 +359,7 @@ export default function Header() {
       )}
 
       {/* 放大鏡 + 搜尋系統 */}
-      <SiteWide_search />
+      {/* <SiteWide_search /> */}
 
       {/* 手機板列表 animationToggle要改*/}
       <div
@@ -363,7 +369,7 @@ export default function Header() {
         // 雨妏的旋轉咖啡有到10層
         style={{ position: 'relative', zIndex: 300 }}
       >
-        <Phone_menu List_switch={List_switch} />
+        {/* <Phone_menu List_switch={List_switch} /> */}
       </div>
       {/* 加載畫面 */}
       {loading && (

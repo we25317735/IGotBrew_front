@@ -19,7 +19,7 @@ import {
   TbHexagonNumber2Filled,
   TbHexagonNumber3Filled,
 } from 'react-icons/tb'
-import Header from '@/components/Header_redesign'
+import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Loading from '@/components/Loading'
 

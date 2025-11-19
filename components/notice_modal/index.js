@@ -2,34 +2,24 @@ import { useEffect, useState, useRef } from 'react'
 import styles from './assets/style.module.scss'
 
 export default function NoticeModal() {
-  const [showModal, setShowModal] = useState(false) // 掛勾 localStorage, 測試時 true
-  const [checked, setChecked] = useState(false) // 確認按鈕
-  const [canCheck, setCanCheck] = useState(false) // 是否可勾選 checkbox
-  const noticeRef = useRef(null) // 監聽滾動的容器
+  const [showModal, setShowModal] = useState(false) // 是否顯示 Modal
+  const [checked, setChecked] = useState(false) // 按鈕是否可按
+  const [canCheck, setCanCheck] = useState(false) // Checkbox 是否可點
+  const noticeRef = useRef(null)
 
-  // 組件載入時檢查時間有沒有過
+  // 第一次進入網站時顯示
   useEffect(() => {
-    const lastRead = localStorage.getItem('announcement')
-    // const ONE_DAY = 24 * 60 * 60 * 1000 // 24 小時毫秒數
-    const ONE_DAY = 5 * 60 * 1000 // 5 分鐘毫秒數
+    const hasRead = localStorage.getItem('notice_read')
 
-    if (lastRead) {
-      const lastTime = parseInt(lastRead, 10)
-      if (Date.now() - lastTime > ONE_DAY) {
-        // console.log("超過 24 小時，需要顯示 modal")
-        setShowModal(true)
-      } else {
-        // console.log("還沒超過 24 小時，不顯示 modal")
-        setShowModal(false)
-      }
-    } else {
-      // 沒有紀錄，第一次進來也要顯示
-      // console.log("沒有紀錄，第一次顯示 modal")
+    if (!hasRead) {
       setShowModal(true)
     }
   }, [])
 
+  // 檢查是否滑到底（才可勾選）
   useEffect(() => {
+    if (!showModal) return
+
     const noticeDiv = noticeRef.current
     if (!noticeDiv) return
 
@@ -42,21 +32,20 @@ export default function NoticeModal() {
       }
     }
 
-    // 確保 scrollHeight 正確
     if (noticeDiv.scrollHeight > noticeDiv.clientHeight) {
       noticeDiv.addEventListener('scroll', onScroll)
     } else {
-      // 內容太短，直接允許勾選
       setCanCheck(true)
     }
 
     return () => {
       noticeDiv.removeEventListener('scroll', onScroll)
     }
-  }, [showModal]) // 加 showModal 為依賴，確保 modal 出現時才綁定事件
+  }, [showModal])
 
+  // 按下確認
   const handleConfirm = () => {
-    localStorage.setItem('announcement', Date.now().toString())
+    localStorage.setItem('notice_read', 'yes') // 記錄已看過
     setShowModal(false)
   }
 
