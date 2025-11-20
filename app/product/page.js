@@ -6,7 +6,7 @@ import 'dotenv/config.js'
 // SSR 共用資料取得函數
 async function fetchJson(url) {
   try {
-    const res = await fetch(url, { cache: 'no-store' }) // Use no-store to ensure fresh data on every request
+    const res = await fetch(url, { cache: 'no-store' }) 
     if (!res.ok) {
       console.error(`API request failed with status ${res.status}: ${url}`)
       return { status: 'error', data: {} }
@@ -75,6 +75,7 @@ export default async function ProductPage({ searchParams }) {
     find: find,
     sort: sort,
   }
+
 
   return <ProductClient {...props} />
 }

@@ -80,6 +80,7 @@ export default function ProductClient({
 
   const { auth, setAuth, handleCheckAuth } = useAuth() // 使用者部分
 
+
   // 初次渲染後檢查會員是否已登入
   useEffect(() => {
     handleCheckAuth() // 呼叫驗證狀態檢查函數
@@ -340,6 +341,16 @@ export default function ProductClient({
       }
     }
   }
+
+  // 當來自伺服器端的 props 變更時，同步更新客戶端狀態
+  useEffect(() => {
+    setProducts(findProduct)
+    setTotalPages(findTotalPages)
+    setCurrentPage(findNewPages)
+    setSearchProduct(find)
+    setType(query_type)
+    setSortBy(sort)
+  }, [findProduct, findTotalPages, findNewPages, find, query_type, sort])
 
   // 初始載入 loading
   useEffect(() => {
