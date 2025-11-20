@@ -279,7 +279,7 @@ export default function Header() {
                 className="dropdown-menu"
                 aria-labelledby="dropdownMenuButton1"
               >
-                {auth ? (
+                {auth.isAuth ? (
                   <li>
                     <LoadLink
                       href="/user"
@@ -301,7 +301,7 @@ export default function Header() {
                         className="dropdown-item"
                         style={{ fontSize: '1.2rem' }}
                       >
-                        會員中心
+                        後臺管理
                       </LoadLink>
                     </li>
                   </>

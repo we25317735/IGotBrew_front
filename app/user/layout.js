@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Sidebar from '@/components/user_router/sidebar'
 import UserHeader from '@/components/user_router/header'
-import Header_redesign from '@/components/Header_redesign'
+import Header from '@/components/Header'
 
 import Loading from '@/components/Loading'
 
@@ -29,7 +29,7 @@ export default function userLayout({ children }) {
 
   return (
     <div className="user-wrap">
-      <Header_redesign />
+      <Header />
       <div className="member-center">
         <UserHeader />
         <Sidebar />

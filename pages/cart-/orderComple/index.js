@@ -6,7 +6,7 @@ import { BsCheckCircle } from 'react-icons/bs'
 import { useRouter } from 'next/router'
 import LoadLink from '@/components/LoadLink'
 
-import HotProduct from '@/pages/cart/components/hotproduct/hotproduct'
+import HotProduct from '@/pages/cart-/components/hotproduct/hotproduct'
 import Loading from '@/components/Loading'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'

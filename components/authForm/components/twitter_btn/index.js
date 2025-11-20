@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { FaTwitter } from 'react-icons/fa'
 import useFirebase from '@/hooks/use-firebase'
 import { useAuth } from '@/hooks/use-auth'

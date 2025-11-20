@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import styles from '@/styles/cart.module.scss'
@@ -5,7 +6,7 @@ import { loadingON, loadingOff } from '@/utils/gadgets'
 import { useCart } from '@/hooks/use-cart'
 import { Modal } from 'react-bootstrap'
 import { AuthContext } from '@/context/AuthContext'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import Swal from 'sweetalert2'
 import { Button } from '@mui/material'
 import Loading from '@/components/Loading'
@@ -15,10 +16,10 @@ import { RiCoupon2Line } from 'react-icons/ri'
 import { useAuth } from '@/hooks/use-auth'
 import { Gift } from 'lucide-react'
 
-import Cart_header from './components/cart_header' // 購買步驟組件
-import HotProduct from '@/pages/cart/components/hotproduct/hotproduct'
-import CartList from '@/pages/cart/components/cartlist/productcartlist/productcartlist'
-import CartList2 from '@/pages/cart/components/cartlist/coursecartlist/coursecartlist'
+import Cart_header from '../components/cart_header/cartHeader' // 購買步驟組件
+import HotProduct from '../components/hotproduct/hotproduct' // 推薦商品組件
+import CartList from '../components/cartlist/productcartlist/productcartlist'
+import CartList2 from '../components/cartlist/coursecartlist/coursecartlist'
 
 // .env 檔案載入(共用api部分)
 import 'dotenv/config.js'

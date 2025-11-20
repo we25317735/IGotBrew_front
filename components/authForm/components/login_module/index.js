@@ -11,7 +11,7 @@ import {
   forgetPassword,
 } from '@/services/user'
 import { useAuth } from '@/hooks/use-auth'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { loadingON, loadingOff } from '@/utils/gadgets'
 
 // 第三方登入組件

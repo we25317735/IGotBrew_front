@@ -71,6 +71,7 @@ $card-height: 100%;
   --color-gray-dark: #372f29; // 深灰
 
   /* ----- 文字 ----- */
+
   --font-family-base: 'Noto Sans TC';
 }
 
@@ -86,6 +87,17 @@ body {
 }
 
 /* ----- 文字大小策略 ----- */
+
+/*
+  文字大小比例尺倍數
+
+  fz-6: 1 (Base size)
+  fz-5: 1.2   （Minor Third）
+  fz-4: 1.25  （Major Third）
+  fz-3: 1.333 （Perfect Fourth）
+  fz-2: 1.414 （Augmented Fourth）
+  fz-1: 1.5   （Perfect Fifth）
+*/
 
 .fz-1 {
   font-size: 2.5rem;

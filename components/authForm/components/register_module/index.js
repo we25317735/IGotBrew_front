@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 
 import { registerUser, parseJwt, getUserById } from '@/services/user'
 import { useAuth } from '@/hooks/use-auth'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 import 'dotenv/config.js' // .env 檔案載入
 

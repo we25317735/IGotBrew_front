@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import Order from '../pages/cart/order/index'
+import Order from '../pages/cart-/order/index'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 

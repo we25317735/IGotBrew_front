@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/use-auth'
 import useFirebase from '@/hooks/use-firebase'
 import { googleLogin, parseJwt, getUserById } from '@/services/user'

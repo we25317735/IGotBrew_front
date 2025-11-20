@@ -1,7 +1,8 @@
+'use client'
 import React, { useState, useEffect } from 'react'
 import styles from './assets/style/style.module.scss'
 import { initUserData, useAuth } from '@/hooks/use-auth'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import toast, { Toaster } from 'react-hot-toast'
 
 import { lineLoginCallback, getUserById, parseJwt } from '@/services/user'
